@@ -8,10 +8,12 @@ const gravity = 9.8 * 1.5
 @export var air_speed = 6.0
 @export var base_accel = 10.0
 @export var air_accel = 12.5
+@export var sprint_speed = 1.5
 @export var jump_vel = 7.5
 @export var smoothing : float = 0.0002
 var camera_rotation = Vector2(0, 0)
 var can_move : bool = true
+var sprint_spd
 
 var mouse_sens = 0.003
 
@@ -46,6 +48,7 @@ func _process(delta: float) -> void:
 	if !can_move:
 		wishdir = Vector3.ZERO
 	var speed = base_speed if is_on_floor() else air_speed
+	speed *= sprint_spd
 	var accel = base_accel if is_on_floor() else air_accel
 	air_accelerate(wishdir, speed, accel, delta)
 
@@ -58,6 +61,11 @@ func _physics_process(delta: float) -> void:
 	#if is_on_floor():
 	velocity.x = velocity.x * pow(smoothing, delta);
 	velocity.z = velocity.z * pow(smoothing, delta);
+
+	if Input.is_action_pressed("Sprint"):
+		sprint_spd = sprint_speed
+	else:
+		sprint_spd = 1
 
 func air_accelerate(wishdir : Vector3, wishspeed : float, accele : float, delta : float):
 	var addspeed : float
