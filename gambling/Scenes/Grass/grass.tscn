@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj0ka62edjkya"]
+
+[ext_resource type="PackedScene" uid="uid://bsws8exta226s" path="res://Scenes/Grass/grass.blend" id="1_r6k7t"]
+
+[node name="Grass" type="Node3D"]
+
+[node name="grass" parent="." instance=ExtResource("1_r6k7t")]
+transform = Transform3D(0.534356, 0, 0, 0, 0.534356, 0, 0, 0, 0.534356, 0, 0, 0)
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+
+[editable path="grass"]

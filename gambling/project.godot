@@ -13,7 +13,6 @@ config_version=5
 config/name="gambling"
 run/main_scene="uid://bveuk5kebrha4"
 config/features=PackedStringArray("4.4", "Forward Plus", "Redot")
-config/icon="uid://1au5ivx56dow"
 
 [display]
 

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://eh0og4ymfaoa"
-path="res://.godot/imported/grass green.glb-532a620a16568e07e295dde0eed444ec.scn"
+path="res://.godot/imported/grass green.glb-c7a565235a367e621b96053b19bdcf32.scn"
 
 [deps]
 
-source_file="res://Scenes/grass green.glb"
-dest_files=["res://.godot/imported/grass green.glb-532a620a16568e07e295dde0eed444ec.scn"]
+source_file="res://Scenes/Grass/grass green.glb"
+dest_files=["res://.godot/imported/grass green.glb-c7a565235a367e621b96053b19bdcf32.scn"]
 
 [params]
 
