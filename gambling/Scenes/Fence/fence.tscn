@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1nlf7wsrex0f"]
+
+[ext_resource type="PackedScene" uid="uid://b7ebc8sfrsu5" path="res://Scenes/Fence/Fence.glb" id="1_85a52"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3t3x0"]
+points = PackedVector3Array(2.39676, 1.16403, 0.0309109, 2.94506, 1.08766, 0.082753, 2.39676, 1.16403, -0.0309271, -2.39791, 1.16403, 0.0309109, 2.94506, -0.00934, 0.082753, 2.94506, 1.08766, -0.082753, -2.94506, 1.08766, 0.082753, -2.39791, 1.16403, -0.0309271, 2.94506, -0.00934, -0.082753, -2.94506, -0.00934, 0.082753, -2.94506, 1.08766, -0.082753, -2.94506, -0.00934, -0.082753)
+
+[node name="Fence" type="StaticBody3D"]
+
+[node name="Fence" parent="." instance=ExtResource("1_85a52")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_3t3x0")
+
+[editable path="Fence"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=21 format=3 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://ukoki2adbqs1" path="res://player.tscn" id="2_e2o6t"]
 [ext_resource type="Shader" uid="uid://b3oarc00afksk" path="res://Scenes/Grass/grass.gdshader" id="3_fc0e3"]
 [ext_resource type="ArrayMesh" uid="uid://bexedbmtem3p2" path="res://Scenes/Grass/grass.res" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://bsws8exta226s" path="res://Scenes/Grass/grass.blend" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://d1nlf7wsrex0f" path="res://Scenes/Fence/fence.tscn" id="6_ryrav"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_feb5d"]
 size = Vector2(14.92, 24.76)
@@ -12,8 +13,8 @@ size = Vector2(14.92, 24.76)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_feb5d"]
 albedo_color = Color(0, 0.31, 0.0103333, 1)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_e2o6t"]
-data = PackedVector3Array(-50, 0.05, 50, 50, 0.05, 50, -50, -0.05, 50, 50, 0.05, 50, 50, -0.05, 50, -50, -0.05, 50, 50, 0.05, -50, -50, 0.05, -50, 50, -0.05, -50, -50, 0.05, -50, -50, -0.05, -50, 50, -0.05, -50, 50, 0.05, 50, 50, 0.05, -50, 50, -0.05, 50, 50, 0.05, -50, 50, -0.05, -50, 50, -0.05, 50, -50, 0.05, -50, -50, 0.05, 50, -50, -0.05, -50, -50, 0.05, 50, -50, -0.05, 50, -50, -0.05, -50, 50, 0.05, 50, -50, 0.05, 50, 50, 0.05, -50, -50, 0.05, 50, -50, 0.05, -50, 50, 0.05, -50, -50, -0.05, 50, 50, -0.05, 50, -50, -0.05, -50, 50, -0.05, 50, 50, -0.05, -50, -50, -0.05, -50)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ryrav"]
+points = PackedVector3Array(-7.65651, -0.196508, -12.5765, 7.67111, 0.196508, 12.5765, 7.67111, -0.196508, 12.5765, 7.67111, 0.196508, -12.5765, -7.65651, 0.196508, 12.5765, -7.65651, -0.196508, 12.5765, 7.67111, -0.196508, -12.5765, -7.65651, 0.196508, -12.5765)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.157253, 0.387188, 0.952321, 1)
@@ -28,6 +29,18 @@ sky = SubResource("Sky_80nbo")
 tonemap_exposure = 1.5
 ssao_enabled = true
 ssil_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ryrav"]
+size = Vector3(23.793, 13.4125, 10.6884)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eow3j"]
+size = Vector3(24.6534, 13.4125, 18.2529)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j5wjh"]
+size = Vector3(0.84375, 13.4125, 0.640625)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vef74"]
+size = Vector3(14.7593, 0.537323, 5.56055)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fc0e3"]
 noise_type = 3
@@ -67,7 +80,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_feb5d")
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_e2o6t")
+shape = SubResource("ConvexPolygonShape3D_ryrav")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_e2o6t")
@@ -78,6 +91,44 @@ size = Vector3(43.7366, 25.9614, 51.0944)
 
 [node name="Farm house" parent="." instance=ExtResource("1_80nbo")]
 transform = Transform3D(0.399271, 0, 0, 0, 0.399271, 0, 0, 0, 0.399271, 0.409049, 0, -15.344)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Farm house"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Farm house/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.80142, -3.95812)
+shape = SubResource("BoxShape3D_ryrav")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Farm house/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0454, 6.80142, -10.7244)
+shape = SubResource("BoxShape3D_ryrav")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Farm house/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9225, 6.80142, -0.175865)
+shape = SubResource("BoxShape3D_eow3j")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Farm house/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.50234, 6.80142, 6.48953)
+shape = SubResource("BoxShape3D_j5wjh")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Farm house/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98558, 6.80142, 6.48953)
+shape = SubResource("BoxShape3D_j5wjh")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Farm house/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04173, 6.80142, 6.48953)
+shape = SubResource("BoxShape3D_j5wjh")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Farm house/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04173, 6.80142, 6.48953)
+shape = SubResource("BoxShape3D_j5wjh")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Farm house/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70265, 0.625907, 4.02957)
+shape = SubResource("BoxShape3D_vef74")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Farm house/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70265, 6.80437, 4.02957)
+shape = SubResource("BoxShape3D_vef74")
 
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.35948, 0)
@@ -93,4 +144,32 @@ transform = Transform3D(0.965926, 0.25, -0.0669873, 0, 0.258819, 0.965926, 0.258
 
 [node name="grass" parent="." instance=ExtResource("5_7jktm")]
 
+[node name="Fence" parent="." instance=ExtResource("6_ryrav")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.42251, 0.0593395, -9.08444)
+
+[node name="Fence3" parent="." instance=ExtResource("6_ryrav")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.42251, 0.0593395, -3.34638)
+
+[node name="Fence5" parent="." instance=ExtResource("6_ryrav")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.4487, 0.0593395, -9.08444)
+
+[node name="Fence9" parent="." instance=ExtResource("6_ryrav")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.4487, 0.0593395, -14.8317)
+
+[node name="Fence6" parent="." instance=ExtResource("6_ryrav")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.4487, 0.0593395, -3.33432)
+
+[node name="Fence7" parent="." instance=ExtResource("6_ryrav")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.61504, 0.0593395, -0.441202)
+
+[node name="Fence10" parent="." instance=ExtResource("6_ryrav")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.50743, 0.0593395, -0.441202)
+
+[node name="Fence2" parent="." instance=ExtResource("6_ryrav")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.21162, 0.0593395, -12.2621)
+
+[node name="Fence8" parent="." instance=ExtResource("6_ryrav")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.56613, 0.0593395, -17.6795)
+
+[editable path="Farm house"]
 [editable path="grass"]
