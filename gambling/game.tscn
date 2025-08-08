@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://bveuk5kebrha4"]
+
+[ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwb40"]
+albedo_color = Color(0.318645, 0.73, 0.2263, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mwb40"]
+material = SubResource("StandardMaterial3D_mwb40")
+size = Vector3(100, 0.1, 100)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
+sky_top_color = Color(0.157253, 0.387188, 0.952321, 1)
+sky_horizon_color = Color(0.401693, 0.664952, 0.995152, 1)
+
+[sub_resource type="Sky" id="Sky_80nbo"]
+sky_material = SubResource("ProceduralSkyMaterial_mwb40")
+
+[sub_resource type="Environment" id="Environment_e2o6t"]
+background_mode = 2
+sky = SubResource("Sky_80nbo")
+
+[node name="Game" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_mwb40")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_e2o6t")
+
+[node name="Farm house" parent="." instance=ExtResource("1_80nbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98643, 0, -21.3965)
