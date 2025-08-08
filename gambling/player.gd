@@ -9,7 +9,7 @@ const gravity = 9.8 * 1.5
 @export var base_accel = 10.0
 @export var air_accel = 12.5
 @export var jump_vel = 7.5
-@export var smoothing : float = 0.0003
+@export var smoothing : float = 0.0002
 var camera_rotation = Vector2(0, 0)
 var can_move : bool = true
 
