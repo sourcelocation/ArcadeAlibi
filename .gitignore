@@ -16,3 +16,4 @@ data_*/
 mono_crash.*.json
 /gambling/.vscode
 *.blend1
+*.DS_Store
