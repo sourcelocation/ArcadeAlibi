@@ -1,6 +1,8 @@
 extends CharacterBody3D
 
 @onready var main_camera: Camera3D = $Camera3D
+@onready var col: CollisionShape3D = $CollisionShape3D
+@onready var inital_cam_offset = main_camera.position
 
 const gravity = 9.8 * 1.5
 
@@ -11,6 +13,8 @@ const gravity = 9.8 * 1.5
 @export var sprint_speed = 1.5
 @export var jump_vel = 7.5
 @export var smoothing : float = 0.0002
+@export var crouch_height = -0.5  
+@export var crouch_speed = 10.0
 var camera_rotation = Vector2(0, 0)
 var can_move : bool = true
 var sprint_spd
@@ -66,6 +70,19 @@ func _physics_process(delta: float) -> void:
 		sprint_spd = sprint_speed
 	else:
 		sprint_spd = 1
+
+	var target_cam_y: float
+	var target_col_z: float
+
+	if Input.is_action_pressed("Crouch"):
+		target_cam_y = inital_cam_offset.y + crouch_height
+		target_col_z = 0.5
+	else:
+		target_cam_y = inital_cam_offset.y
+		target_col_z = 1.0
+
+	main_camera.position.y = lerp(main_camera.position.y, target_cam_y, crouch_speed * delta)
+	col.scale.z = lerp(col.scale.z, target_col_z, crouch_speed * delta)
 
 func air_accelerate(wishdir : Vector3, wishspeed : float, accele : float, delta : float):
 	var addspeed : float
