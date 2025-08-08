@@ -4,12 +4,14 @@ extends CharacterBody3D
 
 const gravity = 9.8 * 1.5
 
-var speed = 5.0 if is_on_floor() else 6.0
-var accel = 10.0 if is_on_floor() else 12.5
+@export var base_speed = 5.0
+@export var air_speed = 6.0
+@export var base_accel = 10.0
+@export var air_accel = 12.5
+@export var jump_vel = 7.5
+@export var smoothing : float = 0.0003
 var camera_rotation = Vector2(0, 0)
 var can_move : bool = true
-var jump_vel = 7.5
-var smoothing : float = 0.0003
 
 var mouse_sens = 0.003
 
@@ -43,7 +45,8 @@ func _process(delta: float) -> void:
 
 	if !can_move:
 		wishdir = Vector3.ZERO
-
+	var speed = base_speed if is_on_floor() else air_speed
+	var accel = base_accel if is_on_floor() else air_accel
 	air_accelerate(wishdir, speed, accel, delta)
 
 	move_and_slide()

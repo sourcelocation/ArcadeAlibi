@@ -52,7 +52,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.06314, -10.9064)
 size = Vector3(43.7366, 25.9614, 51.0944)
 
 [node name="Farm house" parent="." instance=ExtResource("1_80nbo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98643, 0, -21.3965)
+transform = Transform3D(0.399271, 0, 0, 0, 0.399271, 0, 0, 0, 0.399271, 2.98643, 0, -21.3965)
 
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.35948, 0)
