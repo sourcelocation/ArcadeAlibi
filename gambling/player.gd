@@ -17,7 +17,6 @@ const gravity = 9.8 * 1.5
 @export var smoothing : float = 0.0002
 @export var crouch_height = -0.5  
 @export var crouch_speed = 10.0
-@export var money = 0
 var camera_rotation = Vector2(0, 0)
 var can_move : bool = true
 var sprint_spd
@@ -62,7 +61,6 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 func _physics_process(delta: float) -> void:
-	money_label.text = str("$", money)
 	if Input.is_action_just_pressed("Space") and is_on_floor():
 		velocity.y = jump_vel
 
@@ -87,9 +85,6 @@ func _physics_process(delta: float) -> void:
 
 	main_camera.position.y = lerp(main_camera.position.y, target_cam_y, crouch_speed * delta)
 	col.scale.z = lerp(col.scale.z, target_col_z, crouch_speed * delta)
-
-	if Input.is_action_just_pressed("M"):
-		money += 100
 
 func air_accelerate(wishdir : Vector3, wishspeed : float, accele : float, delta : float):
 	var addspeed : float
