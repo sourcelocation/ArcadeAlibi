@@ -6,7 +6,6 @@ class_name Player
 @onready var inital_cam_offset = main_camera.position
 # @onready var money_label: Label = $UI/MoneyLabel
 
-
 const gravity = 9.8 * 1.5
 
 @export var base_speed = 5.0
@@ -79,7 +78,7 @@ func _physics_process(delta: float) -> void:
 	var target_cam_y: float
 	var target_col_z: float
 
-	if Input.is_action_pressed("Crouch"):
+	if Input.is_action_pressed("Crouch") and is_on_floor():
 		target_cam_y = inital_cam_offset.y + crouch_height
 		target_col_z = 0.5
 	else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=77 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -39,6 +39,7 @@
 [ext_resource type="Script" uid="uid://dvbqyeve8xvlq" path="res://Scenes/Game/cutscene_1.gd" id="22_4v2jo"]
 [ext_resource type="Texture2D" uid="uid://byyhekoiigopa" path="res://Resources/Textures/Frame.png" id="22_x5p1p"]
 [ext_resource type="PackedScene" uid="uid://lhnkx276q2vq" path="res://Resources/Models/Manila Envelope.glb" id="23_qhcbd"]
+[ext_resource type="PackedScene" uid="uid://cx7gp2vef8p6t" path="res://Scenes/Shop/Shop.tscn" id="40_th41f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.157253, 0.387188, 0.952321, 1)
@@ -386,6 +387,11 @@ albedo_color = Color(0.0798, 0.38, 0.0898067, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvswv"]
 albedo_color = Color(0.3444, 0.38048, 0.41, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_qjf7v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qjf7v"]
+size = Vector3(3, 2, 2.5)
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_l1i01")
 
@@ -491,6 +497,7 @@ transform = Transform3D(-0.069447, 0, 0.294378, 0, 0.302459, 0, -0.294378, 0, -0
 
 [node name="Cutscene1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1113, -5.22108)
+visible = false
 script = ExtResource("22_4v2jo")
 
 [node name="FogVolume" type="FogVolume" parent="Cutscene1"]
@@ -561,6 +568,9 @@ theme_override_fonts/font = ExtResource("8_vef74")
 theme_override_font_sizes/font_size = 81
 text = "Press X to skip"
 horizontal_alignment = 2
+
+[node name="Shop" parent="Cutscene1/Control" instance=ExtResource("40_th41f")]
+layout_mode = 1
 
 [node name="Houses" type="Node3D" parent="."]
 
@@ -833,8 +843,27 @@ surface_material_override/1 = SubResource("StandardMaterial3D_80cx4")
 surface_material_override/2 = SubResource("StandardMaterial3D_rvswv")
 surface_material_override/3 = SubResource("StandardMaterial3D_e8heu")
 
+[node name="Computer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22987, -8.25801)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Computer"]
+mesh = SubResource("BoxMesh_qjf7v")
+
+[node name="Area3D" type="Area3D" parent="Computer"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Computer/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.162753, 1.35)
+shape = SubResource("BoxShape3D_qjf7v")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Computer"]
+aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+
 [connection signal="animation_changed" from="Cutscene1/AnimationPlayer" to="." method="_on_animation_player_animation_changed"]
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="." method="_on_cutscene_finished"]
+[connection signal="body_entered" from="Computer/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Computer/Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="screen_entered" from="Computer/VisibleOnScreenNotifier3D" to="." method="_on__screen_entered_computer"]
+[connection signal="screen_exited" from="Computer/VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
 
 [editable path="Farm house"]
 [editable path="grass"]
