@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dmiwn27inn1l0" path="res://Scenes/Fence/Trees_NormalTree_Bark.png" id="1_7jiil"]
 [ext_resource type="Texture2D" uid="uid://c8xtq6qm0vpjh" path="res://Scenes/Fence/Trees_NormalTree_Bark_Normal.png" id="2_p176b"]
 [ext_resource type="Texture2D" uid="uid://cn41xmok0ywfx" path="res://Scenes/Fence/Trees_NormalTree_Leaves.png" id="3_6830r"]
-[ext_resource type="Material" uid="uid://dllkk2k76uqyv" path="res://Scenes/leaves.tres" id="4_p176b"]
+[ext_resource type="Material" uid="uid://dllkk2k76uqyv" path="res://Scenes/Trees/leaves.tres" id="4_p176b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvkb8"]
 resource_name = "NormalTree_Bark"

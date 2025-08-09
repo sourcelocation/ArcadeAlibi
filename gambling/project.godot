@@ -13,10 +13,15 @@ config_version=5
 config/name="gambling"
 run/main_scene="uid://bveuk5kebrha4"
 config/features=PackedStringArray("4.4", "Forward Plus", "Redot")
+config/icon="uid://1au5ivx56dow"
+
+[audio]
+
+buses/default_bus_layout="res://Resources/Other/default_bus_layout.tres"
 
 [autoload]
 
-DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+Game="*res://Globals/Game.gd"
 
 [debug_draw_3d]
 
@@ -33,7 +38,13 @@ project/assembly_name="gambling"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg")
+enabled=PackedStringArray("res://addons/SphynxMotionBlurToolkit/plugin.cfg", "res://addons/debug_menu/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://Globals/": "purple"
+}
 
 [input]
 
