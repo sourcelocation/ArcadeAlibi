@@ -11,3 +11,9 @@ As a really serious indie game development company, our huge entertainment corpo
 
 We unite, we divide, we conquer.
 <img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/c11a1381-9a8e-40dc-a6f1-aca00137816b" /> (definetely)
+
+# Credits
+We respect laws (not in the game tho)
+
+Models used:
+Manila Envelope by Jarlan Perez [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/0nJFg_ANfxf)

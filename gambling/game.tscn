@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=51 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -20,6 +20,9 @@
 [ext_resource type="AudioStream" uid="uid://dt1d3frxlv2hq" path="res://Resources/Music/gamba.mp3" id="18_rvswv"]
 [ext_resource type="AudioStream" uid="uid://bsownwa3hmm1g" path="res://Resources/Music/1.mp3" id="19_e36ub"]
 [ext_resource type="AudioStream" uid="uid://dnfw2walae3bf" path="res://Resources/Music/2.mp3" id="20_hb5m1"]
+[ext_resource type="PackedScene" uid="uid://bjteyxp88cm64" path="res://Resources/Models/Small Table.glb" id="21_hb5m1"]
+[ext_resource type="Texture2D" uid="uid://byyhekoiigopa" path="res://Resources/Textures/Frame.png" id="22_x5p1p"]
+[ext_resource type="PackedScene" uid="uid://lhnkx276q2vq" path="res://Resources/Models/Manila Envelope.glb" id="23_qhcbd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_feb5d"]
 size = Vector2(17.05, 31.18)
@@ -146,6 +149,70 @@ shuffle = true
 stream_count = 2
 stream_0 = ExtResource("19_e36ub")
 stream_1 = ExtResource("20_hb5m1")
+
+[sub_resource type="FogMaterial" id="FogMaterial_e36ub"]
+density = 0.1955
+
+[sub_resource type="Animation" id="Animation_qhcbd"]
+resource_name = "play"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.93333, 4.09333, 6.53333, 8.46, 9.71, 11.7667, 13.7667, 24.2, 28.6221),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 0.615572, 4.28709),
+"update": 0,
+"values": [Vector3(-3.34807, -0.435186, -8.95373), Vector3(-0.188723, -0.480784, -8.04855), Vector3(2.43873, -0.610784, -4.05614), Vector3(2.53757, 0.0307107, 2.98658), Vector3(-0.301441, -0.0792513, 4.21055), Vector3(-1.1553, -0.312771, 2.78832), Vector3(-1.474, -0.538, 1.768), Vector3(-1.434, -0.568, 1.708), Vector3(-1.434, -0.568, 1.708), Vector3(-1.434, -0.568, 1.708)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.93333, 4.08333, 6.53333, 8.46, 9.71, 11.81, 17.9, 28.6221),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 4.28709, 4.28709),
+"update": 0,
+"values": [Vector3(0.0453786, 3.3615, 0), Vector3(0.0361127, 2.91589, 0), Vector3(0.236826, 2.32264, 0), Vector3(-0.129693, 0.865249, 0), Vector3(-0.260593, 0.367779, 0), Vector3(-0.496213, 0.210686, 0), Vector3(-1.10654, 0.0541052, 0), Vector3(-1.17635, -0.015708, -0.0872665), Vector3(-1.17635, -0.015708, -0.0872665)]
+}
+
+[sub_resource type="Animation" id="Animation_f1jbl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.16474, -0.000629187, -9.12717)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0448395, -2.85219, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vaj68"]
+_data = {
+&"RESET": SubResource("Animation_f1jbl"),
+&"play": SubResource("Animation_qhcbd")
+}
 
 [node name="Game" type="Node3D"]
 
@@ -485,6 +552,33 @@ max_distance = 17.28
 panning_strength = 0.0
 bus = &"Music"
 attenuation_filter_db = 0.0
+
+[node name="Cutscene1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1113, -5.22108)
+
+[node name="Root Scene" parent="Cutscene1" instance=ExtResource("21_hb5m1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50039, -1.85874, 1.37912)
+
+[node name="FogVolume" type="FogVolume" parent="Cutscene1"]
+size = Vector3(18.88, 10, 8.9)
+material = SubResource("FogMaterial_e36ub")
+
+[node name="Sprite3D" type="Sprite3D" parent="Cutscene1"]
+transform = Transform3D(0.0562962, 0.00950562, 5.33708e-09, -4.99124e-09, -2.49562e-09, 0.0570931, 0.00950562, -0.0562962, -1.62978e-09, -1.45718, -1.01614, 1.4781)
+shaded = true
+texture = ExtResource("22_x5p1p")
+
+[node name="Manila Envelope" parent="Cutscene1" instance=ExtResource("23_qhcbd")]
+transform = Transform3D(-0.069447, 0, 0.294378, 0, 0.302459, 0, -0.294378, 0, -0.069447, -1.80162, -1.03313, 1.07691)
+
+[node name="Camera3D" type="Camera3D" parent="Cutscene1"]
+transform = Transform3D(-0.958414, -0.012792, -0.285093, 0, 0.998995, -0.0448245, 0.28538, -0.0429605, -0.957451, -3.16474, -0.000629187, -9.12717)
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cutscene1"]
+libraries = {
+&"": SubResource("AnimationLibrary_vaj68")
+}
 
 [editable path="Farm house"]
 [editable path="grass"]
