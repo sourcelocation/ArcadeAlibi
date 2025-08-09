@@ -10,6 +10,7 @@ var computer_zone = false
 func _ready() -> void:
 	if has_node("Cutscene1"):
 		toggle_cutscene(true)
+	Game.gm = self
 
 func _process(delta: float) -> void:
 	if computer_visible and computer_zone:
@@ -19,15 +20,7 @@ func _process(delta: float) -> void:
 		shop.visible = false
 
 func toggle_cutscene(on: bool) -> void:
-	player.can_move = not on
-
-func _on_cutscene_finished(anim_name:StringName) -> void:
-	toggle_cutscene(false)
-	print("Cutscene finished: ", anim_name)
-
-func _on_animation_player_animation_changed(old_name:StringName, new_name:StringName) -> void:
-	toggle_cutscene(false)
-	print("Cutscene finished: ")
+	player.can_move = not on 
 
 func _on__screen_entered_computer() -> void:
 	computer_visible = true

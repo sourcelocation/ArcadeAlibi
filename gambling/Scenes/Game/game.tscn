@@ -858,8 +858,7 @@ shape = SubResource("BoxShape3D_qjf7v")
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Computer"]
 aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
 
-[connection signal="animation_changed" from="Cutscene1/AnimationPlayer" to="." method="_on_animation_player_animation_changed"]
-[connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="." method="_on_cutscene_finished"]
+[connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Computer/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Computer/Area3D" to="." method="_on_area_3d_body_exited"]
 [connection signal="screen_entered" from="Computer/VisibleOnScreenNotifier3D" to="." method="_on__screen_entered_computer"]
