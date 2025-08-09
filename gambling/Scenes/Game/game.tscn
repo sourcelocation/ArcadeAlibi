@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=94 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -51,6 +51,7 @@
 [ext_resource type="Texture2D" uid="uid://6rk86xlih8ft" path="res://Resources/Textures/Rock016_2K-JPG/Rock016_2K-JPG_NormalGL.jpg" id="47_caws5"]
 [ext_resource type="Texture2D" uid="uid://nhs3pn2pyj7k" path="res://Resources/Textures/Rock016_2K-JPG/Rock016_2K-JPG_Roughness.jpg" id="48_2r0uj"]
 [ext_resource type="PackedScene" uid="uid://bnx42ibrvpcug" path="res://Scenes/spotlight.tscn" id="51_caws5"]
+[ext_resource type="PackedScene" uid="uid://k0dkh0wobqtu" path="res://Scenes/Truck/truck.blend" id="52_caws5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.157253, 0.387188, 0.952321, 1)
@@ -1069,6 +1070,16 @@ transform = Transform3D(0.996442, 0, -0.0842867, 0, 1, 0, 0.0842867, 0, 0.996442
 
 [node name="Spotlight2" parent="." instance=ExtResource("51_caws5")]
 transform = Transform3D(-0.418787, 0, 0.908085, 0, 1, 0, -0.908085, 0, -0.418787, 5.7391, -5.30072, -8.62682)
+
+[node name="truck" parent="." instance=ExtResource("52_caws5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58784, 0.0921505, -26.6781)
+
+[node name="ReflectionProbe2" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60052, 2.21307, -26.0353)
+max_distance = 0.1
+size = Vector3(6.76208, 4.21814, 5.25314)
+box_projection = true
+enable_shadows = true
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]
