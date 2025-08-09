@@ -478,7 +478,7 @@ bus = &"Music"
 attenuation_filter_db = 0.0
 
 [node name="Table" parent="." instance=ExtResource("21_hb5m1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50039, 0.25256, -3.84196)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.0051, 0.256547, -4.02856)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Table"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.429556, 0)
@@ -488,12 +488,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0700684, 0)
 shape = SubResource("BoxShape3D_qhcbd")
 
 [node name="Sprite3D" type="Sprite3D" parent="Table"]
-transform = Transform3D(0.0562962, 0.00950562, 5.33708e-09, -4.99124e-09, -2.49562e-09, 0.0570931, 0.00950562, -0.0562962, -1.62978e-09, 0.04321, 0.8426, 0.0989799)
+transform = Transform3D(-0.00950562, 0.0562962, 1.62978e-09, -4.99124e-09, -2.49562e-09, 0.0570931, 0.0562962, 0.00950562, 5.33708e-09, -0.29139, 0.852101, 0.552019)
 shaded = true
 texture = ExtResource("22_x5p1p")
 
 [node name="Manila Envelope" parent="Table" instance=ExtResource("23_qhcbd")]
-transform = Transform3D(-0.069447, 0, 0.294378, 0, 0.302459, 0, -0.294378, 0, -0.069447, -0.30123, 0.82561, -0.30221)
+transform = Transform3D(0.294378, 0, 0.069447, 0, 0.302459, 0, -0.069447, 0, 0.294378, 0.1098, 0.82561, 0.207578)
 
 [node name="Cutscene1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1113, -5.22108)
@@ -841,12 +841,12 @@ surface_material_override/2 = SubResource("StandardMaterial3D_rvswv")
 surface_material_override/3 = SubResource("StandardMaterial3D_e8heu")
 
 [node name="Shop" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22987, -8.25801)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.1792, 1.22987, -3.83486)
 script = ExtResource("40_fxv8i")
 store_item = ExtResource("41_fxv8i")
 
 [node name="CRT Monitor" parent="Shop" instance=ExtResource("40_jpnbm")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.00398672, 0)
 
 [node name="UI" type="Control" parent="Shop"]
 layout_mode = 3
@@ -891,9 +891,6 @@ shape = SubResource("BoxShape3D_qjf7v")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Shop"]
 aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
-
-[node name="Table" parent="Shop" instance=ExtResource("21_hb5m1")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.02275, 0)
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]

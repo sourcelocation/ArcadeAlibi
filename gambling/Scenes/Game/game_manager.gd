@@ -2,7 +2,6 @@ extends Node3D
 class_name GameManager
 
 @onready var player = $Player
-@onready var shop: Control = $UI/Shop
 
 var computer_visible = false
 var in_computer = false
@@ -20,7 +19,9 @@ func toggle_cutscene(on: bool) -> void:
 	in_cutscene = on
 
 	if !on:
+		$UI/AnimationPlayer.stop()
 		$UI/AnimationPlayer.play("show")
+		print("Cutscene ended")
 
 func _on__screen_entered_computer() -> void:
 	computer_visible = true
