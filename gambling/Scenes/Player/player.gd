@@ -39,7 +39,7 @@ func camera_look(movement : Vector2):
 	if not can_move:
 		return
 	camera_rotation += movement
-	camera_rotation.y = clamp(camera_rotation.y, -1.5, 1.2)
+	camera_rotation.y = clamp(camera_rotation.y, -1.5, 1.5)
 
 	main_camera.rotation.x = -camera_rotation.y
 	rotate_y(-movement.x)
@@ -62,6 +62,17 @@ func _process(delta: float) -> void:
 	air_accelerate(wishdir, speed, accel, delta)
 
 	move_and_slide()
+
+	process_dig()
+
+func process_dig():
+	if Input.is_action_pressed("dig"):  # e.g., hold a button to dig
+		var direction = -main_camera.global_transform.basis.z  # Forward direction
+		var dig_pos = main_camera.global_position + direction * 2.0  # Offset ahead
+		var _tool = Game.gm.terrain.get_voxel_tool()
+		_tool.mode = VoxelTool.MODE_REMOVE
+		_tool.do_sphere(dig_pos,1.5)
+		# Move player into the dug space if needed
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Space") and is_on_floor():

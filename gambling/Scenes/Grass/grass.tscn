@@ -1,12 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj0ka62edjkya"]
+[gd_scene load_steps=6 format=3 uid="uid://bj0ka62edjkya"]
 
 [ext_resource type="PackedScene" uid="uid://bsws8exta226s" path="res://Scenes/Grass/grass.blend" id="1_r6k7t"]
+[ext_resource type="Shader" uid="uid://b3oarc00afksk" path="res://Scenes/Grass/grass.gdshader" id="2_r6k7t"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fc0e3"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fc0e3"]
+seamless = true
+noise = SubResource("FastNoiseLite_fc0e3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jktm"]
+render_priority = 0
+shader = ExtResource("2_r6k7t")
+shader_parameter/top_color = Color(0.35, 1, 0, 1)
+shader_parameter/bottom_color = Color(0.06684, 0.18, 0.0144, 1)
+shader_parameter/ambient_occlusion_factor = 0.0
+shader_parameter/specular_strength = 0.4
+shader_parameter/player_displacement_strength = 0.5
+shader_parameter/player_displacement_size = 0.85
+shader_parameter/wind_direction = Vector3(0.4, -0.3, 0.81)
+shader_parameter/wind_strength = 0.4
+shader_parameter/wind_noise = SubResource("NoiseTexture2D_fc0e3")
+shader_parameter/wind_noise_size = 0.06
+shader_parameter/wind_noise_speed = 0.14
 
 [node name="Grass" type="Node3D"]
 
 [node name="grass" parent="." instance=ExtResource("1_r6k7t")]
-transform = Transform3D(0.534356, 0, 0, 0, 0.534356, 0, 0, 0, 0.534356, 0, 0, 0)
 
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+[node name="Grass" parent="grass" index="0"]
+material_override = SubResource("ShaderMaterial_7jktm")
 
 [editable path="grass"]

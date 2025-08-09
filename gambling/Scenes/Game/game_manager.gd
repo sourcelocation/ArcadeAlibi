@@ -2,6 +2,7 @@ extends Node3D
 class_name GameManager
 
 @onready var player = $Player
+@onready var terrain: VoxelTerrain = $Terrain
 
 var computer_visible = false
 var in_computer = false

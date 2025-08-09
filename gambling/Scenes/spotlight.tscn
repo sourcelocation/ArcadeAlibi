@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnx42ibrvpcug"]
+
+[ext_resource type="PackedScene" uid="uid://di4p0ki17doxl" path="res://Resources/Models/Lamp.glb" id="1_p754v"]
+
+[node name="Spotlight2" type="Node3D"]
+transform = Transform3D(0.795696, 0, 0.605697, 0, 1, 0, -0.605697, 0, 0.795696, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.965926, -2.68221e-07, -0.258819, 0.12941, 0.866025, 0.482963, 0.224144, -0.5, 0.836516, 0.26266, 2.4636, 0.290643)
+light_color = Color(0.9615, 1, 0.67, 1)
+light_energy = 10.959
+light_volumetric_fog_energy = 2.224
+
+[node name="Spotlight" parent="." instance=ExtResource("1_p754v")]
+transform = Transform3D(-0.293106, 0, -1.09389, 0, 1.13247, 0, 1.09389, 0, -0.293106, 0, 0, 0)

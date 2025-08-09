@@ -11,8 +11,10 @@ script = ExtResource("1_4flbx")
 crouch_height = -1.43
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7985, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46461, 0)
 current = true
+
+[node name="VoxelViewer" type="VoxelViewer" parent="Camera3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)

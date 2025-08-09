@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://b823wnxx5yvhr"]
+
+[ext_resource type="Texture2D" uid="uid://c0wfbgis7unph" path="res://Resources/Textures/Ground085_1K-JPG/Ground085_1K-JPG_Color.jpg" id="1_3vcrk"]
+[ext_resource type="Texture2D" uid="uid://dv1hciftjots8" path="res://Resources/Textures/Ground085_1K-JPG/Ground085_1K-JPG_Displacement.jpg" id="2_0l3ln"]
+[ext_resource type="Texture2D" uid="uid://2vtplv26nwhf" path="res://Resources/Textures/Ground085_1K-JPG/Ground085_1K-JPG_NormalGL.jpg" id="2_vddxi"]
+[ext_resource type="Texture2D" uid="uid://df3s00en31pow" path="res://Resources/Textures/Ground085_1K-JPG/Ground085_1K-JPG_Roughness.jpg" id="3_0l3ln"]
+
+[resource]
+albedo_texture = ExtResource("1_3vcrk")
+roughness_texture = ExtResource("3_0l3ln")
+normal_enabled = true
+normal_texture = ExtResource("2_vddxi")
+heightmap_texture = ExtResource("2_0l3ln")
+uv1_scale = Vector3(5.21, 5.21, 5.21)
+uv1_triplanar = true
