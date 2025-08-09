@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=78 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -39,7 +39,9 @@
 [ext_resource type="Script" uid="uid://dvbqyeve8xvlq" path="res://Scenes/Game/cutscene_1.gd" id="22_4v2jo"]
 [ext_resource type="Texture2D" uid="uid://byyhekoiigopa" path="res://Resources/Textures/Frame.png" id="22_x5p1p"]
 [ext_resource type="PackedScene" uid="uid://lhnkx276q2vq" path="res://Resources/Models/Manila Envelope.glb" id="23_qhcbd"]
-[ext_resource type="PackedScene" uid="uid://cx7gp2vef8p6t" path="res://Scenes/Shop/Shop.tscn" id="40_th41f"]
+[ext_resource type="Script" uid="uid://tyqttt5q2tfh" path="res://Scenes/Shop/shop.gd" id="40_fxv8i"]
+[ext_resource type="PackedScene" uid="uid://buy2sbe1s62tt" path="res://Resources/Models/CRT Monitor.glb" id="40_jpnbm"]
+[ext_resource type="PackedScene" uid="uid://c18nscubt68dx" path="res://Scenes/Shop/shop_item.tscn" id="41_fxv8i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.157253, 0.387188, 0.952321, 1)
@@ -387,8 +389,6 @@ albedo_color = Color(0.0798, 0.38, 0.0898067, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvswv"]
 albedo_color = Color(0.3444, 0.38048, 0.41, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_qjf7v"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_qjf7v"]
 size = Vector3(3, 2, 2.5)
 
@@ -568,9 +568,6 @@ theme_override_fonts/font = ExtResource("8_vef74")
 theme_override_font_sizes/font_size = 81
 text = "Press X to skip"
 horizontal_alignment = 2
-
-[node name="Shop" parent="Cutscene1/Control" instance=ExtResource("40_th41f")]
-layout_mode = 1
 
 [node name="Houses" type="Node3D" parent="."]
 
@@ -843,26 +840,66 @@ surface_material_override/1 = SubResource("StandardMaterial3D_80cx4")
 surface_material_override/2 = SubResource("StandardMaterial3D_rvswv")
 surface_material_override/3 = SubResource("StandardMaterial3D_e8heu")
 
-[node name="Computer" type="Node3D" parent="."]
+[node name="Shop" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22987, -8.25801)
+script = ExtResource("40_fxv8i")
+store_item = ExtResource("41_fxv8i")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Computer"]
-mesh = SubResource("BoxMesh_qjf7v")
+[node name="CRT Monitor" parent="Shop" instance=ExtResource("40_jpnbm")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Area3D" type="Area3D" parent="Computer"]
+[node name="UI" type="Control" parent="Shop"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Computer/Area3D"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="Shop/UI/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_vef74")
+theme_override_font_sizes/font_size = 150
+text = "SHOP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Shop/UI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Grid" type="GridContainer" parent="Shop/UI/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Area3D" type="Area3D" parent="Shop"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.162753, 1.35)
 shape = SubResource("BoxShape3D_qjf7v")
 
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Computer"]
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Shop"]
 aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
 
+[node name="Table" parent="Shop" instance=ExtResource("21_hb5m1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.02275, 0)
+
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
-[connection signal="body_entered" from="Computer/Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Computer/Area3D" to="." method="_on_area_3d_body_exited"]
-[connection signal="screen_entered" from="Computer/VisibleOnScreenNotifier3D" to="." method="_on__screen_entered_computer"]
-[connection signal="screen_exited" from="Computer/VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Shop/Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="screen_entered" from="Shop/VisibleOnScreenNotifier3D" to="." method="_on__screen_entered_computer"]
+[connection signal="screen_exited" from="Shop/VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
 
 [editable path="Farm house"]
 [editable path="grass"]

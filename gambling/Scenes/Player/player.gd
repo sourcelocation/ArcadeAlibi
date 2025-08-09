@@ -4,7 +4,6 @@ class_name Player
 @onready var main_camera: Camera3D = $Camera3D
 @onready var col: CollisionShape3D = $CollisionShape3D
 @onready var inital_cam_offset = main_camera.position
-# @onready var money_label: Label = $UI/MoneyLabel
 
 const gravity = 9.8 * 1.5
 
@@ -55,6 +54,8 @@ func _process(delta: float) -> void:
 
 	if !can_move:
 		wishdir = Vector3.ZERO
+
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if can_move else Input.MOUSE_MODE_VISIBLE)
 	var speed = base_speed if is_on_floor() else air_speed
 	speed *= sprint_spd
 	var accel = base_accel if is_on_floor() else air_accel
