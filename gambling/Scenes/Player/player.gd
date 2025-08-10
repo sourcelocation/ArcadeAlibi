@@ -115,3 +115,6 @@ func air_accelerate(wishdir : Vector3, wishspeed : float, accele : float, delta 
 		accelspeed = addspeed
 
 	velocity += accelspeed * wishdir
+
+func add_boombox(id: int):
+	var instance = preload("res://Scenes/Items/boombox.tscn").instantiate()
