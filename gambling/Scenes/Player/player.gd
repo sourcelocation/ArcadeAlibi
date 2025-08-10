@@ -3,11 +3,12 @@ class_name Player
 
 @onready var main_camera: Camera3D = $Camera3D
 @onready var col: CollisionShape3D = $CollisionShape3D
-@onready var inital_cam_offset = main_camera.position
+@onready var initial_cam_offset = main_camera.position
 @onready var hand: Node3D = $Camera3D/Hand
 
 const gravity = 9.8 * 1.5
 const computer_pos = Vector3(-2.156458, 1.465301, -4.937538)
+const computer_rotation = Vector3(-0.03, PI, 0)
 
 @export var base_speed = 5.0
 @export var air_speed = 6.0
@@ -21,6 +22,10 @@ const computer_pos = Vector3(-2.156458, 1.465301, -4.937538)
 var camera_rotation = Vector2(0, 0)
 var can_move : bool = true
 var sprint_spd
+@onready var initial_cam_rotation : Vector3 = main_camera.rotation
+var enter_shop = false
+var leave_shop = false
+var i = 0
 
 var mouse_sens = 0.003
 
@@ -93,14 +98,44 @@ func _physics_process(delta: float) -> void:
 	var target_col_z: float
 
 	if Input.is_action_pressed("Crouch") and is_on_floor():
-		target_cam_y = inital_cam_offset.y + crouch_height
+		target_cam_y = initial_cam_offset.y + crouch_height
 		target_col_z = 0.5
 	else:
-		target_cam_y = inital_cam_offset.y
+		target_cam_y = initial_cam_offset.y
 		target_col_z = 1.0
 
 	main_camera.position.y = lerp(main_camera.position.y, target_cam_y, crouch_speed * delta)
 	col.scale.z = lerp(col.scale.z, target_col_z, crouch_speed * delta)
+
+	#if enter_shop:
+		#main_camera.global_position = lerp(main_camera.global_position, computer_pos, 0.05)
+		#main_camera.global_rotation = lerp(main_camera.global_rotation, computer_rotation, 0.05)
+		#if (main_camera.global_position == computer_pos and main_camera.global_rotation == computer_rotation) or leave_shop:
+			#enter_shop = false
+	#if leave_shop:
+		#main_camera.global_position = lerp(main_camera.global_position, initial_cam_offset + global_position, 0.05)
+		#main_camera.global_rotation = lerp(main_camera.global_rotation, initial_cam_rotation, 0.05)
+		#if main_camera.global_position == initial_cam_offset and main_camera.global_rotation == initial_cam_rotation:
+			#leave_shop = false
+
+	if enter_shop:
+		main_camera.global_position = lerp(main_camera.global_position, computer_pos, 0.05)
+		main_camera.rotation.x = lerp_angle(main_camera.rotation.x, computer_rotation.x - global_rotation.x, 0.05)
+		main_camera.rotation.y = lerp_angle(main_camera.rotation.y, computer_rotation.y - global_rotation.y, 0.05)
+		main_camera.rotation.z = lerp_angle(main_camera.rotation.z, computer_rotation.z - global_rotation.z, 0.05)
+
+	if leave_shop:
+		main_camera.global_position = lerp(main_camera.global_position, initial_cam_offset + global_position, 0.05)
+		main_camera.rotation.x = lerp_angle(main_camera.rotation.x, initial_cam_rotation.x, 0.05)
+		main_camera.rotation.y = lerp_angle(main_camera.rotation.y, initial_cam_rotation.y, 0.05)
+		main_camera.rotation.z = lerp_angle(main_camera.rotation.z, initial_cam_rotation.z, 0.05)
+		enter_shop = false
+		#i += 1
+	#else:
+		#main_camera.global_position = initial_cam_offset + global_position
+		#main_camera.rotation = initial_cam_rotation
+		#leave_shop = false
+		#i = 0
 
 func air_accelerate(wishdir : Vector3, wishspeed : float, accele : float, delta : float):
 	var addspeed : float
@@ -127,5 +162,9 @@ func add_boombox(id: int):
 	hand.add_child(boombox)
 
 func on_shop_toggle(on):
-	print("i")
-	global_position = lerp(global_position, computer_pos, 0.75)
+	if on:
+		enter_shop = true
+		can_move = false
+	else:
+		leave_shop = true
+		can_move = true
