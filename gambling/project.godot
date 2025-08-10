@@ -23,6 +23,7 @@ buses/default_bus_layout="res://Resources/Other/default_bus_layout.tres"
 
 Game="*res://Globals/Game.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+Save="*res://Globals/save.gd"
 
 [debug_draw_3d]
 

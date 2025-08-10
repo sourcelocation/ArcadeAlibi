@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=100 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -53,7 +53,8 @@
 [ext_resource type="PackedScene" uid="uid://bnx42ibrvpcug" path="res://Scenes/spotlight.tscn" id="51_caws5"]
 [ext_resource type="PackedScene" uid="uid://k0dkh0wobqtu" path="res://Scenes/Truck/truck.blend" id="52_caws5"]
 [ext_resource type="PackedScene" uid="uid://cvotp42u5oj8x" path="res://Scenes/Truck/wheel.blend" id="53_2r0uj"]
-[ext_resource type="PackedScene" uid="uid://duhb2lawsgo4u" path="res://Scenes/Cutscene/dialog_area.tscn" id="54_entp3"]
+[ext_resource type="Script" uid="uid://diarigv0eabvj" path="res://Scenes/Cutscene/dialog_area.gd" id="54_entp3"]
+[ext_resource type="Material" uid="uid://ctsu5v1sal456" path="res://Resources/Textures/Bricks101_1K-JPG/bricks.tres" id="55_7mp2w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.157253, 0.387188, 0.952321, 1)
@@ -438,7 +439,14 @@ albedo_color = Color(1, 0.8605, 0.69, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7mp2w"]
 resource_local_to_scene = true
-size = Vector3(5.75, 2.44, 3.34)
+size = Vector3(0.405762, 2.44, 3.34)
+
+[sub_resource type="BoxMesh" id="BoxMesh_entp3"]
+material = ExtResource("55_7mp2w")
+size = Vector3(10000, 1, 10000)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7mp2w"]
+data = PackedVector3Array(-5000, 0.5, 5000, 5000, 0.5, 5000, -5000, -0.5, 5000, 5000, 0.5, 5000, 5000, -0.5, 5000, -5000, -0.5, 5000, 5000, 0.5, -5000, -5000, 0.5, -5000, 5000, -0.5, -5000, -5000, 0.5, -5000, -5000, -0.5, -5000, 5000, -0.5, -5000, 5000, 0.5, 5000, 5000, 0.5, -5000, 5000, -0.5, 5000, 5000, 0.5, -5000, 5000, -0.5, -5000, 5000, -0.5, 5000, -5000, 0.5, -5000, -5000, 0.5, 5000, -5000, -0.5, -5000, -5000, 0.5, 5000, -5000, -0.5, 5000, -5000, -0.5, -5000, 5000, 0.5, 5000, -5000, 0.5, 5000, 5000, 0.5, -5000, -5000, 0.5, 5000, -5000, 0.5, -5000, 5000, 0.5, -5000, -5000, -0.5, 5000, 5000, -0.5, 5000, -5000, -0.5, -5000, 5000, -0.5, 5000, 5000, -0.5, -5000, -5000, -0.5, -5000)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_l1i01")
@@ -456,7 +464,7 @@ transform = Transform3D(0.315024, 0.769224, -0.555927, -0.103423, 0.610086, 0.78
 light_color = Color(1, 0.895167, 0.63, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.35948, -5.9031)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34511, -5.9031)
 
 [node name="Grass" type="MultiMeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.04564, 0, -0.52338)
@@ -1022,18 +1030,74 @@ transform = Transform3D(-4.36552e-08, 0.0506801, -0.998715, 2.2153e-09, 0.998715
 [node name="tmp8jk2nlaw_ply" parent="wheel/world" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_entp3")
 
-[node name="DialogArea" parent="." instance=ExtResource("54_entp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.78792, 1.30861, -9.23236)
+[node name="DialogArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0094049, 1.30861, -5.93322)
+script = ExtResource("54_entp3")
 
-[node name="CollisionShape3D" parent="DialogArea" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DialogArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67095, 0, 0)
 shape = SubResource("BoxShape3D_7mp2w")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DialogArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97078, 0, 0)
+shape = SubResource("BoxShape3D_7mp2w")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="DialogArea"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0843036, 0, -1.61564)
+shape = SubResource("BoxShape3D_7mp2w")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="DialogArea"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0692962, 0, 1.85533)
+shape = SubResource("BoxShape3D_7mp2w")
+
+[node name="Nothingness" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 1000, 1000)
+mesh = SubResource("BoxMesh_entp3")
+
+[node name="Label3D" type="Label3D" parent="Nothingness"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53967, -0.830811)
+text = "you chose this yourself, 
+so you can't complain"
+
+[node name="Label3D2" type="Label3D" parent="Nothingness"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53967, -8.85327)
+text = "I hope you enjoy this walk in this direction"
+
+[node name="Label3D3" type="Label3D" parent="Nothingness"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53967, -34.0171)
+text = "Just know that with each new text the distane
+is gonna increase"
+
+[node name="Label3D4" type="Label3D" parent="Nothingness"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53967, -136.466)
+text = "literally why"
+
+[node name="Label3D5" type="Label3D" parent="Nothingness"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53967, -921.487)
+text = "just restart the game bruh"
+
+[node name="Label3D6" type="Label3D" parent="Nothingness"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53967, -1942.71)
+text = "congrats!, you found a
+BIG FAT NOTHING"
+
+[node name="Label3D7" type="Label3D" parent="Nothingness"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53967, -2720.2)
+text = "unemployment level 1000"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Nothingness"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Nothingness/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7mp2w")
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Shop/Area3D" to="." method="_on_area_3d_body_exited"]
 [connection signal="screen_entered" from="Shop/VisibleOnScreenNotifier3D" to="." method="_on__screen_entered_computer"]
 [connection signal="screen_exited" from="Shop/VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="body_entered" from="DialogArea" to="DialogArea" method="_on_body_entered"]
 
+[editable path="Player"]
 [editable path="Farm house"]
 [editable path="grass"]
 [editable path="Gate"]
@@ -1041,4 +1105,3 @@ shape = SubResource("BoxShape3D_7mp2w")
 [editable path="mountains"]
 [editable path="grassmask"]
 [editable path="wheel"]
-[editable path="DialogArea"]

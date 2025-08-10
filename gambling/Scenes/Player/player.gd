@@ -118,9 +118,13 @@ func air_accelerate(wishdir : Vector3, wishspeed : float, accele : float, delta 
 
 	velocity += accelspeed * wishdir
 
+
+var boombox: Node3D
 func add_boombox(id: int):
-	var instance = preload("res://Scenes/Items/boombox.tscn").instantiate()
-	hand.add_child(instance)
+	if boombox:
+		boombox.queue_free()
+	boombox = preload("res://Scenes/Items/boombox.tscn").instantiate()
+	hand.add_child(boombox)
 
 func on_shop_toggle(on):
 	print("i")

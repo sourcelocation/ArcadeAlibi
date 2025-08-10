@@ -9,4 +9,6 @@ func _ready():
 
 
 func _on_audio_stream_player_3d_finished() -> void:
-	$AnimationPlayer.play("pickup")
+	$AnimationPlayer.play("putback")
+	if dialog_play == 0:
+		Game.gm.nothingness_on()
