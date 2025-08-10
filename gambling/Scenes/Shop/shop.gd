@@ -1,7 +1,5 @@
 extends Node3D
 
-signal shop_toggle(on)
-
 @onready var grid: GridContainer = $UI/VBoxContainer/ScrollContainer/Grid
 @onready var area_3d: Area3D = $Area3D
 @export var store_item : PackedScene
@@ -44,7 +42,7 @@ func _process(_delta):
 func toggle_shop(visible: bool):
 	$UI.visible = visible
 	Game.gm.in_computer = visible
-	shop_toggle.emit(visible)
+	Game.gm.player.on_shop_toggle(visible)
 
 func setup_store():
 	for data in store_data:

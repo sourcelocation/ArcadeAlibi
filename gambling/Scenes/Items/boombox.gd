@@ -6,4 +6,7 @@ extends Node3D
 func _ready():
 	$AudioStreamPlayer3D.stream = dialogs[dialog_play]
 	$AudioStreamPlayer3D.play()
-	
+
+
+func _on_audio_stream_player_3d_finished() -> void:
+	$AnimationPlayer.play("pickup")

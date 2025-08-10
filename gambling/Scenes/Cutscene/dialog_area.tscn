@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://duhb2lawsgo4u"]
+
+[ext_resource type="Script" uid="uid://diarigv0eabvj" path="res://Scenes/Cutscene/dialog_area.gd" id="1_u1e1i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aeuib"]
+resource_local_to_scene = true
+size = Vector3(5.75, 2.44, 3.34)
+
+[node name="DialogArea" type="Area3D"]
+script = ExtResource("1_u1e1i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_aeuib")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

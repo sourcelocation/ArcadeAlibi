@@ -1,20 +1,105 @@
-[gd_scene load_steps=4 format=3 uid="uid://cclnqeq7kns20"]
+[gd_scene load_steps=9 format=3 uid="uid://cclnqeq7kns20"]
 
 [ext_resource type="Script" uid="uid://diq4grbpq5k01" path="res://Scenes/Items/boombox.gd" id="1_qpsky"]
-[ext_resource type="AudioStream" uid="uid://b3v34iojdoeqs" path="res://Resources/Audio/1-tmp.mp3" id="2_102ku"]
+[ext_resource type="AudioStream" uid="uid://h5rbpbhbm473" path="res://Resources/Audio/vo-1.mp3" id="2_rae5c"]
 [ext_resource type="PackedScene" uid="uid://dk36ti0ow03kj" path="res://Resources/Models/Boombox.glb" id="3_qcmpk"]
+[ext_resource type="AudioStream" uid="uid://ctwepcaqgbaeg" path="res://Resources/Audio/vo-2.mp3" id="3_rkfpi"]
+
+[sub_resource type="Animation" id="Animation_rae5c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boombox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.456, 1.271, -0.558)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boombox:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0191986, 1.5865, 1.07861)]
+}
+
+[sub_resource type="Animation" id="Animation_lueip"]
+resource_name = "pickup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boombox:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.733333),
+"transitions": PackedFloat32Array(0.143587, 4.92458),
+"update": 0,
+"values": [Vector3(-0.456, 0.970503, 0.0618924), Vector3(-0.456, 1.271, -0.558)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boombox:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.766667),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0191986, 1.5865, 1.07861)]
+}
+
+[sub_resource type="Animation" id="Animation_rkfpi"]
+resource_name = "putback"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boombox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.93),
+"transitions": PackedFloat32Array(0.466516, 1),
+"update": 0,
+"values": [Vector3(-0.456, 0.970503, 0.0618924), Vector3(-0.456, 0.614608, 1.18579)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rae5c"]
+_data = {
+&"RESET": SubResource("Animation_rae5c"),
+&"pickup": SubResource("Animation_lueip"),
+&"putback": SubResource("Animation_rkfpi")
+}
 
 [node name="Boombox" type="Node3D"]
 script = ExtResource("1_qpsky")
-dialogs = Array[AudioStream]([ExtResource("2_102ku")])
+dialogs = Array[AudioStream]([ExtResource("2_rae5c"), ExtResource("3_rkfpi")])
 
 [node name="Boombox" parent="." instance=ExtResource("3_qcmpk")]
-transform = Transform3D(-0.00446157, 0.000874802, 0.183251, 0.16152, 0.0866062, 0.00351904, -0.0865628, 0.161556, -0.00287875, -0.456, 1.271, -0.558)
+transform = Transform3D(-0.00446119, 0.000874094, 0.183251, 0.16152, 0.0866069, 0.00351903, -0.0865634, 0.161556, -0.00287796, -0.456, 1.271, -0.558)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(-0.0243392, 0.00477231, 0.999692, 0.881141, 0.472464, 0.0191974, -0.472227, 0.881337, -0.0157045, -0.456, 1.271, -0.558)
 volume_db = 18.218
 unit_size = 100.0
 max_db = 6.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rae5c")
+}
+autoplay = "pickup"
+
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
 
 [editable path="Boombox"]
