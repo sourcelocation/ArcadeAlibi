@@ -19,6 +19,9 @@ const computer_rotation = Vector3(-0.03, PI, 0)
 @export var smoothing : float = 0.0002
 @export var crouch_height = -0.5  
 @export var crouch_speed = 10.0
+
+@export_group("Items")
+@export var all_items: Dictionary[int, PackedScene]
 var camera_rotation = Vector2(0, 0)
 var can_move : bool = true
 var sprint_spd
@@ -30,6 +33,8 @@ var on_ladder = false
 var can_ladder = true
 
 var mouse_sens = 0.003
+
+var inventory: Dictionary
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -162,6 +167,7 @@ func add_boombox(id: int):
 	if boombox:
 		boombox.queue_free()
 	boombox = preload("res://Scenes/Items/boombox.tscn").instantiate()
+	boombox.dialog_play = id
 	hand.add_child(boombox)
 
 func on_shop_toggle(on):
@@ -171,3 +177,18 @@ func on_shop_toggle(on):
 	else:
 		leave_shop = true
 		can_move = true
+
+func give_item(id, count):
+	if id in inventory: 
+		inventory[id] += count
+	else:
+		inventory[id] = count
+		
+	if id < 100:
+		equip_item(id)
+
+func equip_item(id):
+	for c in hand.get_children(): c.queue_free()
+	var item = all_items[id].instantiate()
+	hand.add_child(item)
+	

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ukoki2adbqs1"]
+[gd_scene load_steps=4 format=3 uid="uid://ukoki2adbqs1"]
 
 [ext_resource type="Script" uid="uid://bpqrnyncmfv5s" path="res://Scenes/Player/player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://bkp4hdw8k1yts" path="res://Scenes/Shovel/shovel.tscn" id="2_a3d8c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 radius = 0.34
@@ -9,6 +10,9 @@ height = 1.8
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
 crouch_height = -0.82
+all_items = Dictionary[int, PackedScene]({
+0: ExtResource("2_a3d8c")
+})
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46461, 0)

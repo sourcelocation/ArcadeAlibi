@@ -5,7 +5,7 @@ class_name GameManager
 @onready var terrain: VoxelTerrain = $Terrain
 @onready var shop: Node3D = $Shop
 @onready var nothingness: MeshInstance3D = $Nothingness
-
+	
 var computer_visible = false
 var in_computer = false
 var in_cutscene = false
@@ -15,6 +15,9 @@ func _ready() -> void:
 		toggle_cutscene(true)
 	Game.gm = self
 	nothingness.visible = false
+	
+	#if "pickup_shovel" in Save.config:
+		#$ShovelArea.queue_free()
 
 func _process(delta: float) -> void:
 	player.can_move = not in_computer and not in_cutscene
@@ -36,3 +39,11 @@ func _on__screen_entered_computer() -> void:
 
 func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 	computer_visible = false
+
+
+func _on_shovel_entered(body: Node3D) -> void:
+	if body is Player:
+		player.give_item(0,1)
+		Save.save("pickup_shovel",true)
+		$ShovelArea.queue_free()
+		player.add_boombox(1)
