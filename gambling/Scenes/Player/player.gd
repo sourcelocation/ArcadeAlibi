@@ -25,7 +25,9 @@ var sprint_spd
 @onready var initial_cam_rotation : Vector3 = main_camera.rotation
 var enter_shop = false
 var leave_shop = false
-var i = 0
+var ladders : Array
+var on_ladder = false
+var can_ladder = true
 
 var mouse_sens = 0.003
 
@@ -52,14 +54,14 @@ func camera_look(movement : Vector2):
 	rotate_y(-movement.x)
 
 func _process(delta: float) -> void:
-	if !is_on_floor():
+	if !is_on_floor() and !on_ladder:
 		velocity.y -= gravity * delta
 
 	var input_dir = Input.get_vector("Left", "Right", "Forward", "Back")
 	input_dir.x *= 0.9
 	var wishdir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-	if !can_move:
+	if !can_move or on_ladder:
 		wishdir = Vector3.ZERO
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if can_move else Input.MOUSE_MODE_VISIBLE)
@@ -82,10 +84,11 @@ func process_dig():
 		# Move player into the dug space if needed
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("Space") and is_on_floor():
+	if Input.is_action_just_pressed("Space") and (is_on_floor() or on_ladder):
 		velocity.y = jump_vel
 
-	#if is_on_floor():
+	if is_on_floor():
+		can_ladder = true
 	velocity.x = velocity.x * pow(smoothing, delta);
 	velocity.z = velocity.z * pow(smoothing, delta);
 
@@ -107,17 +110,6 @@ func _physics_process(delta: float) -> void:
 	main_camera.position.y = lerp(main_camera.position.y, target_cam_y, crouch_speed * delta)
 	col.scale.z = lerp(col.scale.z, target_col_z, crouch_speed * delta)
 
-	#if enter_shop:
-		#main_camera.global_position = lerp(main_camera.global_position, computer_pos, 0.05)
-		#main_camera.global_rotation = lerp(main_camera.global_rotation, computer_rotation, 0.05)
-		#if (main_camera.global_position == computer_pos and main_camera.global_rotation == computer_rotation) or leave_shop:
-			#enter_shop = false
-	#if leave_shop:
-		#main_camera.global_position = lerp(main_camera.global_position, initial_cam_offset + global_position, 0.05)
-		#main_camera.global_rotation = lerp(main_camera.global_rotation, initial_cam_rotation, 0.05)
-		#if main_camera.global_position == initial_cam_offset and main_camera.global_rotation == initial_cam_rotation:
-			#leave_shop = false
-
 	if enter_shop:
 		main_camera.global_position = lerp(main_camera.global_position, computer_pos, 0.05)
 		main_camera.rotation.x = lerp_angle(main_camera.rotation.x, computer_rotation.x - global_rotation.x, 0.05)
@@ -130,12 +122,23 @@ func _physics_process(delta: float) -> void:
 		main_camera.rotation.y = lerp_angle(main_camera.rotation.y, initial_cam_rotation.y, 0.05)
 		main_camera.rotation.z = lerp_angle(main_camera.rotation.z, initial_cam_rotation.z, 0.05)
 		enter_shop = false
-		#i += 1
-	#else:
-		#main_camera.global_position = initial_cam_offset + global_position
-		#main_camera.rotation = initial_cam_rotation
-		#leave_shop = false
-		#i = 0
+
+	if !ladders.is_empty() and can_ladder:
+		if Input.is_action_just_pressed("Space"):
+			can_ladder = false
+			on_ladder = false
+		else:
+			on_ladder = true
+			can_move = false
+			velocity = Vector3.ZERO
+
+			if Input.is_action_pressed("Forward"):
+				velocity.y = 1.5
+			elif Input.is_action_pressed("Back"):
+				velocity.y = -1.5
+	else:
+		on_ladder = false
+		can_move = true
 
 func air_accelerate(wishdir : Vector3, wishspeed : float, accele : float, delta : float):
 	var addspeed : float
