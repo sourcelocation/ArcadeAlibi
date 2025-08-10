@@ -3,6 +3,7 @@ class_name GameManager
 
 @onready var player = $Player
 @onready var terrain: VoxelTerrain = $Terrain
+@onready var shop: Node3D = $Shop
 
 var computer_visible = false
 var in_computer = false
@@ -12,6 +13,8 @@ func _ready() -> void:
 	if has_node("Cutscene1"):
 		toggle_cutscene(true)
 	Game.gm = self
+
+	shop.shop_toggle.connect(player.on_shop_toggle)
 
 func _process(delta: float) -> void:
 	player.can_move = not in_computer and not in_cutscene

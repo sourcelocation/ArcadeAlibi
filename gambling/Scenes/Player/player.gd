@@ -6,6 +6,7 @@ class_name Player
 @onready var inital_cam_offset = main_camera.position
 
 const gravity = 9.8 * 1.5
+const computer_pos = Vector3(-2.156458, 1.465301, -4.937538)
 
 @export var base_speed = 5.0
 @export var air_speed = 6.0
@@ -118,3 +119,7 @@ func air_accelerate(wishdir : Vector3, wishspeed : float, accele : float, delta 
 
 func add_boombox(id: int):
 	var instance = preload("res://Scenes/Items/boombox.tscn").instantiate()
+
+func on_shop_toggle():
+	print("i")
+	global_position = lerp(global_position, computer_pos, 0.75)
