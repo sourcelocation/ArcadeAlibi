@@ -37,8 +37,9 @@ _subresources={
 "PATH:Plane_001": {
 "generate/physics": true
 },
-"PATH:Plane_002": {
-"generate/physics": true
+"PATH:Plane_003": {
+"generate/physics": true,
+"mesh_instance/layers": 0
 }
 }
 }

@@ -1,13 +1,15 @@
-[gd_scene load_steps=118 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=123 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
 [ext_resource type="Script" uid="uid://bjpd0mcinrug4" path="res://Scenes/Game/game_manager.gd" id="1_l1i01"]
 [ext_resource type="Resource" uid="uid://cslvcweyejh3c" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_movement_component.tres" id="2_aa0lp"]
 [ext_resource type="PackedScene" uid="uid://ukoki2adbqs1" path="res://Scenes/Player/player.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://jbo30sw083oh" path="res://Globals/itemres.gd" id="2_jcrx1"]
 [ext_resource type="Shader" uid="uid://b3oarc00afksk" path="res://Scenes/Grass/grass.gdshader" id="3_fc0e3"]
 [ext_resource type="ArrayMesh" uid="uid://bexedbmtem3p2" path="res://Scenes/Grass/grass.res" id="3_feb5d"]
 [ext_resource type="Resource" uid="uid://iru8ynu04i00" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_rotation_component.tres" id="3_iu0sx"]
+[ext_resource type="Texture2D" uid="uid://cneqx7ignovt5" path="res://Resources/UI/shovel.png" id="3_u2cvy"]
 [ext_resource type="Resource" uid="uid://rp3mpjmisoyh" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_object_movement_component.tres" id="4_4v2jo"]
 [ext_resource type="PackedScene" uid="uid://bsws8exta226s" path="res://Scenes/Grass/grass.blend" id="5_7jktm"]
 [ext_resource type="Resource" uid="uid://c8ulad7utgrg7" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processing_stage.tres" id="5_l1i01"]
@@ -64,6 +66,15 @@
 [ext_resource type="Script" uid="uid://ct63gjc5hguag" path="res://Scenes/Game/underground_audio.gd" id="58_71giq"]
 [ext_resource type="PackedScene" uid="uid://cwfgig73oyoe6" path="res://Scenes/Game/Chest.tscn" id="59_3mdsk"]
 [ext_resource type="PackedScene" uid="uid://b5d7dpv1ch8m2" path="res://Scenes/Tree/tree.tscn" id="60_a4qm0"]
+
+[sub_resource type="Resource" id="Resource_jcrx1"]
+script = ExtResource("2_jcrx1")
+id = 1
+title = "Rusty Shovel"
+description = "Nothing special, but a good ol' shovel to either dig dirt, or kick asses"
+icon = ExtResource("3_u2cvy")
+is_tool = true
+metadata/_custom_type_script = "uid://jbo30sw083oh"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.157253, 0.387188, 0.952321, 1)
@@ -140,7 +151,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_858on"]
@@ -180,9 +191,23 @@ _data = {
 &"on": SubResource("Animation_l5fxq")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caws5"]
+albedo_texture = ExtResource("45_rht7h")
+roughness_texture = ExtResource("48_2r0uj")
+normal_enabled = true
+normal_texture = ExtResource("47_caws5")
+heightmap_scale = 3.0
+heightmap_texture = ExtResource("46_bkdpl")
+uv1_scale = Vector3(0.17, 0.17, 0.17)
+uv1_triplanar = true
+
+[sub_resource type="VoxelStreamSQLite" id="VoxelStreamSQLite_l5fxq"]
+database_path = "user://layer1.db"
+preferred_coordinate_format = "user://layer1.db"
+
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_3mdsk"]
 graph_data = {
-"connections": [[19, 0, 18, 1], [18, 0, 4, 0], [15, 0, 18, 0], [14, 0, 15, 0], [14, 0, 19, 1]],
+"connections": [[18, 0, 4, 0], [15, 0, 18, 0], [19, 0, 18, 1], [14, 0, 15, 0], [14, 0, 19, 1]],
 "nodes": {
 "14": {
 "gui_position": Vector2(180, 120),
@@ -213,22 +238,27 @@ graph_data = {
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_a4qm0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caws5"]
-albedo_texture = ExtResource("45_rht7h")
-roughness_texture = ExtResource("48_2r0uj")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_858on"]
+albedo_color = Color(0.615422, 0.615422, 0.615422, 1)
+albedo_texture = ExtResource("21_858on")
+metallic_specular = 0.0
+roughness_texture = ExtResource("24_u2cvy")
 normal_enabled = true
-normal_texture = ExtResource("47_caws5")
-heightmap_scale = 3.0
-heightmap_texture = ExtResource("46_bkdpl")
-uv1_scale = Vector3(0.17, 0.17, 0.17)
+normal_texture = ExtResource("23_jcrx1")
+heightmap_texture = ExtResource("22_l5fxq")
+uv1_scale = Vector3(0.46, 0.46, 0.46)
 uv1_triplanar = true
+
+[sub_resource type="VoxelStreamSQLite" id="VoxelStreamSQLite_jcrx1"]
+database_path = "user://layer2.db"
+preferred_coordinate_format = "user://layer2.db"
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_858on"]
 period = 11.0001
 
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_a4qm0"]
 graph_data = {
-"connections": [[21, 0, 15, 0], [20, 0, 21, 1], [19, 0, 18, 1], [18, 0, 4, 0], [15, 0, 18, 0], [14, 0, 19, 1], [14, 0, 21, 0]],
+"connections": [[21, 0, 15, 0], [18, 0, 4, 0], [20, 0, 21, 1], [15, 0, 18, 0], [19, 0, 18, 1], [14, 0, 19, 1], [14, 0, 21, 0]],
 "nodes": {
 "14": {
 "gui_position": Vector2(50, 120),
@@ -268,17 +298,6 @@ graph_data = {
 },
 "version": 2
 }
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_858on"]
-albedo_color = Color(0.615422, 0.615422, 0.615422, 1)
-albedo_texture = ExtResource("21_858on")
-metallic_specular = 0.0
-roughness_texture = ExtResource("24_u2cvy")
-normal_enabled = true
-normal_texture = ExtResource("23_jcrx1")
-heightmap_texture = ExtResource("22_l5fxq")
-uv1_scale = Vector3(0.46, 0.46, 0.46)
-uv1_triplanar = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fc0e3"]
 noise_type = 3
@@ -601,6 +620,7 @@ size = Vector3(81.4961, 147.438, 640.181)
 
 [node name="Game" type="Node3D" node_paths=PackedStringArray("layers")]
 script = ExtResource("1_l1i01")
+items = Array[ExtResource("2_jcrx1")]([SubResource("Resource_jcrx1")])
 layers = [NodePath("Layer1")]
 chest = ExtResource("59_3mdsk")
 
@@ -615,7 +635,6 @@ occluder = ExtResource("14_iu0sx")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.315024, 0.769224, -0.555927, -0.103423, 0.610086, 0.785556, 0.943432, -0.189973, 0.271747, 0, 10.7352, 0)
 light_color = Color(1, 0.895167, 0.63, 1)
-light_energy = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DirectionalLight3D"]
 libraries = {
@@ -623,14 +642,16 @@ libraries = {
 }
 
 [node name="Layer1" type="VoxelTerrain" parent="."]
+material_override = SubResource("StandardMaterial3D_caws5")
+stream = SubResource("VoxelStreamSQLite_l5fxq")
 generator = SubResource("VoxelGeneratorGraph_3mdsk")
 mesher = SubResource("VoxelMesherTransvoxel_a4qm0")
-material_override = SubResource("StandardMaterial3D_caws5")
 
 [node name="Layer2" type="VoxelTerrain" parent="."]
+material_override = SubResource("StandardMaterial3D_858on")
+stream = SubResource("VoxelStreamSQLite_jcrx1")
 generator = SubResource("VoxelGeneratorGraph_a4qm0")
 mesher = SubResource("VoxelMesherTransvoxel_a4qm0")
-material_override = SubResource("StandardMaterial3D_858on")
 
 [node name="Player" parent="." instance=ExtResource("2_e2o6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34511, -5.9031)
@@ -706,8 +727,6 @@ autoplay = true
 max_distance = 17.28
 panning_strength = 0.0
 bus = &"Music"
-emission_angle_degrees = 56.0
-emission_angle_filter_attenuation_db = -44.4
 
 [node name="Table" parent="." instance=ExtResource("21_hb5m1")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.0051, 0.256547, -4.02856)
@@ -1301,6 +1320,8 @@ shape = SubResource("BoxShape3D_71giq")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="AudioStreamPlayer3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.322227, -0.561518, -319.568)
 shape = SubResource("BoxShape3D_3mdsk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]

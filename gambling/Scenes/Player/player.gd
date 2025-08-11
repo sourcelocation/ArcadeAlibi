@@ -1,7 +1,6 @@
 extends CharacterBody3D
 class_name Player
 
-@onready var camera_target: Marker3D = $CameraTarget
 @onready var main_camera: Camera3D = $Camera3D
 @onready var col: CollisionShape3D = $CollisionShape3D
 @onready var initial_cam_offset = main_camera.position
@@ -25,13 +24,15 @@ const computer_rotation = Vector3(-0.03, PI, 0)
 @export var all_items: Dictionary[int, PackedScene]
 var camera_rotation = Vector2(0, 0)
 var can_move : bool = true
-var in_shop : bool = false
 var sprint_spd
 @onready var initial_cam_rotation : Vector3 = main_camera.rotation
+var enter_shop = false
+var leave_shop = false
 var ladders : Array
 var on_ladder = false
 var can_ladder = true
 var money = 100
+var wood = 0
 
 var mouse_sens = 0.003
 
@@ -56,7 +57,7 @@ func camera_look(movement : Vector2):
 	camera_rotation += movement
 	camera_rotation.y = clamp(camera_rotation.y, -1.5, 1.5)
 
-	camera_target.rotation.x = -camera_rotation.y
+	main_camera.rotation.x = -camera_rotation.y
 	rotate_y(-movement.x)
 
 func _process(delta: float) -> void:
@@ -84,11 +85,16 @@ func _process(delta: float) -> void:
 
 func process_dig():
 	if Input.is_action_pressed("dig"):  # e.g., hold a button to dig
-		var direction = -main_camera.global_transform.basis.z  # Forward direction
-		var dig_pos = main_camera.global_position + direction * 2.0  # Offset ahead
-		var _tool = Game.gm.terrain.get_voxel_tool()
-		_tool.mode = VoxelTool.MODE_REMOVE
-		_tool.do_sphere(dig_pos,1.5)
+		var params = PhysicsRayQueryParameters3D.new()
+		params.from = main_camera.global_position
+		params.to = params.from - main_camera.global_transform.basis.z * 1.75
+		var result = get_world_3d().direct_space_state.intersect_ray(params) 
+		if result:
+			var pos = result.position
+			# Process the digging logic here
+			var _tool = Game.gm.terrain.get_voxel_tool()
+			_tool.mode = VoxelTool.MODE_REMOVE
+			_tool.do_sphere(pos,0.8)
 		# Move player into the dug space if needed
 
 func _physics_process(delta: float) -> void:
@@ -115,12 +121,14 @@ func _physics_process(delta: float) -> void:
 		target_cam_y = initial_cam_offset.y
 		target_col_z = 1.0
 
-	camera_target.position.y = lerp(main_camera.position.y, target_cam_y, crouch_speed * delta)
+	main_camera.position.y = lerp(main_camera.position.y, target_cam_y, crouch_speed * delta)
 	col.scale.z = lerp(col.scale.z, target_col_z, crouch_speed * delta)
 
-	var current_target_position = computer_pos if in_shop else initial_cam_offset + global_position
-	main_camera.global_position = current_target_position
-	main_camera.global_rotation = computer_rotation if in_shop else initial_cam_rotation
+	if enter_shop:
+		main_camera.global_position = lerp(main_camera.global_position, computer_pos, 0.05)
+		main_camera.rotation.x = lerp_angle(main_camera.rotation.x, computer_rotation.x - global_rotation.x, 0.05)
+		main_camera.rotation.y = lerp_angle(main_camera.rotation.y, computer_rotation.y - global_rotation.y, 0.05)
+		main_camera.rotation.z = lerp_angle(main_camera.rotation.z, computer_rotation.z - global_rotation.z, 0.05)
 
 	if !ladders.is_empty() and can_ladder:
 		if Input.is_action_just_pressed("Space"):
@@ -167,10 +175,16 @@ func add_boombox(id: int):
 
 func on_shop_toggle(on):
 	if on:
-		in_shop = true
+		enter_shop = true
 		can_move = false
 	else:
-		in_shop = false
+		main_camera.position.x = 0
+		main_camera.position.z = 0
+		main_camera.rotation.z = 0
+		main_camera.rotation.y = 0
+		main_camera.rotation.x = 0
+		enter_shop = false
+		leave_shop = true
 		can_move = true
 
 func give_item(id, count):
@@ -186,4 +200,3 @@ func equip_item(id):
 	for c in hand.get_children(): c.queue_free()
 	var item = all_items[id].instantiate()
 	hand.add_child(item)
-	
