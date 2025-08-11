@@ -1,4 +1,4 @@
-# Gamba (WIP)
+# Arcade Alibi: Slots and Shovels - The Ligma Incident
 
 Son of a Ligma-stricken mom finds an awful load of resources in his backyard, whips up slot machines, and goes full undercover to build a casino empire to cure Ligma.
 
