@@ -3,18 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://jawg24hc6g66" path="res://Resources/Models/Ladder.glb" id="1_75hc7"]
 [ext_resource type="Script" uid="uid://d1juvr54svisy" path="res://Scenes/ladder.gd" id="1_fnw1j"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bkdpl"]
-size = Vector3(1, 5.32678, 0.592041)
+[sub_resource type="BoxShape3D" id="BoxShape3D_fnw1j"]
+size = Vector3(1, 0.597, 6.702)
 
 [node name="Ladder" type="Area3D"]
 script = ExtResource("1_fnw1j")
 
 [node name="Ladder" parent="." instance=ExtResource("1_75hc7")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 8.65692e-08, 0.139398, 0.990236, -1.21865e-08, 0.990236, -0.139398, 0, 0, 0)
+
+[node name="Node" parent="Ladder" index="0"]
+transform = Transform3D(1, 8.88178e-16, 5.32907e-15, 0, 1, 0, -1.77636e-15, 0, 1, 1.45072e-09, -0.11788, 0.0165942)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.75, 0, 0, 0, 0.7445, -0.0906615, 0, 0.0906615, 0.7445, 0, -0.113602, -0.168732)
-shape = SubResource("BoxShape3D_bkdpl")
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -0.113602, -0.168732)
+shape = SubResource("BoxShape3D_fnw1j")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -137,10 +137,11 @@ func _physics_process(delta: float) -> void:
 			can_move = false
 			velocity = Vector3.ZERO
 
+			var ladder_speed = 400.0
 			if Input.is_action_pressed("Forward"):
-				velocity.y = 1.5
+				velocity += ladders[0].global_transform.basis.z * ladder_speed * delta
 			elif Input.is_action_pressed("Back"):
-				velocity.y = -1.5
+				velocity += ladders[0].global_transform.basis.z * -ladder_speed * delta
 	else:
 		on_ladder = false
 		can_move = true

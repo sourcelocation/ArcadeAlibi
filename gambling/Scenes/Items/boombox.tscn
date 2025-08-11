@@ -86,7 +86,7 @@ script = ExtResource("1_qpsky")
 dialogs = Array[AudioStream]([ExtResource("2_rae5c"), ExtResource("3_rae5c")])
 
 [node name="Boombox" parent="." instance=ExtResource("3_qcmpk")]
-transform = Transform3D(-0.0044612, 0.000874096, 0.183251, 0.16152, 0.086607, 0.00351903, -0.0865635, 0.161556, -0.00287796, -0.456, 1.271, -0.558)
+transform = Transform3D(-0.0044612, 0.000874096, 0.183251, 0.16152, 0.086607, 0.00351903, -0.0865636, 0.161556, -0.00287796, -0.456, 1.271, -0.558)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(-0.0243392, 0.00477231, 0.999692, 0.881141, 0.472464, 0.0191974, -0.472227, 0.881337, -0.0157045, -0.456, 1.271, -0.558)
