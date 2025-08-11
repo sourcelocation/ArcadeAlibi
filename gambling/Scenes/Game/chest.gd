@@ -23,5 +23,5 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 
 func open():
 	queue_free()
-	Game.gm.player.money += randi() % 250
+	Game.gm.player.money += randi_range(250 * (Game.gm.layer_to_gen - 2), 250 * (Game.gm.layer_to_gen - 1))
 	print(Game.gm.player.money)
