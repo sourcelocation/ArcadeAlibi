@@ -14,6 +14,8 @@ all_items = Dictionary[int, PackedScene]({
 0: ExtResource("2_a3d8c")
 })
 
+[node name="CameraTarget" type="Marker3D" parent="."]
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46461, 0)
 current = true
