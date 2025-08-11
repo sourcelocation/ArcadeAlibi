@@ -1137,9 +1137,6 @@ shape = SubResource("BoxShape3D_71giq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.322227, -0.561518, -319.568)
 shape = SubResource("BoxShape3D_3mdsk")
 
-[node name="Chest" parent="." instance=ExtResource("59_3mdsk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.897163, -7.97458)
-
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Shop/Area3D" to="." method="_on_area_3d_body_exited"]

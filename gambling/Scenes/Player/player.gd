@@ -19,7 +19,6 @@ const computer_rotation = Vector3(-0.03, PI, 0)
 @export var smoothing : float = 0.0002
 @export var crouch_height = -0.5  
 @export var crouch_speed = 10.0
-@onready var label: Label = $Label
 
 @export_group("Items")
 @export var all_items: Dictionary[int, PackedScene]
@@ -61,7 +60,6 @@ func camera_look(movement : Vector2):
 	rotate_y(-movement.x)
 
 func _process(delta: float) -> void:
-	label.text = str(position)
 	if !is_on_floor() and !on_ladder:
 		velocity.y -= gravity * delta
 
