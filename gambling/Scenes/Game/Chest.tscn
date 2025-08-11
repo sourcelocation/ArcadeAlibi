@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwfgig73oyoe6"]
+
+[ext_resource type="Script" uid="uid://bts3f2ncxitcv" path="res://Scenes/Game/chest.gd" id="1_7kora"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f0xhi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f0xhi"]
+
+[node name="Chest" type="Area3D"]
+script = ExtResource("1_7kora")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, 2.572, 0, 0, 0, 2.572, 0, 0, 0)
+shape = SubResource("BoxShape3D_f0xhi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_f0xhi")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]

@@ -5,10 +5,14 @@ class_name GameManager
 @onready var terrain: VoxelTerrain = $Terrain
 @onready var shop: Node3D = $Shop
 @onready var nothingness: MeshInstance3D = $Nothingness
-	
+@onready var money_label: Label = $UI/MoneyLabel
+@export var chest : PackedScene
+
+var chest_spawned_positions : Array = []
 var computer_visible = false
 var in_computer = false
 var in_cutscene = false
+var num_chests = 200.0
 
 func _ready() -> void:
 	if has_node("Cutscene1"):
@@ -18,6 +22,13 @@ func _ready() -> void:
 	
 	#if "pickup_shovel" in Save.config:
 		#$ShovelArea.queue_free()
+
+	randomize()
+	for i in range(num_chests):
+		var temp = chest.instantiate()
+		var rand_y = randf_range(-10, -20)
+		temp.position = Vector3(randf_range(-25, 25), rand_y, randf_range(-25, 25))
+		add_child(temp)
 
 func _process(delta: float) -> void:
 	player.can_move = not in_computer and not in_cutscene

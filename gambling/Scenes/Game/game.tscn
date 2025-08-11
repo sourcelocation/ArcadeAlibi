@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=107 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -58,6 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://wsxt2h8q4vxp" path="res://Scenes/Shovel/shovel.blend" id="56_ckc7s"]
 [ext_resource type="AudioStream" uid="uid://buf256nrro2y0" path="res://Resources/Music/underground.mp3" id="57_8trit"]
 [ext_resource type="Script" uid="uid://ct63gjc5hguag" path="res://Scenes/Game/underground_audio.gd" id="58_71giq"]
+[ext_resource type="PackedScene" uid="uid://cwfgig73oyoe6" path="res://Scenes/Game/Chest.tscn" id="59_3mdsk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.157253, 0.387188, 0.952321, 1)
@@ -461,6 +462,7 @@ size = Vector3(81.4961, 147.438, 640.181)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_l1i01")
+chest = ExtResource("59_3mdsk")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_e2o6t")
@@ -1133,6 +1135,9 @@ shape = SubResource("BoxShape3D_71giq")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="AudioStreamPlayer3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.322227, -0.561518, -319.568)
 shape = SubResource("BoxShape3D_3mdsk")
+
+[node name="Chest" parent="." instance=ExtResource("59_3mdsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.897163, -7.97458)
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]
