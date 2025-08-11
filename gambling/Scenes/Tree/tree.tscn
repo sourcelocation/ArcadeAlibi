@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5d7dpv1ch8m2"]
+[gd_scene load_steps=6 format=3 uid="uid://b5d7dpv1ch8m2"]
 
 [ext_resource type="Script" uid="uid://cjsheiswn6hh0" path="res://Scenes/Tree/tree.gd" id="1_pb44w"]
 [ext_resource type="PackedScene" uid="uid://cl7nsrtog11sn" path="res://Scenes/Fence/Tree1.tscn" id="1_rx2sp"]
@@ -6,6 +6,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_rx2sp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rx2sp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pb44w"]
 
 [node name="Tree" type="Area3D"]
 script = ExtResource("1_pb44w")
@@ -22,6 +24,10 @@ transform = Transform3D(0.2, 0, 0, 0, 1.5, 0, 0, 0, 0.2, 0, 1.5, 0)
 transform = Transform3D(0.5, 0, 0, 0, 0.4, 0, 0, 0, 0.5, 0, 0.4, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_rx2sp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="dead_tree"]
+transform = Transform3D(0.520434, 0, 0, 0, 1.35705, 0, 0, 0, 1, 0, 0.0688422, 0)
+shape = SubResource("BoxShape3D_pb44w")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

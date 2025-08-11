@@ -737,7 +737,7 @@ size = Vector3(18.88, 10, 8.9)
 material = SubResource("FogMaterial_e36ub")
 
 [node name="Camera3D" type="Camera3D" parent="Cutscene1"]
-transform = Transform3D(-0.958414, -0.012792, -0.285093, 0, 0.998995, -0.0448244, 0.28538, -0.0429604, -0.957451, -3.16474, -0.000629187, -9.12717)
+transform = Transform3D(-0.958414, -0.012792, -0.285093, 0, 0.998995, -0.0448245, 0.28538, -0.0429604, -0.957451, -3.16474, -0.000629187, -9.12717)
 current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cutscene1"]
@@ -1032,6 +1032,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.64123, 0.206518, -14.4563)
 
 [node name="Tree" parent="Trees" instance=ExtResource("60_a4qm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98798, 0.206518, -10.7026)
+regrow_timer_sec = 5
 
 [node name="Tree30" parent="Trees" instance=ExtResource("60_a4qm0")]
 transform = Transform3D(-0.0800946, 0, -0.996787, 0, 1, 0, 0.996787, 0, -0.0800946, -4.98798, 0.206518, -2.28392)
