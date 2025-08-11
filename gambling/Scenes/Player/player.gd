@@ -31,6 +31,7 @@ var leave_shop = false
 var ladders : Array
 var on_ladder = false
 var can_ladder = true
+var money = 100
 
 var mouse_sens = 0.003
 
@@ -74,6 +75,8 @@ func _process(delta: float) -> void:
 	speed *= sprint_spd
 	var accel = base_accel if is_on_floor() else air_accel
 	air_accelerate(wishdir, speed, accel, delta)
+
+	Game.gm.money_label.text = "$" + str(money)
 
 	move_and_slide()
 
