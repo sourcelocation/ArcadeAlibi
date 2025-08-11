@@ -1,0 +1,6 @@
+[gd_resource type="VoxelGeneratorScript" load_steps=2 format=3 uid="uid://bb6wdp5dwwpgu"]
+
+[sub_resource type="GDScript" id="GDScript_hdtv6"]
+
+[resource]
+script = SubResource("GDScript_hdtv6")

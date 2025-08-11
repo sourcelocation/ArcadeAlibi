@@ -5,7 +5,7 @@ func _ready():
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is Player:
-		volume_db = 0
+		volume_db = -4
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:

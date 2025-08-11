@@ -2,7 +2,8 @@ extends Node3D
 class_name GameManager
 
 @onready var player: Player = $Player
-@onready var terrain: VoxelTerrain = $Terrain
+@export var layers: Array[VoxelTerrain]
+@onready var terrain = layers[0]
 @onready var shop: Node3D = $Shop
 @onready var nothingness: MeshInstance3D = $Nothingness
 @onready var money_label: Label = $UI/MoneyLabel
@@ -25,8 +26,23 @@ func _ready() -> void:
 	#if "pickup_shovel" in Save.config:
 		#$ShovelArea.queue_free()
 
+	randomize()
+	for i in range(num_chests):
+		var temp = chest.instantiate()
+		var rand_y = randf_range(-10, -20)
+		temp.position = Vector3(randf_range(-25, 25), rand_y, randf_range(-25, 25))
+		add_child(temp)
+		
+@onready var dir_light_anim: AnimationPlayer = $DirectionalLight3D/AnimationPlayer
+@onready var dir_light: DirectionalLight3D = $DirectionalLight3D
+
 func _process(delta: float) -> void:
 	player.can_move = not in_computer and not in_cutscene
+	
+	if player.position.y < -4.6 and dir_light.light_energy == 1:
+		dir_light_anim.play("off")
+	if player.position.y > -4.6 and dir_light.light_energy == 0:
+		dir_light_anim.play("on")
 
 	if player.global_position.y <= -layer_height * (layer_to_gen - 2):
 		gen_chests(layer_to_gen)
