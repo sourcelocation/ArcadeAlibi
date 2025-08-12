@@ -42,12 +42,7 @@ var selected_tool
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _input(event):
-	if Input.is_action_just_pressed("Quit"):
-		get_tree().quit()
-	elif Input.is_action_just_pressed("Reload"):
-		get_tree().reload_current_scene()
-	
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var mouse_event = event.relative * mouse_sens
 		camera_look(mouse_event)
@@ -72,7 +67,7 @@ func _process(delta: float) -> void:
 	if !can_move or on_ladder:
 		wishdir = Vector3.ZERO
 
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if can_move else Input.MOUSE_MODE_VISIBLE)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if !enter_shop else Input.MOUSE_MODE_VISIBLE)
 	var speed = base_speed if is_on_floor() else air_speed
 	speed *= sprint_spd
 	var accel = base_accel if is_on_floor() else air_accel

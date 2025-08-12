@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc8jlduayrucf"]
+[gd_scene load_steps=8 format=3 uid="uid://bc8jlduayrucf"]
 
 [ext_resource type="Script" uid="uid://boxl5is561to5" path="res://Scenes/Menu/menu.gd" id="1_3qr6s"]
 [ext_resource type="Texture2D" uid="uid://cynnkrd6qo3ki" path="res://Resources/UI/logo.png" id="1_3ymnh"]
+[ext_resource type="Texture2D" uid="uid://c0wlkp2xvkptd" path="res://Resources/UI/80s_menu_background.png" id="1_j7r1e"]
 [ext_resource type="PackedScene" uid="uid://bveuk5kebrha4" path="res://Scenes/Game/game.tscn" id="3_3qr6s"]
+[ext_resource type="PackedScene" uid="uid://y8hvpgacmflg" path="res://Scenes/Menu/underline_button.tscn" id="5_8inha"]
+[ext_resource type="FontFile" uid="uid://btpif3n3r64m" path="res://Resources/Fonts/Handjet-VariableFont_ELGR,ELSH,wght.ttf" id="6_n2mnh"]
+[ext_resource type="AudioStream" uid="uid://b6plyx52wwwcb" path="res://Scenes/Menu/ui-hover.wav" id="7_x5f3s"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -12,9 +16,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3qr6s")
-game = ExtResource("3_3qr6s")
+game_scene = ExtResource("3_3qr6s")
 
-[node name="UI" type="VBoxContainer" parent="."]
+[node name="UI" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_j7r1e")
+
+[node name="VBox" type="VBoxContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,110 +35,108 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBox"]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="UI/HBoxContainer"]
+[node name="Spacer" type="Control" parent="UI/VBox/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI/VBox/HBoxContainer"]
 custom_minimum_size = Vector2(1000, 1000)
 layout_mode = 2
 texture = ExtResource("1_3ymnh")
 expand_mode = 4
 stretch_mode = 4
 
-[node name="Spacer2" type="Control" parent="UI/HBoxContainer"]
+[node name="Spacer2" type="Control" parent="UI/VBox/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Spacer6" type="Control" parent="UI"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI"]
-layout_mode = 2
-
-[node name="Spacer" type="Control" parent="UI/HBoxContainer2"]
+[node name="Spacer6" type="Control" parent="UI/VBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="UI/HBoxContainer2"]
-custom_minimum_size = Vector2(500, 250)
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 110
+
+[node name="Spacer" type="Control" parent="UI/VBox/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Play" parent="UI/VBox/HBoxContainer2" instance=ExtResource("5_8inha")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_n2mnh")
+theme_override_font_sizes/font_size = 125
 text = "PLAY"
 
-[node name="Spacer2" type="Control" parent="UI/HBoxContainer2"]
+[node name="Spacer2" type="Control" parent="UI/VBox/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Spacer3" type="Control" parent="UI/HBoxContainer2"]
+[node name="Spacer3" type="Control" parent="UI/VBox/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button2" type="Button" parent="UI/HBoxContainer2"]
-custom_minimum_size = Vector2(500, 250)
+[node name="Options" parent="UI/VBox/HBoxContainer2" instance=ExtResource("5_8inha")]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 110
-text = "CONTINUE"
-
-[node name="Spacer4" type="Control" parent="UI/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Spacer5" type="Control" parent="UI/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Button3" type="Button" parent="UI/HBoxContainer2"]
-custom_minimum_size = Vector2(500, 250)
-layout_mode = 2
-theme_override_font_sizes/font_size = 110
+theme_override_fonts/font = ExtResource("6_n2mnh")
+theme_override_font_sizes/font_size = 125
 text = "OPTIONS"
 
-[node name="Spacer6" type="Control" parent="UI/HBoxContainer2"]
+[node name="Spacer5" type="Control" parent="UI/VBox/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Spacer5" type="Control" parent="UI"]
+[node name="Spacer7" type="Control" parent="UI/VBox/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Spacer7" type="Control" parent="UI"]
+[node name="Quit" parent="UI/VBox/HBoxContainer2" instance=ExtResource("5_8inha")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_n2mnh")
+theme_override_font_sizes/font_size = 125
+text = "QUIT"
+
+[node name="Spacer6" type="Control" parent="UI/VBox/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Spacer8" type="Control" parent="UI"]
+[node name="Spacer5" type="Control" parent="UI/VBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Spacer9" type="Control" parent="UI"]
+[node name="Spacer7" type="Control" parent="UI/VBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="UI"]
+[node name="Spacer8" type="Control" parent="UI/VBox"]
 layout_mode = 2
-alignment = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Button4" type="Button" parent="UI/HBoxContainer3"]
+[node name="Spacer9" type="Control" parent="UI/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = "EXIT"
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[connection signal="pressed" from="UI/HBoxContainer2/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer2/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer2/Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer3/Button4" to="." method="_on_button_4_pressed"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_x5f3s")
+
+[connection signal="pressed" from="UI/VBox/HBoxContainer2/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="UI/VBox/HBoxContainer2/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="UI/VBox/HBoxContainer2/Quit" to="." method="_on_quit_pressed"]
