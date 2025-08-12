@@ -19,6 +19,10 @@ var in_cutscene = false
 @export var spawn_radius : float = 25.0
 var layer_to_gen = 0
 
+# dialog triggers
+var time_underground = 0.0
+@onready var chest_opened_once = "chest_opened_once" in Save.config
+
 func _ready() -> void:
 	if has_node("Cutscene1"):
 		toggle_cutscene(true)
@@ -46,6 +50,17 @@ func _process(delta: float) -> void:
 		dir_light_anim.play("off")
 	if player.position.y > -4.6 and dir_light.light_energy == 0:
 		dir_light_anim.play("on")
+		
+	if player.position.y < -4.6:
+		time_underground += delta
+		
+	if time_underground > 20.0 and not chest_opened_once and time_underground < 20.1:
+		#if not player.boombox:
+		player.add_boombox(2)
+		
+	if time_underground > 50.0 and not chest_opened_once and time_underground < 50.1:
+		#if not player.boombox:
+		player.add_boombox(3)
 
 	if player.global_position.y + 5.0 <= -layer_height * layer_to_gen:
 		gen_chests(layer_to_gen)
@@ -84,3 +99,8 @@ func gen_chests(layer : int):
 		var temp = chest.instantiate()
 		temp.position = Vector3(rand_x, rand_y, rand_z)
 		add_child(temp)
+
+func on_chest_opened():
+	Save.save("chest_opened_once", true)
+	chest_opened_once = true
+	

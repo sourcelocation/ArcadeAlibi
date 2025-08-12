@@ -24,3 +24,4 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 func open():
 	queue_free()
 	Game.gm.player.money += randi_range(250 * (Game.gm.layer_to_gen - 3), 250 * (Game.gm.layer_to_gen - 2))
+	Game.gm.on_chest_opened()

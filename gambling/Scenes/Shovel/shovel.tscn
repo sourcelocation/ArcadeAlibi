@@ -13,4 +13,5 @@ transform = Transform3D(0.296066, -0.119365, 0.94768, 0.381613, -0.894754, -0.23
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(3.40318, 0, 0, 0, 3.40318, 0, 0, 0, 3.40318, -2.00846, 1.18829, -0.748207)
+visible = false
 mesh = SubResource("BoxMesh_iyuiw")
