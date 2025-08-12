@@ -636,6 +636,7 @@ occluder = ExtResource("14_iu0sx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.315024, 0.769224, -0.555927, -0.103423, 0.610086, 0.785556, 0.943432, -0.189973, 0.271747, 0, 10.7352, 0)
+layers = 3
 light_color = Color(1, 0.895167, 0.63, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DirectionalLight3D"]
@@ -1205,6 +1206,7 @@ transform = Transform3D(1, 0, 0, 0, 0.0697565, 0.997564, 0, -0.997564, 0.0697565
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.99784, -2.27435, -5.62352)
+layers = 3
 size = Vector3(8.47461, 6.43213, 10.6133)
 box_projection = true
 enable_shadows = true
@@ -1220,6 +1222,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58784, 0.0921505, -26.6781
 
 [node name="ReflectionProbe2" type="ReflectionProbe" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60052, 2.21307, -26.0353)
+layers = 3
 max_distance = 0.1
 size = Vector3(6.76208, 4.21814, 5.25314)
 box_projection = true

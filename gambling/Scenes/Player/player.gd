@@ -24,6 +24,7 @@ const computer_rotation = Vector3(-0.03, PI, 0)
 var camera_rotation = Vector2(0, 0)
 var can_move : bool = true
 var sprint_spd
+@onready var sub_camera: Camera3D = $CanvasLayer/SubViewportContainer/SubViewport/SubCamera
 @onready var initial_cam_rotation : Vector3 = main_camera.rotation
 var enter_shop = false
 var leave_shop = false
@@ -84,6 +85,8 @@ func _process(delta: float) -> void:
 	process_dig()
 	
 	process_inventory_select()
+	
+	sub_camera.global_transform = main_camera.global_transform
 	
 func process_inventory_select():
 	if Input.is_action_just_pressed("select_1"):
