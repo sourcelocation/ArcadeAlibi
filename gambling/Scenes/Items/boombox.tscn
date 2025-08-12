@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cclnqeq7kns20"]
+[gd_scene load_steps=12 format=3 uid="uid://cclnqeq7kns20"]
 
 [ext_resource type="Script" uid="uid://diq4grbpq5k01" path="res://Scenes/Items/boombox.gd" id="1_qpsky"]
 [ext_resource type="AudioStream" uid="uid://h5rbpbhbm473" path="res://Resources/Audio/vo-1.mp3" id="2_rae5c"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://ba2c31utj44e2" path="res://Resources/Audio/vo-2.mp3" id="3_rae5c"]
 [ext_resource type="AudioStream" uid="uid://c4jgiipf1pw7w" path="res://Resources/Audio/vo-3.mp3" id="4_rkfpi"]
 [ext_resource type="AudioStream" uid="uid://2h5my1fjqlc0" path="res://Resources/Audio/vo-4.mp3" id="5_akp5q"]
+[ext_resource type="AudioStream" uid="uid://bk31dwju8qr2y" path="res://Resources/Audio/vo-5.mp3" id="6_nf7ns"]
 
 [sub_resource type="Animation" id="Animation_rae5c"]
 length = 0.001
@@ -85,14 +86,15 @@ _data = {
 
 [node name="Boombox" type="Node3D"]
 script = ExtResource("1_qpsky")
-dialogs = Array[AudioStream]([ExtResource("2_rae5c"), ExtResource("3_rae5c"), ExtResource("4_rkfpi"), ExtResource("5_akp5q")])
+dialogs = Array[AudioStream]([ExtResource("2_rae5c"), ExtResource("3_rae5c"), ExtResource("4_rkfpi"), ExtResource("5_akp5q"), ExtResource("6_nf7ns")])
 
 [node name="Boombox" parent="." instance=ExtResource("3_qcmpk")]
 transform = Transform3D(-0.0044612, 0.000874096, 0.183251, 0.16152, 0.086607, 0.00351903, -0.0865636, 0.161556, -0.00287796, -0.456, 1.271, -0.558)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(-0.0243392, 0.00477231, 0.999692, 0.881141, 0.472464, 0.0191974, -0.472227, 0.881337, -0.0157045, -0.456, 1.271, -0.558)
-unit_size = 100.0
+volume_db = 54.671
+unit_size = 100.8
 max_db = 6.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

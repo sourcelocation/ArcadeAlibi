@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=124 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://iru8ynu04i00" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_rotation_component.tres" id="3_iu0sx"]
 [ext_resource type="Texture2D" uid="uid://cneqx7ignovt5" path="res://Resources/UI/shovel.png" id="3_u2cvy"]
 [ext_resource type="Resource" uid="uid://rp3mpjmisoyh" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_object_movement_component.tres" id="4_4v2jo"]
+[ext_resource type="PackedScene" uid="uid://bkp4hdw8k1yts" path="res://Scenes/Shovel/shovel.tscn" id="4_wwos8"]
 [ext_resource type="PackedScene" uid="uid://bsws8exta226s" path="res://Scenes/Grass/grass.blend" id="5_7jktm"]
 [ext_resource type="Resource" uid="uid://c8ulad7utgrg7" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processing_stage.tres" id="5_l1i01"]
 [ext_resource type="Script" uid="uid://b4n1i7gnlrx1n" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processor.gd" id="6_r62pu"]
@@ -74,6 +75,7 @@ title = "Rusty Shovel"
 description = "Nothing special, but a good ol' shovel to either dig dirt, or kick asses"
 icon = ExtResource("3_u2cvy")
 is_tool = true
+scene = ExtResource("4_wwos8")
 metadata/_custom_type_script = "uid://jbo30sw083oh"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]

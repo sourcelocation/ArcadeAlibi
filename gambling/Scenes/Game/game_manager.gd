@@ -24,6 +24,8 @@ var time_underground = 0.0
 @onready var chest_opened_once = "chest_opened_once" in Save.config
 
 func _ready() -> void:
+	
+	
 	if has_node("Cutscene1"):
 		toggle_cutscene(true)
 	Game.gm = self
@@ -39,6 +41,8 @@ func _ready() -> void:
 		#var rand_y = randf_range(-10, -20)
 		#temp.position = Vector3(randf_range(-25, 25), rand_y, randf_range(-25, 25))
 		#add_child(temp)
+	if "save-data" in Save.config:
+		_load_data()
 		
 @onready var dir_light_anim: AnimationPlayer = $DirectionalLight3D/AnimationPlayer
 @onready var dir_light: DirectionalLight3D = $DirectionalLight3D
@@ -54,7 +58,7 @@ func _process(delta: float) -> void:
 	if player.position.y < -4.6:
 		time_underground += delta
 		
-	if time_underground > 20.0 and not chest_opened_once and time_underground < 20.1:
+	if time_underground > 33.0 and not chest_opened_once and time_underground < 33.1:
 		#if not player.boombox:
 		player.add_boombox(2)
 		
@@ -86,7 +90,7 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 
 func _on_shovel_entered(body: Node3D) -> void:
 	if body is Player:
-		player.give_item(0,1)
+		player.give_item(1,1)
 		Save.save("pickup_shovel",true)
 		$ShovelArea.queue_free()
 		player.add_boombox(1)
@@ -104,3 +108,18 @@ func on_chest_opened():
 	Save.save("chest_opened_once", true)
 	chest_opened_once = true
 	
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		print("saving")
+		var data = {
+			"inventory": player.inventory,
+			"money": player.money
+		}
+		Save.save("save-data", data)
+
+func _load_data():
+	var data = Save.config["save-data"]
+
+	if data:
+		player.inventory = data["inventory"]
+		player.money = data["money"]

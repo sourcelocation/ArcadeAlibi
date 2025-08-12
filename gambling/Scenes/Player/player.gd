@@ -21,7 +21,6 @@ const computer_rotation = Vector3(-0.03, PI, 0)
 @export var crouch_speed = 10.0
 
 @export_group("Items")
-@export var all_items: Dictionary[int, PackedScene]
 var camera_rotation = Vector2(0, 0)
 var can_move : bool = true
 var sprint_spd
@@ -37,6 +36,7 @@ var wood = 0
 var mouse_sens = 0.003
 
 var inventory: Dictionary
+var selected_tool
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -82,9 +82,19 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 	process_dig()
+	
+	process_inventory_select()
+	
+func process_inventory_select():
+	if Input.is_action_just_pressed("select_1"):
+		equip_item_slot(0)
+	elif Input.is_action_just_pressed("select_2"):
+		equip_item_slot(1)
+	elif Input.is_action_just_pressed("select_3"):
+		equip_item_slot(2)
 
 func process_dig():
-	if Input.is_action_pressed("dig"):  # e.g., hold a button to dig
+	if Input.is_action_pressed("dig") and selected_tool == 1:  # e.g., hold a button to dig
 		var params = PhysicsRayQueryParameters3D.new()
 		params.from = main_camera.global_position
 		params.to = params.from - main_camera.global_transform.basis.z * 1.75
@@ -194,9 +204,31 @@ func give_item(id, count):
 		inventory[id] = count
 		
 	if id < 100:
-		equip_item(id)
+		equip_item(get_item_by_id(id))
+		
+func get_item_by_id(id):
+	var item
+	for _item in Game.gm.items:
+		if _item.id == id:
+			item = _item
+	return item
+	
 
-func equip_item(id):
-	for c in hand.get_children(): c.queue_free()
-	var item = all_items[id].instantiate()
+func equip_item(_item):
+	for c in hand.get_children(): if c != boombox: c.queue_free()
+	var item = _item.scene.instantiate()
 	hand.add_child(item)
+	selected_tool = _item.id
+
+func get_tools_in_inventory():
+	var tools = []
+	for id in inventory.keys():
+		var tool = get_item_by_id(id)
+		if tool.is_tool:
+			tools.append(tool)
+	return tools
+
+func equip_item_slot(i):
+	var tools = get_tools_in_inventory()
+	if i < tools.size():
+		equip_item(tools[i])
