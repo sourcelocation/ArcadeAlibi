@@ -1,12 +1,75 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc8jlduayrucf"]
+[gd_scene load_steps=17 format=3 uid="uid://bc8jlduayrucf"]
 
 [ext_resource type="Script" uid="uid://boxl5is561to5" path="res://Scenes/Menu/menu.gd" id="1_3qr6s"]
 [ext_resource type="Texture2D" uid="uid://cynnkrd6qo3ki" path="res://Resources/UI/logo.png" id="1_3ymnh"]
 [ext_resource type="Texture2D" uid="uid://c0wlkp2xvkptd" path="res://Resources/UI/80s_menu_background.png" id="1_j7r1e"]
 [ext_resource type="PackedScene" uid="uid://bveuk5kebrha4" path="res://Scenes/Game/game.tscn" id="3_3qr6s"]
-[ext_resource type="PackedScene" uid="uid://y8hvpgacmflg" path="res://Scenes/Menu/underline_button.tscn" id="5_8inha"]
+[ext_resource type="PackedScene" path="res://Scenes/Menu/underline_button.tscn" id="5_8inha"]
 [ext_resource type="FontFile" uid="uid://btpif3n3r64m" path="res://Resources/Fonts/Handjet-VariableFont_ELGR,ELSH,wght.ttf" id="6_n2mnh"]
-[ext_resource type="AudioStream" uid="uid://b6plyx52wwwcb" path="res://Scenes/Menu/ui-hover.wav" id="7_x5f3s"]
+[ext_resource type="Script" path="res://Scenes/Menu/underline_hover.gd" id="7_qwfkq"]
+[ext_resource type="AudioStream" uid="uid://byinpe85husgm" path="res://Scenes/Menu/nope1.mp3" id="7_uwxxs"]
+[ext_resource type="AudioStream" uid="uid://b7tio8cre0alg" path="res://Scenes/Menu/nope2.mp3" id="8_qwfkq"]
+[ext_resource type="AudioStream" uid="uid://cqy8vab1o5seh" path="res://Scenes/Menu/nope3.mp3" id="10_m6csd"]
+[ext_resource type="AudioStream" uid="uid://dsyvporq5e5mc" path="res://Scenes/Menu/nope4.mp3" id="11_qok0p"]
+
+[sub_resource type="Animation" id="Animation_tue42"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:anchor_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0),
+"times": PackedFloat32Array(0.0333333)
+}
+
+[sub_resource type="Animation" id="Animation_k7vkl"]
+resource_name = "hide"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:anchor_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.1, 0, 0.1, -0.775436, 0, -0.1, 0, 0.1, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+
+[sub_resource type="Animation" id="Animation_6crou"]
+resource_name = "show"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:anchor_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.1, 0, 0.0333333, 0.760446, 1, -0.133333, -0.0053401, 0.1, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k7vkl"]
+_data = {
+&"RESET": SubResource("Animation_tue42"),
+&"hide": SubResource("Animation_k7vkl"),
+&"show": SubResource("Animation_6crou")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hgg7c"]
+playback_mode = 2
+streams_count = 4
+stream_0/stream = ExtResource("7_uwxxs")
+stream_1/stream = ExtResource("8_qwfkq")
+stream_2/stream = ExtResource("10_m6csd")
+stream_3/stream = ExtResource("11_qok0p")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -83,12 +146,56 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Options" parent="UI/VBox/HBoxContainer2" instance=ExtResource("5_8inha")]
+[node name="Options" type="Button" parent="UI/VBox/HBoxContainer2"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+focus_mode = 0
 theme_override_fonts/font = ExtResource("6_n2mnh")
 theme_override_font_sizes/font_size = 125
 text = "OPTIONS"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBox/HBoxContainer2/Options"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("7_qwfkq")
+
+[node name="Label" type="Label" parent="UI/VBox/HBoxContainer2/Options/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="UI/VBox/HBoxContainer2/Options/MarginContainer/Label"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0, 0.466667, 1, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/VBox/HBoxContainer2/Options/MarginContainer/Label/ColorRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_k7vkl")
+}
 
 [node name="Spacer5" type="Control" parent="UI/VBox/HBoxContainer2"]
 layout_mode = 2
@@ -135,8 +242,11 @@ size_flags_vertical = 3
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_x5f3s")
+stream = SubResource("AudioStreamRandomizer_hgg7c")
 
 [connection signal="pressed" from="UI/VBox/HBoxContainer2/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="UI/VBox/HBoxContainer2/Options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="UI/VBox/HBoxContainer2/Options/MarginContainer" to="UI/VBox/HBoxContainer2/Options/MarginContainer" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/VBox/HBoxContainer2/Options/MarginContainer" to="UI/VBox/HBoxContainer2/Options/MarginContainer" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/VBox/HBoxContainer2/Options/MarginContainer/Label" to="UI/VBox/HBoxContainer2/Options/MarginContainer/Label" method="_on_mouse_entered"]
 [connection signal="pressed" from="UI/VBox/HBoxContainer2/Quit" to="." method="_on_quit_pressed"]
