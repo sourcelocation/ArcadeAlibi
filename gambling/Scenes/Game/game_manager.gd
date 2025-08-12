@@ -27,7 +27,12 @@ func _ready() -> void:
 	
 	
 	if has_node("Cutscene1"):
-		toggle_cutscene(true)
+		if "cutscene1" not in Save.config:
+			toggle_cutscene(true)
+			$Cutscene1/AnimationPlayer.play("play")
+		else:
+			$Cutscene1.queue_free()
+		
 	Game.gm = self
 	nothingness.visible = false
 
@@ -105,6 +110,8 @@ func gen_chests(layer : int):
 		add_child(temp)
 
 func on_chest_opened():
+	if "chest_opened_once" not in Save.config:
+		player.add_boombox(4)
 	Save.save("chest_opened_once", true)
 	chest_opened_once = true
 	

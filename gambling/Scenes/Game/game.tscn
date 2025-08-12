@@ -767,7 +767,6 @@ current = true
 libraries = {
 &"": SubResource("AnimationLibrary_vaj68")
 }
-autoplay = "play"
 
 [node name="Control" type="Control" parent="Cutscene1"]
 layout_mode = 3

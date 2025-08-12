@@ -244,6 +244,8 @@ size_flags_vertical = 3
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_hgg7c")
 
+[node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="UI/VBox/HBoxContainer2/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="UI/VBox/HBoxContainer2/Options" to="." method="_on_options_pressed"]
 [connection signal="mouse_entered" from="UI/VBox/HBoxContainer2/Options/MarginContainer" to="UI/VBox/HBoxContainer2/Options/MarginContainer" method="_on_mouse_entered"]

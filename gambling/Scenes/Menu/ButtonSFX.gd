@@ -18,16 +18,16 @@ func _upd_focus():
 
 func _play_hover() -> void:
 	if not disabled:
-		if $"/root/Menu/AudioStreamPlayer" != null:
-			$"/root/Menu/AudioStreamPlayer".play()
+		if $"/root/Menu/AudioStreamPlayer1" != null:
+			$"/root/Menu/AudioStreamPlayer1".play()
 
 func _play_pressed() -> void:
-	if $"/root/Menu/AudioStreamPlayer" != null:
+	if $"/root/Menu/AudioStreamPlayer1" != null:
 		if custom_click:
-			if $"/root/Menu/AudioStreamPlayer".stream != custom_click:
-				$"/root/Menu/AudioStreamPlayer".stream = custom_click
+			if $"/root/Menu/AudioStreamPlayer1".stream != custom_click:
+				$"/root/Menu/AudioStreamPlayer1".stream = custom_click
 		else:
-			if $"/root/Menu/AudioStreamPlayer".stream != reg_click:
-				$"/root/Menu/AudioStreamPlayer".stream = reg_click
-		$"/root/Menu/AudioStreamPlayer".play()
+			if $"/root/Menu/AudioStreamPlayer1".stream != reg_click:
+				$"/root/Menu/AudioStreamPlayer1".stream = reg_click
+		$"/root/Menu/AudioStreamPlayer1".play()
 		
