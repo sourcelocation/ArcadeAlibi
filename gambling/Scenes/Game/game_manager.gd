@@ -97,7 +97,7 @@ func _on_shovel_entered(body: Node3D) -> void:
 
 func gen_chests(layer : int):
 	for i in range(chests_per_layer[layer]):
-		var rand_y = randf_range(-layer_height * layer, -layer_height * layer - layer_height)
+		var rand_y = randf_range(-layer_height * layer, -layer_height * layer - layer_height - 4.6)
 		var rand_x = randf_range(-spawn_radius, spawn_radius)
 		var rand_z = randf_range(-spawn_radius, spawn_radius)
 		var temp = chest.instantiate()

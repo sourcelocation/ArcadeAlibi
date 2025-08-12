@@ -31,6 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46461, 0)
 [node name="VoxelViewer" type="VoxelViewer" parent="Camera3D"]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+layers = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
