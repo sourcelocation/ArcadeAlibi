@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=128 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -45,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://2vtplv26nwhf" path="res://Resources/Textures/Ground085_1K-JPG/Ground085_1K-JPG_NormalGL.jpg" id="23_jcrx1"]
 [ext_resource type="PackedScene" uid="uid://lhnkx276q2vq" path="res://Resources/Models/Manila Envelope.glb" id="23_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://df3s00en31pow" path="res://Resources/Textures/Ground085_1K-JPG/Ground085_1K-JPG_Roughness.jpg" id="24_u2cvy"]
+[ext_resource type="PackedScene" uid="uid://b1pqxelmruke8" path="res://Scenes/Game/shop_ui.tscn" id="32_d85t2"]
 [ext_resource type="PackedScene" uid="uid://3ncy5mabwg43" path="res://Scenes/Mountains/mountains.blend" id="40_26aa6"]
 [ext_resource type="Script" uid="uid://tyqttt5q2tfh" path="res://Scenes/Shop/shop.gd" id="40_fxv8i"]
 [ext_resource type="PackedScene" uid="uid://buy2sbe1s62tt" path="res://Resources/Models/CRT Monitor.glb" id="40_jpnbm"]
@@ -591,6 +592,12 @@ albedo_color = Color(0.3444, 0.38048, 0.41, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qjf7v"]
 size = Vector3(3, 2, 2.5)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_d85t2"]
+viewport_path = NodePath("UI/ShopViewport")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d85t2"]
+size = Vector3(3.90454, 3.29272, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bkdpl"]
 albedo_texture = ExtResource("45_rht7h")
 roughness_texture = ExtResource("48_2r0uj")
@@ -710,6 +717,15 @@ vertical_alignment = 2
 libraries = {
 &"": SubResource("AnimationLibrary_i2p71")
 }
+
+[node name="ShopViewport" type="SubViewport" parent="UI"]
+anisotropic_filtering_level = 0
+canvas_item_default_texture_filter = 0
+size = Vector2i(400, 350)
+
+[node name="ShopUI" parent="UI/ShopViewport" instance=ExtResource("32_d85t2")]
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="gambaaudio" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38077, -26.7021)
@@ -1161,6 +1177,16 @@ shape = SubResource("BoxShape3D_qjf7v")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="Shop"]
 aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+
+[node name="ShopSprite3D" type="Sprite3D" parent="Shop"]
+transform = Transform3D(0.122173, 0, 0, 0, 0.122173, 0, 0, 0, 0.122173, -0.0175774, 0.214856, 0.339582)
+texture = SubResource("ViewportTexture_d85t2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Shop/ShopSprite3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/ShopSprite3D/StaticBody3D"]
+transform = Transform3D(1, 0, 1.38556e-12, 0, 1, 0, -1.38556e-12, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_d85t2")
 
 [node name="grassmask" parent="." instance=ExtResource("45_7icik")]
 transform = Transform3D(-3.20789e-07, 0, 7.3388, 0, 7.3388, 0, -7.3388, 0, -3.20789e-07, 0, 0, -8.28092)

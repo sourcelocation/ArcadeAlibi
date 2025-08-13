@@ -1,5 +1,6 @@
 extends Area3D
 
+var layer = 0
 var in_view = false
 var in_zone = false
 
@@ -23,5 +24,5 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 
 func open():
 	queue_free()
-	Game.gm.player.money += randi_range(250 * (Game.gm.layer_to_gen - 3), 250 * (Game.gm.layer_to_gen - 2))
+	Game.gm.player.money += randi_range(250 * (layer + 1), 500 * (layer + 1))
 	Game.gm.on_chest_opened()

@@ -5,6 +5,9 @@ class_name Player
 @onready var col: CollisionShape3D = $CollisionShape3D
 @onready var initial_cam_offset = main_camera.position
 @onready var hand: Node3D = $Camera3D/Hand
+@onready var grid_container: GridContainer = %GridContainer
+@onready var inventory_panel: Panel = $Control/InventoryPanel
+@onready var spot_light_3d: SpotLight3D = $Camera3D/SpotLight3D
 
 const gravity = 9.8 * 1.5
 const computer_pos = Vector3(-2.156458, 1.465301, -4.937538)
@@ -82,9 +85,12 @@ func _process(delta: float) -> void:
 	process_dig()
 	
 	process_inventory_select()
+	inventory_panel.visible = Input.is_action_pressed("inventory")
 	
-	#sub_camera.global_transform = main_camera.global_transform
+	spot_light_3d.light_energy = 1 if position.y < -4.6 else 0
 	
+	main_camera.fov = lerpf(main_camera.fov, 40 if Game.gm.in_computer else 90, 0.1)
+		
 func process_inventory_select():
 	if Input.is_action_just_pressed("select_1"):
 		equip_item_slot(0)
@@ -200,12 +206,19 @@ func on_shop_toggle(on):
 func update_items_ui():
 	var container = $Control/ItemsContainer
 	for c in container.get_children(): c.queue_free()
+	for c in grid_container.get_children(): c.queue_free()
+	
 	var i = 0
 	for item in get_tools_in_inventory():
 		var n = preload("res://Scenes/item_ui.tscn").instantiate()
 		n.set_data(item, i)
 		container.add_child(n)
 		i += 1
+		
+	for item in inventory.keys():
+		var n = preload("res://Scenes/item_ui.tscn").instantiate()
+		n.set_data(get_item_by_id(item), inventory[item] - 1)
+		grid_container.add_child(n)
 
 func give_item(id, count):
 	if id in inventory: 

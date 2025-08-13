@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://drthniqpf0168"]
+
+[ext_resource type="FontFile" uid="uid://btpif3n3r64m" path="res://Resources/Fonts/Handjet-VariableFont_ELGR,ELSH,wght.ttf" id="1_470mv"]
+
+[resource]
+default_font = ExtResource("1_470mv")

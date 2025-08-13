@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://b1pqxelmruke8"]
+
+[node name="ShopUI" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2160.0
+offset_bottom = -1090.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+modulate = Color(0, 1, 0, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_unselected_color = Color(0, 0.57, 0, 1)
+theme_override_colors/font_hovered_color = Color(0, 0.69, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 1, 0, 1)
+theme_override_colors/drop_mark_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+current_tab = 0
+
+[node name="Crafting" type="Control" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Upgrades" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Deposit" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

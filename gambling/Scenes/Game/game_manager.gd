@@ -3,12 +3,15 @@ class_name GameManager
 
 @onready var player: Player = $Player
 @export var items: Array[ItemRes]
+@onready var shop_sprite_3d: Sprite3D = $Shop/ShopSprite3D
+
 
 @export var layers: Array[VoxelTerrain]
 @onready var terrain = layers[0]
 @onready var shop: Node3D = $Shop
 @onready var nothingness: MeshInstance3D = $Nothingness
 @onready var money_label: Label = $UI/MoneyLabel
+@onready var shop_viewport: SubViewport = $UI/ShopViewport
 @export var chest : PackedScene
 @export var chests_per_layer: Array[int] = [80,50]
 
@@ -81,6 +84,22 @@ func _process(delta: float) -> void:
 		gen_chests(layer_to_gen)
 		layer_to_gen += 1
 
+func _input(event):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		var from = player.main_camera.project_ray_origin(event.position)
+		var to = from + player.main_camera.project_ray_normal(event.position) * 1000
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(from, to)
+		var result = space_state.intersect_ray(query)
+
+		if result and result.collider.get_parent() == shop_sprite_3d:
+			var viewport_pos = shop_viewport.get_mouse_position()
+			var input_event = InputEventMouseButton.new()
+			input_event.button_index = MOUSE_BUTTON_LEFT
+			input_event.pressed = true
+			input_event.position = viewport_pos
+			shop_viewport.push_input(input_event)
+
 func toggle_cutscene(on: bool) -> void:
 	in_cutscene = on
 
@@ -108,11 +127,12 @@ func _on_shovel_entered(body: Node3D) -> void:
 
 func gen_chests(layer : int):
 	for i in range(chests_per_layer[layer]):
-		var rand_y = randf_range(-layer_height * layer, -layer_height * layer - layer_height - 4.6)
+		var rand_y = randf_range(-layer_height * layer - 4.6, -layer_height * layer - layer_height - 4.6)
 		var rand_x = randf_range(-spawn_radius, spawn_radius)
 		var rand_z = randf_range(-spawn_radius, spawn_radius)
 		var temp = chest.instantiate()
 		temp.position = Vector3(rand_x, rand_y, rand_z)
+		temp.layer = layer
 		add_child(temp)
 
 func on_chest_opened():

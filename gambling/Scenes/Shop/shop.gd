@@ -40,7 +40,7 @@ func _process(_delta):
 		toggle_shop(false)
 
 func toggle_shop(visible: bool):
-	$UI.visible = visible
+	#$UI.visible = visible
 	Game.gm.in_computer = visible
 	Game.gm.player.on_shop_toggle(visible)
 
