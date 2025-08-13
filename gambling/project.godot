@@ -128,4 +128,5 @@ select_3={
 
 [rendering]
 
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 occlusion_culling/use_occlusion_culling=true

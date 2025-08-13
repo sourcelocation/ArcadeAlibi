@@ -25,13 +25,6 @@ var time_underground = 0.0
 
 func _ready() -> void:
 	
-	
-	if has_node("Cutscene1"):
-		if "cutscene1" not in Save.config:
-			toggle_cutscene(true)
-			$Cutscene1/AnimationPlayer.play("play")
-		else:
-			$Cutscene1.queue_free()
 		
 	Game.gm = self
 	nothingness.visible = false
@@ -46,8 +39,21 @@ func _ready() -> void:
 		#var rand_y = randf_range(-10, -20)
 		#temp.position = Vector3(randf_range(-25, 25), rand_y, randf_range(-25, 25))
 		#add_child(temp)
+		
+	player = preload("res://Scenes/Player/player.tscn").instantiate()
 	if "save-data" in Save.config:
 		_load_data()
+	player.position = Vector3(0,1,-6)
+	add_child(player)
+	
+	if has_node("Cutscene1"):
+		if "cutscene1" not in Save.config:
+			$Cutscene1/Camera3D.make_current()
+			$Cutscene1/Camera3D.current = true
+			toggle_cutscene(true)
+			$Cutscene1/AnimationPlayer.play("play")
+		else:
+			$Cutscene1.queue_free()
 		
 @onready var dir_light_anim: AnimationPlayer = $DirectionalLight3D/AnimationPlayer
 @onready var dir_light: DirectionalLight3D = $DirectionalLight3D
@@ -117,12 +123,15 @@ func on_chest_opened():
 	
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		print("saving")
-		var data = {
-			"inventory": player.inventory,
-			"money": player.money
-		}
-		Save.save("save-data", data)
+		save()
+	
+func save():
+	print("saving")
+	var data = {
+		"inventory": player.inventory,
+		"money": player.money
+	}
+	Save.save("save-data", data)
 
 func _load_data():
 	var data = Save.config["save-data"]

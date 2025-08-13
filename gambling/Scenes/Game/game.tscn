@@ -4,7 +4,6 @@
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
 [ext_resource type="Script" uid="uid://bjpd0mcinrug4" path="res://Scenes/Game/game_manager.gd" id="1_l1i01"]
 [ext_resource type="Resource" uid="uid://cslvcweyejh3c" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_movement_component.tres" id="2_aa0lp"]
-[ext_resource type="PackedScene" uid="uid://ukoki2adbqs1" path="res://Scenes/Player/player.tscn" id="2_e2o6t"]
 [ext_resource type="Script" uid="uid://jbo30sw083oh" path="res://Globals/itemres.gd" id="2_jcrx1"]
 [ext_resource type="Shader" uid="uid://b3oarc00afksk" path="res://Scenes/Grass/grass.gdshader" id="3_fc0e3"]
 [ext_resource type="ArrayMesh" uid="uid://bexedbmtem3p2" path="res://Scenes/Grass/grass.res" id="3_feb5d"]
@@ -342,7 +341,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_vaj68"]
@@ -431,7 +430,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_qhcbd"]
 resource_name = "play"
-length = 40.0
+length = 34.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -572,6 +571,9 @@ size = Vector3(0.84375, 13.4125, 0.640625)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vef74"]
 size = Vector3(14.7593, 0.537323, 5.56055)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwos8"]
+size = Vector3(14.759, 0.537, 1.3792)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_e8heu"]
 size = Vector3(1, 11.4988, 37.0505)
 
@@ -657,16 +659,12 @@ stream = SubResource("VoxelStreamSQLite_jcrx1")
 generator = SubResource("VoxelGeneratorGraph_a4qm0")
 mesher = SubResource("VoxelMesherTransvoxel_a4qm0")
 
-[node name="Player" parent="." instance=ExtResource("2_e2o6t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34511, -5.9031)
-
 [node name="Grass" type="MultiMeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.04564, 0, -0.52338)
 material_override = SubResource("ShaderMaterial_7jktm")
 multimesh = SubResource("MultiMesh_4gqoa")
 
 [node name="UI" type="Control" parent="."]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -906,6 +904,10 @@ shape = SubResource("BoxShape3D_j5wjh")
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="Farm house/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70265, 0.625907, 4.02957)
 shape = SubResource("BoxShape3D_vef74")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Farm house/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -2.70265, 0.244052, 7.10634)
+shape = SubResource("BoxShape3D_wwos8")
 
 [node name="CollisionShape3D8" type="CollisionShape3D" parent="Farm house/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70265, 6.80437, 4.02957)
@@ -1308,12 +1310,15 @@ transform = Transform3D(-0.866025, 0.353553, -0.353553, 2.98023e-08, 0.707107, 0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.32391, -1.71097, -6.81702)
 stream = ExtResource("57_8trit")
 volume_db = -14.286
+unit_size = 30.0
+max_db = 0.0
 autoplay = true
 panning_strength = 0.5
 emission_angle_enabled = true
 emission_angle_degrees = 90.0
-emission_angle_filter_attenuation_db = -27.3
+emission_angle_filter_attenuation_db = -28.3
 attenuation_filter_cutoff_hz = 1817.0
+attenuation_filter_db = -52.7
 script = ExtResource("58_71giq")
 
 [node name="Area3D" type="Area3D" parent="AudioStreamPlayer3D"]
@@ -1395,7 +1400,6 @@ text = "QUIT"
 [connection signal="body_entered" from="AudioStreamPlayer3D/Area3D" to="AudioStreamPlayer3D" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="AudioStreamPlayer3D/Area3D" to="AudioStreamPlayer3D" method="_on_area_3d_body_exited"]
 
-[editable path="Player"]
 [editable path="Farm house"]
 [editable path="grass"]
 [editable path="Gate"]

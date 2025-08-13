@@ -41,6 +41,8 @@ var selected_tool
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	update_items_ui()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -81,7 +83,7 @@ func _process(delta: float) -> void:
 	
 	process_inventory_select()
 	
-	sub_camera.global_transform = main_camera.global_transform
+	#sub_camera.global_transform = main_camera.global_transform
 	
 func process_inventory_select():
 	if Input.is_action_just_pressed("select_1"):
@@ -129,7 +131,6 @@ func _physics_process(delta: float) -> void:
 		target_cam_y = initial_cam_offset.y
 		target_col_z = 1.0
 
-	main_camera.position.y = lerp(main_camera.position.y, target_cam_y, crouch_speed * delta)
 	col.scale.z = lerp(col.scale.z, target_col_z, crouch_speed * delta)
 
 	if enter_shop:
@@ -137,7 +138,8 @@ func _physics_process(delta: float) -> void:
 		main_camera.rotation.x = lerp_angle(main_camera.rotation.x, computer_rotation.x - global_rotation.x, 0.05)
 		main_camera.rotation.y = lerp_angle(main_camera.rotation.y, computer_rotation.y - global_rotation.y, 0.05)
 		main_camera.rotation.z = lerp_angle(main_camera.rotation.z, computer_rotation.z - global_rotation.z, 0.05)
-
+	else:
+		main_camera.position.y = lerp(main_camera.position.y, target_cam_y, crouch_speed * delta)
 	if !ladders.is_empty() and can_ladder:
 		if Input.is_action_just_pressed("Space"):
 			can_ladder = false
@@ -195,6 +197,16 @@ func on_shop_toggle(on):
 		leave_shop = true
 		can_move = true
 
+func update_items_ui():
+	var container = $Control/ItemsContainer
+	for c in container.get_children(): c.queue_free()
+	var i = 0
+	for item in get_tools_in_inventory():
+		var n = preload("res://Scenes/item_ui.tscn").instantiate()
+		n.set_data(item, i)
+		container.add_child(n)
+		i += 1
+
 func give_item(id, count):
 	if id in inventory: 
 		inventory[id] += count
@@ -203,6 +215,7 @@ func give_item(id, count):
 		
 	if id < 100:
 		equip_item(get_item_by_id(id))
+		update_items_ui()
 		
 func get_item_by_id(id):
 	var item

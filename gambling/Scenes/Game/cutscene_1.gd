@@ -1,6 +1,7 @@
 extends Node3D
 
-func _ready() -> void: pass
+func _ready() -> void:
+	$Camera3D.make_current()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bc8jlduayrucf"]
+[gd_scene load_steps=21 format=3 uid="uid://bc8jlduayrucf"]
 
 [ext_resource type="Script" uid="uid://boxl5is561to5" path="res://Scenes/Menu/menu.gd" id="1_3qr6s"]
 [ext_resource type="Texture2D" uid="uid://cynnkrd6qo3ki" path="res://Resources/UI/logo.png" id="1_3ymnh"]
@@ -11,6 +11,148 @@
 [ext_resource type="AudioStream" uid="uid://b7tio8cre0alg" path="res://Scenes/Menu/nope2.mp3" id="8_qwfkq"]
 [ext_resource type="AudioStream" uid="uid://cqy8vab1o5seh" path="res://Scenes/Menu/nope3.mp3" id="10_m6csd"]
 [ext_resource type="AudioStream" uid="uid://dsyvporq5e5mc" path="res://Scenes/Menu/nope4.mp3" id="11_qok0p"]
+[ext_resource type="AudioStream" uid="uid://dhr4kxjf5n8ur" path="res://Resources/Music/Resources_Sound_soundtrack-final.ogg" id="12_qok0p"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hgg7c"]
+playback_mode = 2
+streams_count = 4
+stream_0/stream = ExtResource("7_uwxxs")
+stream_1/stream = ExtResource("8_qwfkq")
+stream_2/stream = ExtResource("10_m6csd")
+stream_3/stream = ExtResource("11_qok0p")
+
+[sub_resource type="Animation" id="Animation_m6csd"]
+resource_name = "show"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../UI:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.799804, 2.4998),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.799804, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:custom_minimum_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8, 2.5),
+"transitions": PackedFloat32Array(0.108819, 1),
+"update": 0,
+"values": [Vector2(1500, 1500), Vector2(1000, 1000)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../UI:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.799804, 29.9333),
+"transitions": PackedFloat32Array(0.435275, 36.7583),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../HBoxContainer2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.799804, 1.86667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qok0p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../UI:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:custom_minimum_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1000, 1000)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../UI:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../HBoxContainer2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qok0p"]
+_data = {
+&"RESET": SubResource("Animation_qok0p"),
+&"show": SubResource("Animation_m6csd")
+}
 
 [sub_resource type="Animation" id="Animation_tue42"]
 length = 0.001
@@ -63,14 +205,6 @@ _data = {
 &"show": SubResource("Animation_6crou")
 }
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hgg7c"]
-playback_mode = 2
-streams_count = 4
-stream_0/stream = ExtResource("7_uwxxs")
-stream_1/stream = ExtResource("8_qwfkq")
-stream_2/stream = ExtResource("10_m6csd")
-stream_3/stream = ExtResource("11_qok0p")
-
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -81,14 +215,44 @@ grow_vertical = 2
 script = ExtResource("1_3qr6s")
 game_scene = ExtResource("3_3qr6s")
 
-[node name="UI" type="TextureRect" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_hgg7c")
+
+[node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../UI/VBox/HBoxContainer/TextureRect")
+libraries = {
+&"": SubResource("AnimationLibrary_qok0p")
+}
+autoplay = "show"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_qok0p")
+volume_db = -13.825
+autoplay = true
+bus = &"Music"
+
+[node name="UI" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="UI" type="TextureRect" parent="UI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1280, 720)
 texture = ExtResource("1_j7r1e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/UI"]
 
 [node name="VBox" type="VBoxContainer" parent="UI"]
 layout_mode = 1
@@ -100,21 +264,15 @@ grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBox"]
 layout_mode = 2
-
-[node name="Spacer" type="Control" parent="UI/VBox/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="UI/VBox/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(1000, 1000)
 layout_mode = 2
 texture = ExtResource("1_3ymnh")
 expand_mode = 4
 stretch_mode = 4
-
-[node name="Spacer2" type="Control" parent="UI/VBox/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="Spacer6" type="Control" parent="UI/VBox"]
 layout_mode = 2
@@ -123,11 +281,8 @@ size_flags_vertical = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBox"]
 layout_mode = 2
-
-[node name="Spacer" type="Control" parent="UI/VBox/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+theme_override_constants/separation = 190
+alignment = 1
 
 [node name="Play" parent="UI/VBox/HBoxContainer2" instance=ExtResource("5_8inha")]
 custom_minimum_size = Vector2(400, 0)
@@ -135,16 +290,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_n2mnh")
 theme_override_font_sizes/font_size = 125
 text = "PLAY"
-
-[node name="Spacer2" type="Control" parent="UI/VBox/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Spacer3" type="Control" parent="UI/VBox/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="Options" type="Button" parent="UI/VBox/HBoxContainer2"]
 custom_minimum_size = Vector2(400, 0)
@@ -197,27 +342,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_k7vkl")
 }
 
-[node name="Spacer5" type="Control" parent="UI/VBox/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Spacer7" type="Control" parent="UI/VBox/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [node name="Quit" parent="UI/VBox/HBoxContainer2" instance=ExtResource("5_8inha")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_n2mnh")
 theme_override_font_sizes/font_size = 125
 text = "QUIT"
-
-[node name="Spacer6" type="Control" parent="UI/VBox/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="Spacer5" type="Control" parent="UI/VBox"]
 layout_mode = 2
@@ -238,13 +368,6 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_hgg7c")
-
-[node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="UI/VBox/HBoxContainer2/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="UI/VBox/HBoxContainer2/Options" to="." method="_on_options_pressed"]
