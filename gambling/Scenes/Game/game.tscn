@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=127 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -45,9 +45,9 @@
 [ext_resource type="Texture2D" uid="uid://2vtplv26nwhf" path="res://Resources/Textures/Ground085_1K-JPG/Ground085_1K-JPG_NormalGL.jpg" id="23_jcrx1"]
 [ext_resource type="PackedScene" uid="uid://lhnkx276q2vq" path="res://Resources/Models/Manila Envelope.glb" id="23_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://df3s00en31pow" path="res://Resources/Textures/Ground085_1K-JPG/Ground085_1K-JPG_Roughness.jpg" id="24_u2cvy"]
-[ext_resource type="PackedScene" uid="uid://b1pqxelmruke8" path="res://Scenes/Game/shop_ui.tscn" id="32_d85t2"]
 [ext_resource type="PackedScene" uid="uid://dbm5nlxgrfjxp" path="res://Scenes/Options/options.tscn" id="28_4qu01"]
 [ext_resource type="Script" uid="uid://dqu8ydu85o6hd" path="res://Scenes/Game/pause_menu.gd" id="29_qqdjj"]
+[ext_resource type="PackedScene" uid="uid://b1pqxelmruke8" path="res://Scenes/Game/shop_ui.tscn" id="32_d85t2"]
 [ext_resource type="PackedScene" uid="uid://3ncy5mabwg43" path="res://Scenes/Mountains/mountains.blend" id="40_26aa6"]
 [ext_resource type="Script" uid="uid://tyqttt5q2tfh" path="res://Scenes/Shop/shop.gd" id="40_fxv8i"]
 [ext_resource type="PackedScene" uid="uid://buy2sbe1s62tt" path="res://Resources/Models/CRT Monitor.glb" id="40_jpnbm"]
@@ -551,7 +551,6 @@ size = Vector3(9.27106, 6.26965, 13.1858)
 size = Vector3(81.4961, 147.438, 640.181)
 
 [node name="Game" type="Node3D" node_paths=PackedStringArray("layers")]
-process_mode = 3
 script = ExtResource("1_l1i01")
 items = Array[ExtResource("2_jcrx1")]([SubResource("Resource_jcrx1")])
 layers = [NodePath("Layer1")]
@@ -582,68 +581,6 @@ material_override = SubResource("StandardMaterial3D_caws5")
 [node name="Layer2" type="VoxelTerrain" parent="."]
 mesher = SubResource("VoxelMesherTransvoxel_x8opw")
 material_override = SubResource("StandardMaterial3D_858on")
-
-[node name="PauseMenu" type="TextureRect" parent="."]
-process_mode = 3
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("67_wwos8")
-script = ExtResource("29_qqdjj")
-
-[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.444402, 8.56727e-06, 0.318996, 0.384314)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/ColorRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="PauseMenu/ColorRect/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_vef74")
-theme_override_font_sizes/font_size = 200
-text = "PAUSED"
-
-[node name="Resume" parent="PauseMenu/ColorRect/VBoxContainer" instance=ExtResource("69_53spd")]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("8_vef74")
-theme_override_font_sizes/font_size = 125
-text = "RESUME"
-
-[node name="Options" parent="PauseMenu/ColorRect/VBoxContainer" instance=ExtResource("69_53spd")]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("8_vef74")
-theme_override_font_sizes/font_size = 125
-text = "OPTIONS"
-
-[node name="Quit" parent="PauseMenu/ColorRect/VBoxContainer" instance=ExtResource("69_53spd")]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("8_vef74")
-theme_override_font_sizes/font_size = 125
-text = "QUIT"
-
-[node name="Options" parent="." instance=ExtResource("28_4qu01")]
-visible = false
 
 [node name="Grass" type="MultiMeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.04564, 0, -0.52338)
@@ -1302,6 +1239,69 @@ text = "unemployment level 1000"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Nothingness/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_7mp2w")
 
+[node name="PauseMenu" type="TextureRect" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("67_wwos8")
+script = ExtResource("29_qqdjj")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.444402, 8.56727e-06, 0.318996, 0.384314)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PauseMenu/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_vef74")
+theme_override_font_sizes/font_size = 200
+text = "PAUSED"
+
+[node name="Resume" parent="PauseMenu/ColorRect/VBoxContainer" instance=ExtResource("69_53spd")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_vef74")
+theme_override_font_sizes/font_size = 125
+text = "RESUME"
+
+[node name="Options" parent="PauseMenu/ColorRect/VBoxContainer" instance=ExtResource("69_53spd")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_vef74")
+theme_override_font_sizes/font_size = 125
+text = "OPTIONS"
+
+[node name="Quit" parent="PauseMenu/ColorRect/VBoxContainer" instance=ExtResource("69_53spd")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_vef74")
+theme_override_font_sizes/font_size = 125
+text = "QUIT"
+
+[node name="Options" parent="." instance=ExtResource("28_4qu01")]
+process_mode = 3
+visible = false
+
 [node name="ShovelArea" type="Area3D" parent="."]
 transform = Transform3D(0.999989, -0.0045902, 0, 0.0045902, 0.999989, 0, 0, 0, 1, 6.61415, -0.0349038, -0.945536)
 
@@ -1338,13 +1338,16 @@ shape = SubResource("BoxShape3D_3mdsk")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[connection signal="toggle_pause" from="PauseMenu" to="." method="_on_pause_menu_toggle_pause"]
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Shop/Area3D" to="." method="_on_area_3d_body_exited"]
 [connection signal="screen_entered" from="Shop/VisibleOnScreenNotifier3D" to="." method="_on__screen_entered_computer"]
 [connection signal="screen_exited" from="Shop/VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
 [connection signal="body_entered" from="DialogArea" to="DialogArea" method="_on_body_entered"]
+[connection signal="toggle_pause" from="PauseMenu" to="." method="_on_pause_menu_toggle_pause"]
+[connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="body_entered" from="ShovelArea" to="." method="_on_shovel_entered"]
 [connection signal="body_entered" from="AudioStreamPlayer3D/Area3D" to="AudioStreamPlayer3D" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="AudioStreamPlayer3D/Area3D" to="AudioStreamPlayer3D" method="_on_area_3d_body_exited"]

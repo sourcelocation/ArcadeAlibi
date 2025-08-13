@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://dbm5nlxgrfjxp"]
+[gd_scene load_steps=3 format=3 uid="uid://dbm5nlxgrfjxp"]
+
+[ext_resource type="Script" uid="uid://bttvx13gyn5eq" path="res://Scenes/Options/options.gd" id="1_7ldl8"]
+[ext_resource type="FontFile" uid="uid://btpif3n3r64m" path="res://Resources/Fonts/Handjet-VariableFont_ELGR,ELSH,wght.ttf" id="1_oxfvm"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -7,8 +10,160 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7ldl8")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.53328, 0.520655, 1, 0.572549)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+custom_minimum_size = Vector2(2000, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -163.5
+offset_right = 163.5
+offset_bottom = 496.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_oxfvm")
+theme_override_font_sizes/font_size = 125
+text = "
+OPTIONS"
+
+[node name="Sens" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/Sens"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_oxfvm")
+theme_override_font_sizes/font_size = 90
+text = "Sensitivity"
+
+[node name="Space" type="Control" parent="ColorRect/VBoxContainer/Sens"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="ColorRect/VBoxContainer/Sens"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_oxfvm")
+theme_override_font_sizes/font_size = 90
+text = "1"
+
+[node name="HSlider" type="HSlider" parent="ColorRect/VBoxContainer/Sens"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 0.2
+max_value = 5.0
+step = 0.05
+value = 0.2
+
+[node name="Window" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/Window"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_oxfvm")
+theme_override_font_sizes/font_size = 90
+text = "Window"
+
+[node name="Space" type="Control" parent="ColorRect/VBoxContainer/Window"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="ColorRect/VBoxContainer/Window"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_oxfvm")
+theme_override_font_sizes/font_size = 90
+text = "Window"
+
+[node name="OptionButton" type="OptionButton" parent="ColorRect/VBoxContainer/Window"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Fullscreen"
+popup/item_0/id = 0
+popup/item_1/text = "Exclusive Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Window"
+popup/item_2/id = 2
+
+[node name="Volume" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="ColorRect/VBoxContainer/Volume"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_oxfvm")
+theme_override_font_sizes/font_size = 90
+text = "Volume"
+
+[node name="Space" type="Control" parent="ColorRect/VBoxContainer/Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="ColorRect/VBoxContainer/Volume"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_oxfvm")
+theme_override_font_sizes/font_size = 90
+text = "100%"
+
+[node name="HSlider" type="HSlider" parent="ColorRect/VBoxContainer/Volume"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 1
+rounded = true
+
+[node name="V-Sync" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/V-Sync"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_oxfvm")
+theme_override_font_sizes/font_size = 90
+text = "V-Sync"
+
+[node name="Space" type="Control" parent="ColorRect/VBoxContainer/V-Sync"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="ColorRect/VBoxContainer/V-Sync"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_oxfvm")
+theme_override_font_sizes/font_size = 90
+text = "Enabled"
+
+[node name="OptionButton" type="OptionButton" parent="ColorRect/VBoxContainer/V-Sync"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Enabled"
+popup/item_0/id = 0
+popup/item_1/text = "Adaptive"
+popup/item_1/id = 1
+popup/item_2/text = "Disable"
+popup/item_2/id = 2
+
+[connection signal="value_changed" from="ColorRect/VBoxContainer/Sens/HSlider" to="." method="_on_sens_slider_value_changed"]
+[connection signal="item_selected" from="ColorRect/VBoxContainer/Window/OptionButton" to="." method="_on_window_item_selected"]
+[connection signal="value_changed" from="ColorRect/VBoxContainer/Volume/HSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="item_selected" from="ColorRect/VBoxContainer/V-Sync/OptionButton" to="." method="_on_vsync_item_selected"]

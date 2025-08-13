@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b1pqxelmruke8"]
+[gd_scene load_steps=0 format=3 uid="uid://b1pqxelmruke8"]
 
 [node name="ShopUI" type="Control"]
 texture_filter = 1

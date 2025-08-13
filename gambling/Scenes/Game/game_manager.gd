@@ -2,7 +2,6 @@ extends Node3D
 class_name GameManager
 
 @onready var player: Player = $Player
-@export var items: Array[ItemRes]
 @onready var shop_sprite_3d: Sprite3D = $Shop/ShopSprite3D
 
 @onready var pause_menu: TextureRect = $PauseMenu
