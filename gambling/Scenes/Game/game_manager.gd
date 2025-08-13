@@ -2,13 +2,13 @@ extends Node3D
 class_name GameManager
 
 @onready var player: Player = $Player
+@export var items: Array[ItemRes]
 @onready var shop_sprite_3d: Sprite3D = $Shop/ShopSprite3D
 
 @onready var pause_menu: TextureRect = $PauseMenu
 @onready var options: Control = $Options
 
-@export var items: Array[ItemRes]
-@export var layers: Array[VoxelTerrain]
+@onready var layers: Array[VoxelTerrain] = [$Layer1,$Layer2]
 @onready var terrain = layers[0]
 @onready var shop: Node3D = $Shop
 @onready var nothingness: MeshInstance3D = $Nothingness
@@ -127,6 +127,7 @@ func _on_shovel_entered(body: Node3D) -> void:
 		player.add_boombox(1)
 
 func gen_chests(layer : int):
+	if len(chests_per_layer) <= layer: return
 	for i in range(chests_per_layer[layer]):
 		var rand_y = randf_range(-layer_height * layer - 4.6, -layer_height * layer - layer_height - 4.6)
 		var rand_x = randf_range(-spawn_radius, spawn_radius)
