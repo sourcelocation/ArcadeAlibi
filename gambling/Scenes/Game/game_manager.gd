@@ -94,7 +94,18 @@ func _input(event):
 		var result = space_state.intersect_ray(query)
 
 		if result and result.collider.get_parent() == shop_sprite_3d:
-			var viewport_pos = shop_viewport.get_mouse_position()
+			var local_hit = result.collider.to_local(result.position)
+			
+			var shape = result.collider.get_node("CollisionShape3D").shape
+			var w = shape.size.x
+			var h = shape.size.y
+			
+			var norm_x = (local_hit.x + (w / 2)) / w
+			var norm_y = 1 - ((local_hit.y + (h / 2)) / h) # Invert Y for viewport coords
+	  
+			var viewport_pos = Vector2(norm_x, norm_y)
+			viewport_pos.x *= shop_viewport.size.x
+			viewport_pos.y *= shop_viewport.size.y
 			var input_event = InputEventMouseButton.new()
 			input_event.button_index = MOUSE_BUTTON_LEFT
 			input_event.pressed = true

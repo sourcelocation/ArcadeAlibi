@@ -264,7 +264,7 @@ period = 11.0001
 
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_a4qm0"]
 graph_data = {
-"connections": [[21, 0, 15, 0], [18, 0, 4, 0], [20, 0, 21, 1], [15, 0, 18, 0], [19, 0, 18, 1], [14, 0, 19, 1], [14, 0, 21, 0]],
+"connections": [[21, 0, 15, 0], [20, 0, 21, 1], [19, 0, 18, 1], [18, 0, 4, 0], [15, 0, 18, 0], [14, 0, 19, 1], [14, 0, 21, 0]],
 "nodes": {
 "14": {
 "gui_position": Vector2(50, 120),
