@@ -10,10 +10,7 @@ extends Control
 #]
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Quit"):
-		if Game.gm: Game.gm.save()
-		get_tree().quit()
-	elif Input.is_action_just_pressed("Reload"):
+	if Input.is_action_just_pressed("Reload"):
 		if Game.gm: Game.gm.save()
 		get_tree().reload_current_scene()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)

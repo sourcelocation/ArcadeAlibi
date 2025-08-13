@@ -5,7 +5,10 @@ class_name GameManager
 @export var items: Array[ItemRes]
 @onready var shop_sprite_3d: Sprite3D = $Shop/ShopSprite3D
 
+@onready var pause_menu: TextureRect = $PauseMenu
+@onready var options: Control = $Options
 
+@export var items: Array[ItemRes]
 @export var layers: Array[VoxelTerrain]
 @onready var terrain = layers[0]
 @onready var shop: Node3D = $Shop
@@ -21,14 +24,13 @@ var in_cutscene = false
 @export var layer_height : float = 10.0
 @export var spawn_radius : float = 25.0
 var layer_to_gen = 0
+var paused = false
 
 # dialog triggers
 var time_underground = 0.0
 @onready var chest_opened_once = "chest_opened_once" in Save.config
 
 func _ready() -> void:
-	
-		
 	Game.gm = self
 	nothingness.visible = false
 
@@ -159,3 +161,34 @@ func _load_data():
 	if data:
 		player.inventory = data["inventory"]
 		player.money = data["money"]
+
+func _toggle_pause(on : bool):
+	paused = on
+	pause_menu.visible = on
+	$Player/Control.visible = !on
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE if on else Input.MOUSE_MODE_CAPTURED)
+	get_tree().paused = on
+
+func _is_paused():
+	return pause_menu.visible
+
+func _on_resume_pressed() -> void:
+	if not pause_menu.visible: return
+	_toggle_pause(false)
+
+func _on_options_pressed() -> void:
+	if not pause_menu.visible: return
+	options.visible = true
+	pause_menu.visible = false
+
+func _on_quit_pressed() -> void:
+	if not pause_menu.visible: return
+	get_tree().paused = false
+	get_tree().quit()
+
+func _on_pause_menu_toggle_pause() -> void:
+	if options.visible:
+		options.visible = false
+		_toggle_pause(_is_paused())
+	else:
+		_toggle_pause(!_is_paused())

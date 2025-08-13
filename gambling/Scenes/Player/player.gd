@@ -72,7 +72,7 @@ func _process(delta: float) -> void:
 	if !can_move or on_ladder:
 		wishdir = Vector3.ZERO
 
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if !enter_shop else Input.MOUSE_MODE_VISIBLE)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if !enter_shop and !Game.gm.paused else Input.MOUSE_MODE_VISIBLE)
 	var speed = base_speed if is_on_floor() else air_speed
 	speed *= sprint_spd
 	var accel = base_accel if is_on_floor() else air_accel
