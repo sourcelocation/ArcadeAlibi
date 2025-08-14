@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=146 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -13,11 +13,15 @@
 [ext_resource type="PackedScene" uid="uid://bkp4hdw8k1yts" path="res://Scenes/Shovel/shovel.tscn" id="4_wwos8"]
 [ext_resource type="PackedScene" uid="uid://bsws8exta226s" path="res://Scenes/Grass/grass.blend" id="5_7jktm"]
 [ext_resource type="Resource" uid="uid://c8ulad7utgrg7" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processing_stage.tres" id="5_l1i01"]
+[ext_resource type="Texture2D" uid="uid://yr5jyhgekyxp" path="res://Resources/UI/bark.png" id="5_xft3b"]
 [ext_resource type="Script" uid="uid://b4n1i7gnlrx1n" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processor.gd" id="6_r62pu"]
 [ext_resource type="PackedScene" uid="uid://d1nlf7wsrex0f" path="res://Scenes/Fence/fence.tscn" id="6_ryrav"]
+[ext_resource type="Texture2D" uid="uid://bvfe3wwuwi51m" path="res://Resources/UI/ingot-iron.png" id="6_yuvyg"]
+[ext_resource type="Texture2D" uid="uid://cfdt0es1n8sab" path="res://Resources/UI/ingot-silicon.png" id="7_hb4p8"]
 [ext_resource type="Texture2D" uid="uid://b10nxxcvm85lb" path="res://Resources/UI/money-ui.png" id="7_j5wjh"]
 [ext_resource type="Resource" uid="uid://bk5yd5plopwi2" path="res://addons/SphynxMotionBlurToolkit/JumpFlood/simple_jf_blur_stage.tres" id="7_klri6"]
 [ext_resource type="Resource" uid="uid://bj3exhmsfcx4w" path="res://addons/SphynxMotionBlurToolkit/JumpFlood/jf_simple_stage.tres" id="8_eu6ph"]
+[ext_resource type="Texture2D" uid="uid://d8d3vnxqxtbj" path="res://Resources/UI/ingot-copper.png" id="8_h1l72"]
 [ext_resource type="FontFile" uid="uid://btpif3n3r64m" path="res://Resources/Fonts/Handjet-VariableFont_ELGR,ELSH,wght.ttf" id="8_vef74"]
 [ext_resource type="Resource" uid="uid://co5k7plgmxepi" path="res://addons/SphynxMotionBlurToolkit/JumpFlood/jump_flood_neighbor_max_stage.tres" id="9_edr7y"]
 [ext_resource type="PackedScene" uid="uid://baykif37w8jxv" path="res://Scenes/Fence/Gate.glb" id="9_vef74"]
@@ -80,6 +84,131 @@ description = "Nothing special, but a good ol' shovel to either dig dirt, or kic
 icon = ExtResource("3_u2cvy")
 is_tool = true
 scene = ExtResource("4_wwos8")
+recipe = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_fhxkh"]
+script = ExtResource("2_jcrx1")
+id = 100
+title = "Wood"
+description = "Placeholder description"
+icon = ExtResource("5_xft3b")
+is_tool = false
+recipe = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_qqdjj"]
+script = ExtResource("2_jcrx1")
+id = 101
+title = "Iron Ore"
+description = "Placeholder description"
+icon = ExtResource("6_yuvyg")
+is_tool = false
+recipe = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_x8opw"]
+script = ExtResource("2_jcrx1")
+id = 102
+title = "Silicon Ore"
+description = "Placeholder description"
+icon = ExtResource("7_hb4p8")
+is_tool = false
+recipe = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_ntkbw"]
+script = ExtResource("2_jcrx1")
+id = 103
+title = "Copper Ore"
+description = "Placeholder description"
+icon = ExtResource("8_h1l72")
+is_tool = false
+recipe = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_d4puy"]
+script = ExtResource("2_jcrx1")
+id = 110
+title = "Microchip"
+description = "Placeholder description"
+is_tool = false
+recipe = Dictionary[int, int]({
+102: 2,
+111: 1
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_xft3b"]
+script = ExtResource("2_jcrx1")
+id = 111
+title = "Copper Wire"
+description = "Placeholder description"
+is_tool = false
+recipe = Dictionary[int, int]({
+103: 2
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_yuvyg"]
+script = ExtResource("2_jcrx1")
+id = 120
+title = "Display Screen"
+description = "Placeholder description"
+is_tool = false
+recipe = Dictionary[int, int]({
+110: 1,
+111: 1
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_hb4p8"]
+script = ExtResource("2_jcrx1")
+id = 121
+title = "Gambling Module"
+description = "Placeholder description"
+is_tool = false
+recipe = Dictionary[int, int]({
+102: 3,
+110: 1,
+111: 1
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_h1l72"]
+script = ExtResource("2_jcrx1")
+id = 122
+title = "Rigged Module"
+description = "Placeholder description"
+is_tool = false
+recipe = Dictionary[int, int]({
+110: 3,
+121: 2
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_scdd5"]
+script = ExtResource("2_jcrx1")
+id = 200
+title = "Pacman"
+description = "Placeholder description"
+is_tool = false
+recipe = Dictionary[int, int]({
+100: 12,
+121: 1
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_cjj5m"]
+script = ExtResource("2_jcrx1")
+id = 300
+title = "Counter-Snipe Case Machine"
+description = "Placeholder description"
+is_tool = false
+recipe = Dictionary[int, int]({
+100: 12,
+122: 1
+})
 metadata/_custom_type_script = "uid://jbo30sw083oh"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
@@ -635,7 +764,7 @@ size = Vector3(81.4961, 147.438, 640.181)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_l1i01")
-items = Array[ExtResource("2_jcrx1")]([SubResource("Resource_jcrx1")])
+items = Array[ExtResource("2_jcrx1")]([SubResource("Resource_jcrx1"), SubResource("Resource_fhxkh"), SubResource("Resource_qqdjj"), SubResource("Resource_x8opw"), SubResource("Resource_ntkbw"), SubResource("Resource_d4puy"), SubResource("Resource_xft3b"), SubResource("Resource_yuvyg"), SubResource("Resource_hb4p8"), SubResource("Resource_h1l72"), SubResource("Resource_scdd5"), SubResource("Resource_cjj5m")])
 chest = ExtResource("59_3mdsk")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -643,7 +772,6 @@ environment = SubResource("Environment_e2o6t")
 compositor = SubResource("Compositor_qpefm")
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
-visible = false
 occluder = ExtResource("14_iu0sx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

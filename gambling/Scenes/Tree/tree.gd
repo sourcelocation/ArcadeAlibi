@@ -46,7 +46,7 @@ func mine_tree():
 	health -= 25
 	if health <= 0:
 		dead()
-	Game.gm.player.wood += 1
+		Game.gm.player.give_item(100,randi_range(6,10))
 
 func dead():
 	dead_tree.visible = true

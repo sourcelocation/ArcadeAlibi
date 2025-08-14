@@ -13,6 +13,9 @@ config_version=5
 config/name="gambling"
 run/main_scene="uid://bc8jlduayrucf"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/fullsize=false
+boot_splash/image="uid://onodod7ts22e"
 config/icon="uid://1au5ivx56dow"
 
 [audio]

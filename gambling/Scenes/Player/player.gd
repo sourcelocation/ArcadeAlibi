@@ -35,7 +35,6 @@ var ladders : Array
 var on_ladder = false
 var can_ladder = true
 var money = 100
-var wood = 0
 
 var mouse_sens = 0.003
 
@@ -215,7 +214,9 @@ func update_items_ui():
 		container.add_child(n)
 		i += 1
 		
-	for item in inventory.keys():
+	var keys = inventory.keys()
+	keys.sort()
+	for item in keys:
 		var n = preload("res://Scenes/item_ui.tscn").instantiate()
 		n.set_data(get_item_by_id(item), inventory[item] - 1)
 		grid_container.add_child(n)
@@ -228,7 +229,7 @@ func give_item(id, count):
 		
 	if id < 100:
 		equip_item(get_item_by_id(id))
-		update_items_ui()
+	update_items_ui()
 		
 func get_item_by_id(id):
 	var item
@@ -246,7 +247,9 @@ func equip_item(_item):
 
 func get_tools_in_inventory():
 	var tools = []
-	for id in inventory.keys():
+	var keys = inventory.keys()
+	keys.sort()
+	for id in keys:
 		var tool = get_item_by_id(id)
 		if tool.is_tool:
 			tools.append(tool)
