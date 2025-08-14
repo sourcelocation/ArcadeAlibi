@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.53328, 0.520655, 1, 0.572549)
+color = Color(0.0791, 0.077, 0.14, 0.901961)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
 custom_minimum_size = Vector2(2000, 0)
@@ -36,7 +36,7 @@ grow_horizontal = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_oxfvm")
 theme_override_font_sizes/font_size = 125
 text = "
@@ -47,7 +47,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ColorRect/VBoxContainer/Sens"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_oxfvm")
 theme_override_font_sizes/font_size = 90
 text = "Sensitivity"
@@ -58,7 +58,7 @@ size_flags_horizontal = 3
 
 [node name="Value" type="Label" parent="ColorRect/VBoxContainer/Sens"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_oxfvm")
 theme_override_font_sizes/font_size = 90
 text = "1"
@@ -77,7 +77,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ColorRect/VBoxContainer/Window"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_oxfvm")
 theme_override_font_sizes/font_size = 90
 text = "Window"
@@ -88,7 +88,7 @@ size_flags_horizontal = 3
 
 [node name="Value" type="Label" parent="ColorRect/VBoxContainer/Window"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_oxfvm")
 theme_override_font_sizes/font_size = 90
 text = "Window"
@@ -109,7 +109,7 @@ layout_mode = 2
 
 [node name="Label2" type="Label" parent="ColorRect/VBoxContainer/Volume"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_oxfvm")
 theme_override_font_sizes/font_size = 90
 text = "Volume"
@@ -120,7 +120,7 @@ size_flags_horizontal = 3
 
 [node name="Value" type="Label" parent="ColorRect/VBoxContainer/Volume"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_oxfvm")
 theme_override_font_sizes/font_size = 90
 text = "100%"
@@ -136,7 +136,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ColorRect/VBoxContainer/V-Sync"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_oxfvm")
 theme_override_font_sizes/font_size = 90
 text = "V-Sync"
@@ -147,7 +147,7 @@ size_flags_horizontal = 3
 
 [node name="Value" type="Label" parent="ColorRect/VBoxContainer/V-Sync"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_oxfvm")
 theme_override_font_sizes/font_size = 90
 text = "Enabled"

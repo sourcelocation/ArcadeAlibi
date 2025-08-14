@@ -1,7 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://rkr6e2luyclf"]
+[gd_scene load_steps=6 format=3 uid="uid://rkr6e2luyclf"]
 
 [ext_resource type="PackedScene" uid="uid://jawg24hc6g66" path="res://Resources/Models/Ladder.glb" id="1_75hc7"]
 [ext_resource type="Script" uid="uid://d1juvr54svisy" path="res://Scenes/ladder.gd" id="1_fnw1j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnw1j"]
+albedo_color = Color(1, 0.74, 0.6, 1)
+metallic = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fc354"]
+albedo_color = Color(1, 0.778333, 0.65, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fnw1j"]
 size = Vector3(1, 0.597, 6.702)
@@ -14,6 +21,9 @@ transform = Transform3D(-1, 0, 8.74228e-08, 8.65692e-08, 0.139398, 0.990236, -1.
 
 [node name="Node" parent="Ladder" index="0"]
 transform = Transform3D(1, 8.88178e-16, 5.32907e-15, 0, 1, 0, -1.77636e-15, 0, 1, 1.45072e-09, -0.11788, 0.0165942)
+surface_material_override/0 = SubResource("StandardMaterial3D_fnw1j")
+surface_material_override/1 = SubResource("StandardMaterial3D_fc354")
+surface_material_override/2 = SubResource("StandardMaterial3D_fc354")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.756412, -0.0921121, 0, 0.0921121, 0.756412, 0, -0.113602, -0.168732)

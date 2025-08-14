@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=143 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -73,7 +73,6 @@
 [ext_resource type="Script" uid="uid://ct63gjc5hguag" path="res://Scenes/Game/underground_audio.gd" id="58_71giq"]
 [ext_resource type="PackedScene" uid="uid://cwfgig73oyoe6" path="res://Scenes/Game/Chest.tscn" id="59_3mdsk"]
 [ext_resource type="PackedScene" uid="uid://b5d7dpv1ch8m2" path="res://Scenes/Tree/tree.tscn" id="60_a4qm0"]
-[ext_resource type="Texture2D" uid="uid://1au5ivx56dow" path="res://Resources/Other/icon.png" id="67_wwos8"]
 [ext_resource type="PackedScene" path="res://Scenes/Menu/underline_button.tscn" id="69_53spd"]
 
 [sub_resource type="Resource" id="Resource_jcrx1"]
@@ -336,10 +335,6 @@ heightmap_texture = ExtResource("46_bkdpl")
 uv1_scale = Vector3(0.17, 0.17, 0.17)
 uv1_triplanar = true
 
-[sub_resource type="VoxelStreamSQLite" id="VoxelStreamSQLite_l5fxq"]
-database_path = "user://layer1.db"
-preferred_coordinate_format = "user://layer1.db"
-
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_3mdsk"]
 graph_data = {
 "connections": [[18, 0, 4, 0], [15, 0, 18, 0], [19, 0, 18, 1], [14, 0, 15, 0], [14, 0, 19, 1]],
@@ -383,10 +378,6 @@ normal_texture = ExtResource("23_jcrx1")
 heightmap_texture = ExtResource("22_l5fxq")
 uv1_scale = Vector3(0.46, 0.46, 0.46)
 uv1_triplanar = true
-
-[sub_resource type="VoxelStreamSQLite" id="VoxelStreamSQLite_jcrx1"]
-database_path = "user://layer2.db"
-preferred_coordinate_format = "user://layer2.db"
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_858on"]
 period = 11.0001
@@ -786,13 +777,11 @@ libraries = {
 
 [node name="Layer1" type="VoxelTerrain" parent="."]
 material_override = SubResource("StandardMaterial3D_caws5")
-stream = SubResource("VoxelStreamSQLite_l5fxq")
 generator = SubResource("VoxelGeneratorGraph_3mdsk")
 mesher = SubResource("VoxelMesherTransvoxel_a4qm0")
 
 [node name="Layer2" type="VoxelTerrain" parent="."]
 material_override = SubResource("StandardMaterial3D_858on")
-stream = SubResource("VoxelStreamSQLite_jcrx1")
 generator = SubResource("VoxelGeneratorGraph_a4qm0")
 mesher = SubResource("VoxelMesherTransvoxel_a4qm0")
 
@@ -1013,8 +1002,26 @@ mesh = SubResource("PlaneMesh_feb5d")
 surface_material_override/0 = ExtResource("1_e8heu")
 
 [node name="FloorGrassBig" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999124, 0, -0.0326259, -7.29004)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999124, 57.0885, -0.0717447, -7.29004)
+gi_mode = 0
+mesh = SubResource("PlaneMesh_215e1")
+surface_material_override/0 = ExtResource("1_e8heu")
+
+[node name="FloorGrassBig2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999124, 4.05567, -0.0326259, 32.6268)
+gi_mode = 0
+mesh = SubResource("PlaneMesh_215e1")
+surface_material_override/0 = ExtResource("1_e8heu")
+
+[node name="FloorGrassBig3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999124, -57.2481, -0.0976121, -15.998)
+gi_mode = 0
+mesh = SubResource("PlaneMesh_215e1")
+surface_material_override/0 = ExtResource("1_e8heu")
+
+[node name="FloorGrassBig4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.999124, -3.59486, -0.0326259, -62.334)
+gi_mode = 0
 mesh = SubResource("PlaneMesh_215e1")
 surface_material_override/0 = ExtResource("1_e8heu")
 
@@ -1060,6 +1067,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70265, 6.80437, 4.02957)
 shape = SubResource("BoxShape3D_vef74")
 
 [node name="grass" parent="." instance=ExtResource("5_7jktm")]
+visible = false
 
 [node name="Gate" parent="." instance=ExtResource("9_vef74")]
 transform = Transform3D(-1.83495e-08, 0, -0.419787, 0, 0.419787, 0, 0.419787, 0, -1.83495e-08, -0.0410652, 0.269907, -0.354396)
@@ -1455,13 +1463,11 @@ shape = SubResource("ConcavePolygonShape3D_7mp2w")
 
 [node name="PauseMenu" type="TextureRect" parent="."]
 process_mode = 3
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("67_wwos8")
 script = ExtResource("29_qqdjj")
 
 [node name="ColorRect" type="ColorRect" parent="PauseMenu"]
@@ -1471,7 +1477,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.444402, 8.56727e-06, 0.318996, 0.384314)
+color = Color(0, 0, 0, 0.815686)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/ColorRect"]
 layout_mode = 1
@@ -1489,7 +1495,6 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="PauseMenu/ColorRect/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("8_vef74")
 theme_override_font_sizes/font_size = 200
 text = "PAUSED"
