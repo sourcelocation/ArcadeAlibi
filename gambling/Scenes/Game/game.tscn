@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=145 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -74,6 +74,7 @@
 [ext_resource type="PackedScene" uid="uid://cwfgig73oyoe6" path="res://Scenes/Game/Chest.tscn" id="59_3mdsk"]
 [ext_resource type="PackedScene" uid="uid://b5d7dpv1ch8m2" path="res://Scenes/Tree/tree.tscn" id="60_a4qm0"]
 [ext_resource type="PackedScene" path="res://Scenes/Menu/underline_button.tscn" id="69_53spd"]
+[ext_resource type="PackedScene" uid="uid://c1tvg8y24mufa" path="res://Scenes/Minigames/chess.tscn" id="75_xft3b"]
 
 [sub_resource type="Resource" id="Resource_jcrx1"]
 script = ExtResource("2_jcrx1")
@@ -752,6 +753,9 @@ size = Vector3(9.27106, 6.26965, 13.1858)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3mdsk"]
 size = Vector3(81.4961, 147.438, 640.181)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xft3b"]
+viewport_path = NodePath("GameViewport")
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_l1i01")
@@ -1557,6 +1561,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.322227, -0.561518, -319.568
 shape = SubResource("BoxShape3D_3mdsk")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="GameViewport" type="SubViewport" parent="."]
+anisotropic_filtering_level = 0
+canvas_item_default_texture_filter = 0
+size = Vector2i(400, 350)
+
+[node name="Chess" parent="GameViewport" instance=ExtResource("75_xft3b")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.281623, 0, 0, 0, 0.281623, 0, 0, 0, 0.281623, 0, 1.03192, -10.8169)
+shaded = true
+texture = SubResource("ViewportTexture_xft3b")
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]

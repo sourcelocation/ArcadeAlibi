@@ -237,6 +237,8 @@ gradient = SubResource("Gradient_6xydi")
 
 [node name="Chess" type="Node2D"]
 modulate = Color(0, 1, 0, 1)
+position = Vector2(200, 175)
+scale = Vector2(0.19, 0.19)
 script = ExtResource("1_6xydi")
 
 [node name="Board" type="Sprite2D" parent="."]
