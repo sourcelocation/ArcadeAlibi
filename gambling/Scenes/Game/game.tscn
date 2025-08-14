@@ -384,7 +384,7 @@ period = 11.0001
 
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_a4qm0"]
 graph_data = {
-"connections": [[21, 0, 15, 0], [20, 0, 21, 1], [19, 0, 18, 1], [18, 0, 4, 0], [15, 0, 18, 0], [14, 0, 19, 1], [14, 0, 21, 0]],
+"connections": [[21, 0, 15, 0], [18, 0, 4, 0], [20, 0, 21, 1], [15, 0, 18, 0], [19, 0, 18, 1], [14, 0, 19, 1], [14, 0, 21, 0]],
 "nodes": {
 "14": {
 "gui_position": Vector2(50, 120),
@@ -719,7 +719,7 @@ size = Vector3(3, 2, 2.5)
 viewport_path = NodePath("UI/ShopViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d85t2"]
-size = Vector3(3.90454, 3.29272, 1)
+size = Vector3(3.87402, 3.49805, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bkdpl"]
 albedo_texture = ExtResource("45_rht7h")
@@ -1317,13 +1317,13 @@ shape = SubResource("BoxShape3D_qjf7v")
 aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
 
 [node name="ShopSprite3D" type="Sprite3D" parent="Shop"]
-transform = Transform3D(0.122173, 0, 0, 0, 0.122173, 0, 0, 0, 0.122173, -0.0175774, 0.214856, 0.339582)
+transform = Transform3D(0.119837, 0, 8.88178e-16, 0, 0.119837, 0, -8.88178e-16, 0, 0.119837, -0.0175781, 0.217935, 0.339582)
 texture = SubResource("ViewportTexture_d85t2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Shop/ShopSprite3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/ShopSprite3D/StaticBody3D"]
-transform = Transform3D(1, 0, 1.38556e-12, 0, 1, 0, -1.38556e-12, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 4.12115e-12, 0, 1, 0, -4.12115e-12, 0, 1, 0, 0, -0.464546)
 shape = SubResource("BoxShape3D_d85t2")
 
 [node name="grassmask" parent="." instance=ExtResource("45_7icik")]
@@ -1463,6 +1463,7 @@ shape = SubResource("ConcavePolygonShape3D_7mp2w")
 
 [node name="PauseMenu" type="TextureRect" parent="."]
 process_mode = 3
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

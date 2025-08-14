@@ -1,4 +1,11 @@
-[gd_scene format=3 uid="uid://b1pqxelmruke8"]
+[gd_scene load_steps=5 format=3 uid="uid://b1pqxelmruke8"]
+
+[ext_resource type="Texture2D" uid="uid://d8d3vnxqxtbj" path="res://Resources/UI/ingot-copper.png" id="1_t7e24"]
+[ext_resource type="Script" uid="uid://b6n25q84untkg" path="res://Scenes/item_ui.gd" id="2_jnvht"]
+[ext_resource type="Texture2D" uid="uid://cneqx7ignovt5" path="res://Resources/UI/shovel.png" id="3_hgc2c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnvht"]
+bg_color = Color(0.238, 0.35, 0.252933, 0.623529)
 
 [node name="ShopUI" type="Control"]
 texture_filter = 1
@@ -30,6 +37,481 @@ current_tab = 0
 [node name="Crafting" type="Control" parent="TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Crafting"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Crafting/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemRow" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 58.7)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 4.0
+offset_right = -9.0
+offset_bottom = -3.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Item" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
+script = ExtResource("2_jnvht")
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2/Item"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hgc2c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2/Item"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
+theme_override_font_sizes/font_size = 13
+text = "x1"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2/HBoxContainer3"]
+custom_minimum_size = Vector2(45.5, 0)
+layout_mode = 2
+texture = ExtResource("1_t7e24")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Copper Wire"
+
+[node name="Button" type="Button" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2"]
+custom_minimum_size = Vector2(57.91, 0)
+layout_mode = 2
+text = "CRAFT"
+
+[node name="ItemRow2" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 58.7)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 4.0
+offset_right = -9.0
+offset_bottom = -3.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Item" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
+script = ExtResource("2_jnvht")
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2/Item"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hgc2c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2/Item"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
+theme_override_font_sizes/font_size = 13
+text = "x1"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2/HBoxContainer3"]
+custom_minimum_size = Vector2(45.5, 0)
+layout_mode = 2
+texture = ExtResource("1_t7e24")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Copper Wire"
+
+[node name="Button" type="Button" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2"]
+custom_minimum_size = Vector2(57.91, 0)
+layout_mode = 2
+text = "CRAFT"
+
+[node name="ItemRow3" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 58.7)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 4.0
+offset_right = -9.0
+offset_bottom = -3.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Item" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
+script = ExtResource("2_jnvht")
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2/Item"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hgc2c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2/Item"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
+theme_override_font_sizes/font_size = 13
+text = "x1"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2/HBoxContainer3"]
+custom_minimum_size = Vector2(45.5, 0)
+layout_mode = 2
+texture = ExtResource("1_t7e24")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Copper Wire"
+
+[node name="Button" type="Button" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2"]
+custom_minimum_size = Vector2(57.91, 0)
+layout_mode = 2
+text = "CRAFT"
+
+[node name="ItemRow4" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 58.7)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 4.0
+offset_right = -9.0
+offset_bottom = -3.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Item" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
+script = ExtResource("2_jnvht")
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2/Item"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hgc2c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2/Item"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
+theme_override_font_sizes/font_size = 13
+text = "x1"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2/HBoxContainer3"]
+custom_minimum_size = Vector2(45.5, 0)
+layout_mode = 2
+texture = ExtResource("1_t7e24")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Copper Wire"
+
+[node name="Button" type="Button" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2"]
+custom_minimum_size = Vector2(57.91, 0)
+layout_mode = 2
+text = "CRAFT"
+
+[node name="ItemRow5" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 58.7)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 4.0
+offset_right = -9.0
+offset_bottom = -3.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Item" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
+script = ExtResource("2_jnvht")
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2/Item"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hgc2c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2/Item"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
+theme_override_font_sizes/font_size = 13
+text = "x1"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2/HBoxContainer3"]
+custom_minimum_size = Vector2(45.5, 0)
+layout_mode = 2
+texture = ExtResource("1_t7e24")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Copper Wire"
+
+[node name="Button" type="Button" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2"]
+custom_minimum_size = Vector2(57.91, 0)
+layout_mode = 2
+text = "CRAFT"
+
+[node name="ItemRow6" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 58.7)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 4.0
+offset_right = -9.0
+offset_bottom = -3.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Item" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
+script = ExtResource("2_jnvht")
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2/Item"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hgc2c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2/Item"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
+theme_override_font_sizes/font_size = 13
+text = "x1"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2/HBoxContainer3"]
+custom_minimum_size = Vector2(45.5, 0)
+layout_mode = 2
+texture = ExtResource("1_t7e24")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Copper Wire"
+
+[node name="Button" type="Button" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2"]
+custom_minimum_size = Vector2(57.91, 0)
+layout_mode = 2
+text = "CRAFT"
+
+[node name="Label" type="Label" parent="TabContainer/Crafting"]
+modulate = Color(1, 1, 1, 0.482353)
+layout_mode = 0
+offset_left = 19.0
+offset_top = 3.0
+offset_right = 100.0
+offset_bottom = 22.0
+text = "Items Required"
+
+[node name="Label2" type="Label" parent="TabContainer/Crafting"]
+modulate = Color(1, 1, 1, 0.482353)
+layout_mode = 0
+offset_left = 198.0
+offset_top = 1.0
+offset_right = 272.0
+offset_bottom = 20.0
+text = "Result"
 
 [node name="Upgrades" type="Control" parent="TabContainer"]
 visible = false

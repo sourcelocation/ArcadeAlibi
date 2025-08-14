@@ -86,31 +86,44 @@ func _process(delta: float) -> void:
 		layer_to_gen += 1
 
 func _input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		var from = player.main_camera.project_ray_origin(event.position)
-		var to = from + player.main_camera.project_ray_normal(event.position) * 1000
-		var space_state = get_world_3d().direct_space_state
-		var query = PhysicsRayQueryParameters3D.create(from, to)
-		var result = space_state.intersect_ray(query)
+	if in_computer:
+		var new_position
+		if event is InputEventMouse:
+			var from = player.main_camera.project_ray_origin(event.position)
+			var to = from + player.main_camera.project_ray_normal(event.position) * 1000
+			var space_state = get_world_3d().direct_space_state
+			var query = PhysicsRayQueryParameters3D.create(from, to)
+			var result = space_state.intersect_ray(query)
 
-		if result and result.collider.get_parent() == shop_sprite_3d:
-			var local_hit = result.collider.to_local(result.position)
-			
-			var shape = result.collider.get_node("CollisionShape3D").shape
-			var w = shape.size.x
-			var h = shape.size.y
-			
-			var norm_x = (local_hit.x + (w / 2)) / w
-			var norm_y = 1 - ((local_hit.y + (h / 2)) / h) # Invert Y for viewport coords
-	  
-			var viewport_pos = Vector2(norm_x, norm_y)
-			viewport_pos.x *= shop_viewport.size.x
-			viewport_pos.y *= shop_viewport.size.y
-			var input_event = InputEventMouseButton.new()
-			input_event.button_index = MOUSE_BUTTON_LEFT
-			input_event.pressed = true
-			input_event.position = viewport_pos
-			shop_viewport.push_input(input_event)
+			if result and result.collider.get_parent() == shop_sprite_3d:
+				var local_hit = result.collider.to_local(result.position)
+				
+				var shape = result.collider.get_node("CollisionShape3D").shape
+				var w = shape.size.x
+				var h = shape.size.y
+				
+				var norm_x = (local_hit.x + (w / 2)) / w
+				var norm_y = 1 - ((local_hit.y + (h / 2)) / h) # Invert Y for viewport coords
+		  
+				var viewport_pos = Vector2(norm_x, norm_y)
+				viewport_pos.x *= shop_viewport.size.x
+				viewport_pos.y *= shop_viewport.size.y
+				new_position = viewport_pos
+		if new_position: event.position = new_position
+		shop_viewport.push_input(event)
+			# # Left Mouse Button
+			# if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			# 	var input_event = InputEventMouseButton.new()
+			# 	input_event.button_index = MOUSE_BUTTON_LEFT
+			# 	input_event.pressed = true
+			# 	input_event.position = viewport_pos
+			# 	shop_viewport.push_input(input_event)
+			# # Moving mouse
+			# elif event is InputEventMouseMotion:
+			# 	var input_event = InputEventMouseMotion.new()
+			# 	input_event.position = viewport_pos
+			# 	shop_viewport.push_input(input_event)
+			# elif event is InputEvent
 
 func toggle_cutscene(on: bool) -> void:
 	in_cutscene = on
