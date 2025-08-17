@@ -1,40 +1,35 @@
 extends ColorRect
 
-# === Ship ===
 var ship_pos: Vector2
 var ship_spd := Vector2.ZERO
 var ship_angle := 0.0
-var turn_speed := 3.0 # radians/sec
+var turn_speed := 3.0
 var thrust := 200.0
 var friction := 0.99
 var respawn_timer := 0.0
 var respawn_delay := 2.0
 var is_alive := true
 
-# === Bullets ===
 var bullets: Array = []
 var bullet_speed := 500.0
 var bullet_lifetime := 1.5
 var shoot_cooldown := 0.2
 var shoot_timer := 0.0
 
-# === Asteroids ===
 var asteroids: Array = []
 var asteroid_min_size := 20
 var asteroid_max_size := 60
-var safe_radius := 150.0 # distance around player where asteroids cannot spawn
+var safe_radius := 150.0
 
-# === Score ===
 var score := 0
 var score_label: Label
 
 func _ready() -> void:
-	self.color = Color(0, 0, 0, 0) # transparent background
+	self.color = Color(0, 0, 0, 0)
 	randomize()
 	ship_pos = DisplayServer.window_get_size() / 2
 	_spawn_asteroids(5)
 
-	# Create score label
 	score_label = Label.new()
 	score_label.text = "Score: 0"
 	score_label.set_position(Vector2(10, 10))
@@ -52,7 +47,6 @@ func _physics_process(delta: float) -> void:
 		if respawn_timer <= 0.0:
 			_respawn_ship()
 
-	# --- Bullets ---
 	shoot_timer -= delta
 	if Input.is_action_pressed("ui_accept") and shoot_timer <= 0.0 and is_alive:
 		_shoot_bullet()
@@ -63,17 +57,14 @@ func _physics_process(delta: float) -> void:
 		b.life -= delta
 	bullets = bullets.filter(func(b): return b.life > 0)
 
-	# --- Asteroids ---
 	for a in asteroids:
 		a.pos += a.vel * delta
 
-	# Kill asteroids outside screen
 	var screen = DisplayServer.window_get_size()
 	asteroids = asteroids.filter(func(a):
 		return a.pos.x >= 0 and a.pos.x <= screen.x and a.pos.y >= 0 and a.pos.y <= screen.y
 	)
 
-	# --- Collisions (bullets vs asteroids) ---
 	var new_asteroids = []
 	var remaining_bullets = []
 	for b in bullets:
@@ -81,12 +72,10 @@ func _physics_process(delta: float) -> void:
 		for a in asteroids:
 			if b.pos.distance_to(a.pos) < a.size:
 				hit = true
-				# Increase score (bigger asteroids give more points)
 				score += int(a.size)
 				score_label.text = "Score: %d" % score
 
 				if a.size > asteroid_min_size * 1.5:
-					# Split asteroid into two smaller ones
 					for i in range(2):
 						var na = {
 							"pos": a.pos,
@@ -103,13 +92,14 @@ func _physics_process(delta: float) -> void:
 	) + new_asteroids
 	bullets = remaining_bullets
 
-	# --- Respawn asteroids when cleared ---
 	if asteroids.is_empty():
-		_spawn_asteroids(5)
+		var extra = int(score / 200)
+		var base = 5
+		_spawn_asteroids(base + extra)
+
 
 	queue_redraw()
 
-# === Ship logic ===
 func _ship_controls(delta: float) -> void:
 	if Input.is_action_pressed("ui_left"):
 		ship_angle -= turn_speed * delta
@@ -125,7 +115,7 @@ func _ship_controls(delta: float) -> void:
 
 func _check_ship_collision() -> void:
 	for a in asteroids:
-		if ship_pos.distance_to(a.pos) < a.size + 15: # ship radius ≈ 15
+		if ship_pos.distance_to(a.pos) < a.size + 15:
 			is_alive = false
 			respawn_timer = respawn_delay
 			break
@@ -136,7 +126,6 @@ func _respawn_ship() -> void:
 	ship_angle = 0.0
 	is_alive = true
 
-# === Helpers ===
 func _shoot_bullet():
 	var forward = Vector2.RIGHT.rotated(ship_angle)
 	var nose = ship_pos + forward * 30
@@ -151,7 +140,6 @@ func _spawn_asteroids(count: int):
 	var screen = DisplayServer.window_get_size()
 	for i in range(count):
 		var pos: Vector2
-		# retry until asteroid is far enough from player
 		while true:
 			pos = Vector2(randi() % screen.x, randi() % screen.y)
 			if pos.distance_to(ship_pos) > safe_radius:
@@ -175,24 +163,17 @@ func _wrap_position(pos: Vector2) -> Vector2:
 		pos.y = 0
 	return pos
 
-
-# === Drawing ===
 func _draw() -> void:
 	if is_alive:
-		# Ship (triangle)
 		var forward = Vector2.RIGHT.rotated(ship_angle)
 		var left = forward.rotated(2.5) * 20
 		var right = forward.rotated(-2.5) * 20
 		var nose = ship_pos + forward * 30
 		draw_polygon([nose, ship_pos + left, ship_pos + right], [Color.DIM_GRAY])
 	else:
-		# Respawn indicator
 		draw_circle(ship_pos, 25, Color(1, 0, 0, 0.5))
-
-	# Bullets
 	for b in bullets:
 		draw_circle(b.pos, 3, Color.RED)
 
-	# Asteroids
 	for a in asteroids:
 		draw_circle(a.pos, a.size, Color.LIGHT_GRAY)
