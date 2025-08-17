@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cme4ltagx5vc7"]
+
+[ext_resource type="Script" uid="uid://11kkjasl6e4n" path="res://Scenes/Arcade Machines/ArcadeGames/Pacman/pacman.gd" id="1_v10st"]
+
+[node name="Pacman" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_v10st")
