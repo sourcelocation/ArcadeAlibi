@@ -35,6 +35,7 @@ var ladders : Array
 var on_ladder = false
 var can_ladder = true
 var money = 100
+var in_arcade = false
 
 var mouse_sens = 0.003
 

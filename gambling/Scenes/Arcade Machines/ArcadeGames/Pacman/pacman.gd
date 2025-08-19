@@ -3,7 +3,7 @@ extends ColorRect
 var res : Vector2
 var o_res = Vector2(2560, 1440)
 var scale_factor
-var pxl_size = 64
+var pxl_size = 64 * 3
 
 var pman_fps = 15.0
 var pman_pos : Vector2
@@ -44,9 +44,13 @@ var map = [
 ]
 
 func _ready() -> void:
-	res = Vector2(DisplayServer.window_get_size().x, DisplayServer.window_get_size().y)
+	res = get_viewport_rect().size
 	scale_factor = res / o_res
 	pxl_size *= scale_factor.x
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	#res = Vector2(DisplayServer.window_get_size().x, DisplayServer.window_get_size().y)
+	#scale_factor = res / o_res
+	#pxl_size *= scale_factor.x
 	var pman_start = Vector2(1 * pxl_size + res.x / 2 - map[0].size() * pxl_size / 2 + pxl_size/2, 1 * pxl_size + pxl_size/2)
 	pman_pos = pman_start
 	pman_dir = Vector2(1,0)

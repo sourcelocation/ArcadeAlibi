@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://csfq1w21bal5e"]
+
+[ext_resource type="Script" uid="uid://ct0rqjbnvd6ua" path="res://Scenes/Arcade Machines/arcade_machine.gd" id="1_qq6fr"]
+[ext_resource type="PackedScene" uid="uid://cme4ltagx5vc7" path="res://Scenes/Arcade Machines/ArcadeGames/Pacman/Pacman.tscn" id="2_hfifu"]
+[ext_resource type="PackedScene" uid="uid://b3peh54hvw5b6" path="res://Scenes/Arcade Machines/ArcadeGames/Asteroids/Asteroids.tscn" id="3_6svqa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_crb5e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qq6fr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hfifu"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hfifu"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6svqa"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_hfifu")
+
+[node name="ArcadeMachine" type="Node3D"]
+script = ExtResource("1_qq6fr")
+games = Array[PackedScene]([ExtResource("2_hfifu"), ExtResource("3_6svqa")])
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("BoxMesh_crb5e")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 1.25, 0)
+shape = SubResource("BoxShape3D_qq6fr")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.01, 0, 0.9, 0.5)
+mesh = SubResource("BoxMesh_hfifu")
+surface_material_override/0 = SubResource("StandardMaterial3D_6svqa")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+anisotropic_filtering_level = 0
+canvas_item_default_texture_filter = 0
+render_target_update_mode = 0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
