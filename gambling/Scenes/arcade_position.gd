@@ -2,9 +2,11 @@ extends Node3D
 
 @export var messages_happy: Array[String]
 @export var messages_angry: Array[String]
+@onready var msg: Label = $SubViewport/Control/msg
 @export var casino = false
 var occupied_id
 var earnings = 0
+var needs_playtest = false
 
 var i = 0
 
@@ -21,43 +23,50 @@ func _ready():
 	if ("occupied_id-%s" % name) in Save.config:
 		occupied_id = Save.config[("occupied_id-%s" % name)]
 		spawn()
+		needs_playtest = false
+		_playtested()
 
 func _process(delta: float) -> void:
 	if $Area3D.overlaps_body(Game.gm.player):
 		if Input.is_action_pressed("Select"):
 			if !occupied_id:
-				var t = Game.gm.player.selected_tool
-				if t != null:
-					var a = t >= 300 and casino
-					var b = t >= 200  and t < 300 and !casino
-					if a or b:
-						Game.gm.player.inventory[t] -= 1
-						Game.gm.player.update_items_ui()
-						Game.gm.player.equip_item(null)
-						occupied_id = t
-						Save.save("occupied_id-%s" % name,occupied_id)
-						spawn()
-						for c in get_tree().get_nodes_in_group("casino"): c.toggle(false)
-						for c in get_tree().get_nodes_in_group("arcade"): c.toggle(false)
-
+				if not needs_playtest:
+					var t = Game.gm.player.selected_tool
+					if t != null:
+						var a = t >= 300 and casino
+						var b = t >= 200  and t < 300 and !casino
+						if a or b:
+							Game.gm.player.inventory[t] -= 1
+							Game.gm.player.update_items_ui()
+							Game.gm.player.equip_item(null)
+							occupied_id = t
+							Save.save("occupied_id-%s" % name,occupied_id)
+							spawn()
+							for c in get_tree().get_nodes_in_group("casino"): c.toggle(false)
+							for c in get_tree().get_nodes_in_group("arcade"): c.toggle(false)
+				else:
+					_begin_playtest()
 				
 			Game.gm.player.give_item(115,earnings)
 			earnings = 0
 	
-	
-	$UI.visible = $Area3D.overlaps_body(Game.gm.player) and occupied_id
+	$UI/Panel.visible = $Area3D.overlaps_body(Game.gm.player) and occupied_id
+	$UI.visible = $Area3D.overlaps_body(Game.gm.player) and needs_playtest and occupied_id
 
 func _playtested():
+	needs_playtest = false
 	$NPCTimer.start()
 	
+func _begin_playtest():
+	_playtested()
 
 func spawn():
+	needs_playtest = true
 	$StaticBody3D.set_collision_layer_value(1,true)
 	var a = get_item_by_id(occupied_id).scene.instantiate()
 	a.position = Vector3()
 	a.rotation = Vector3()
 	add_child(a)
-	_playtested()
 
 func get_item_by_id(id):
 	var item
@@ -68,13 +77,16 @@ func get_item_by_id(id):
 
 
 func _on_npc_timer_timeout() -> void:
+	$NPCTimerPlay.wait_time = randf_range(2.0,6.0)
 	$NPCTimerPlay.start()
 	$NPC.visible = true
 	i = 0
+	text()
 
 
 func _on_npc_timer_play_timeout() -> void:
 	i += 1
+	$NPCTimerPlay.wait_time = randf_range(2.0,6.0)
 	match occupied_id:
 		200:
 			earnings += randi_range(40,60)
@@ -85,6 +97,10 @@ func _on_npc_timer_play_timeout() -> void:
 		301:
 			earnings += randi_range(3000,7000)
 			#Game.gm.player.give_item(115,5000)
+	text()
+	
+func text():
+	msg.text = messages_angry.pick_random() if i > 2 else messages_happy.pick_random()
 	
 func toggle(on):
 	$Vis.visible = on

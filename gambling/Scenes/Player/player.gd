@@ -251,6 +251,8 @@ func equip_item(_item):
 		var item = _item.scene.instantiate()
 		hand.add_child(item)
 		selected_tool = _item.id
+	else:
+		selected_tool = null
 		
 	if _item and _item.id >= 200 and _item.id < 300:
 		for c in get_tree().get_nodes_in_group("arcade"): c.toggle(true)

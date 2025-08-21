@@ -1418,7 +1418,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(400, 350)
 
 [node name="ArcadePosition" parent="." instance=ExtResource("69_4qu01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.390244, 1.19556, -27.086)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.390244, 1.19556, -27.086)
 casino = true
 
 [node name="ArcadePos" parent="." instance=ExtResource("69_4qu01")]
@@ -1454,10 +1454,6 @@ casino = true
 
 [node name="ArcadePosition5" parent="." instance=ExtResource("69_4qu01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3777, 1.19556, -24.9287)
-casino = true
-
-[node name="ArcadePosition6" parent="." instance=ExtResource("69_4qu01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3777, 1.19556, -26.0229)
 casino = true
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]

@@ -53,6 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="UI"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -103,6 +104,38 @@ text = "[E] Collect"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Playtest" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -413.0
+offset_top = -124.0
+offset_right = 413.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label2" type="Label" parent="UI/Playtest"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -100.0
+offset_right = 310.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 71
+text = "[E] Playtest to Power ON"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 0
 
@@ -140,7 +173,7 @@ mesh = SubResource("CylinderMesh_0uqiu")
 surface_material_override/0 = SubResource("StandardMaterial3D_x6rcn")
 
 [node name="Sprite3D" type="Sprite3D" parent="NPC"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.0163366, 1.2206, 0.0582401)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.0163366, 1.0632, 0.0582401)
 billboard = 2
 texture_filter = 0
 texture = SubResource("ViewportTexture_0uqiu")
@@ -163,7 +196,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="SubViewport/Control"]
+[node name="msg" type="Label" parent="SubViewport/Control"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -174,6 +207,7 @@ grow_vertical = 2
 text = "Man I love gambling!"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="timeout" from="NPCTimer" to="." method="_on_npc_timer_timeout"]
 [connection signal="timeout" from="NPCTimerPlay" to="." method="_on_npc_timer_play_timeout"]
