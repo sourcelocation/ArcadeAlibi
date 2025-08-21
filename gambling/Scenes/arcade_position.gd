@@ -1,24 +1,31 @@
-extends MeshInstance3D
+extends Node3D
 
 @export var messages_happy: Array[String]
 @export var messages_angry: Array[String]
 @export var casino = false
 var occupied_id
-var earnings = 0.0
+var earnings = 0
 
 var i = 0
 
 func _ready():
+	$Vis.visible = false
 	if casino:
 		add_to_group("casino",true)
 	else:
 		add_to_group("arcade",true)
 	$NPC.visible = false
+	
+	await get_tree().create_timer(0.1).timeout
+	
+	if ("occupied_id-%s" % name) in Save.config:
+		occupied_id = Save.config[("occupied_id-%s" % name)]
+		spawn()
 
 func _process(delta: float) -> void:
-	if !occupied_id:
-		if $Area3D.overlaps_body(Game.gm.player):
-			if Input.is_action_pressed("Select"):
+	if $Area3D.overlaps_body(Game.gm.player):
+		if Input.is_action_pressed("Select"):
+			if !occupied_id:
 				var t = Game.gm.player.selected_tool
 				if t != null:
 					var a = t >= 300 and casino
@@ -28,10 +35,17 @@ func _process(delta: float) -> void:
 						Game.gm.player.update_items_ui()
 						Game.gm.player.equip_item(null)
 						occupied_id = t
+						Save.save("occupied_id-%s" % name,occupied_id)
 						spawn()
+						for c in get_tree().get_nodes_in_group("casino"): c.toggle(false)
+						for c in get_tree().get_nodes_in_group("arcade"): c.toggle(false)
+
+				
+			Game.gm.player.give_item(115,earnings)
+			earnings = 0
 	
 	
-	$UI.visible = $Area3D.overlaps_body(Game.gm.player)
+	$UI.visible = $Area3D.overlaps_body(Game.gm.player) and occupied_id
 
 func _playtested():
 	$NPCTimer.start()
@@ -57,15 +71,22 @@ func _on_npc_timer_timeout() -> void:
 	$NPCTimerPlay.start()
 	$NPC.visible = true
 	i = 0
-	match occupied_id:
-		200:
-			Game.gmplayer.money += 50.0
-		300:
-			Game.gmplayer.money += 1000.0
-		301:
-			Game.gmplayer.money += 2500.0
 
 
 func _on_npc_timer_play_timeout() -> void:
 	i += 1
+	match occupied_id:
+		200:
+			earnings += randi_range(40,60)
+			#Game.gm.player.give_item(115,50)
+		300:
+			earnings += randi_range(900,1100)
+			#Game.gm.player.give_item(115,1000)
+		301:
+			earnings += randi_range(3000,7000)
+			#Game.gm.player.give_item(115,5000)
 	
+func toggle(on):
+	$Vis.visible = on
+	if name =="ArcadePos": 
+		print(name)

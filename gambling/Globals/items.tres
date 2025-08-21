@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="ItemsRes" load_steps=31 format=3 uid="uid://bgj1o3u7uub4r"]
+[gd_resource type="Resource" script_class="ItemsRes" load_steps=36 format=3 uid="uid://bgj1o3u7uub4r"]
 
 [ext_resource type="Script" uid="uid://jbo30sw083oh" path="res://Globals/itemres.gd" id="1_dfotg"]
 [ext_resource type="Texture2D" uid="uid://cneqx7ignovt5" path="res://Resources/UI/shovel.png" id="2_60mav"]
 [ext_resource type="PackedScene" uid="uid://bkp4hdw8k1yts" path="res://Scenes/Shovel/shovel.tscn" id="3_fcbn3"]
 [ext_resource type="Texture2D" uid="uid://yr5jyhgekyxp" path="res://Resources/UI/bark.png" id="4_31ei7"]
+[ext_resource type="Texture2D" uid="uid://3if6nuwajj7a" path="res://Resources/UI/shovelgold.png" id="4_dpdvq"]
+[ext_resource type="PackedScene" uid="uid://c7pvqtv7l6cv" path="res://Scenes/Shovel/shovel-gold.tscn" id="5_kml3e"]
 [ext_resource type="Texture2D" uid="uid://bvfe3wwuwi51m" path="res://Resources/UI/ingot-iron.png" id="5_uds7k"]
 [ext_resource type="Texture2D" uid="uid://cfdt0es1n8sab" path="res://Resources/UI/ingot-silicon.png" id="6_fp1o2"]
 [ext_resource type="Texture2D" uid="uid://d8d3vnxqxtbj" path="res://Resources/UI/ingot-copper.png" id="7_ujocd"]
@@ -17,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://df3ewwjwib0kh" path="res://Scenes/Arcade/arcade.tscn" id="14_4ggls"]
 [ext_resource type="Texture2D" uid="uid://bbm818xth5n6p" path="res://Resources/UI/holo.png" id="14_jfl5u"]
 [ext_resource type="Texture2D" uid="uid://qsagqauctsny" path="res://Scenes/Minigames/pawnW.png" id="15_fxjhs"]
+[ext_resource type="Texture2D" uid="uid://bnghtdeynw2wd" path="res://Resources/UI/dollar.png" id="17_aft2q"]
 
 [sub_resource type="Resource" id="Resource_jcrx1"]
 script = ExtResource("1_dfotg")
@@ -26,6 +29,17 @@ description = "Nothing special, but a good ol' shovel to either dig dirt, or kic
 icon = ExtResource("2_60mav")
 is_tool = true
 scene = ExtResource("3_fcbn3")
+recipe = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_aft2q"]
+script = ExtResource("1_dfotg")
+id = 2
+title = "Gold Shovel"
+description = "Placeholder description"
+icon = ExtResource("4_dpdvq")
+is_tool = true
+scene = ExtResource("5_kml3e")
 recipe = Dictionary[int, int]({})
 metadata/_custom_type_script = "uid://jbo30sw083oh"
 
@@ -175,11 +189,21 @@ scene = ExtResource("14_4ggls")
 recipe = Dictionary[int, int]({
 100: 90,
 120: 1,
-122: 10
+122: 5
 })
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_4ggls"]
+script = ExtResource("1_dfotg")
+id = 115
+title = "Cash"
+description = "Placeholder description"
+icon = ExtResource("17_aft2q")
+is_tool = false
+recipe = Dictionary[int, int]({})
 metadata/_custom_type_script = "uid://jbo30sw083oh"
 
 [resource]
 script = ExtResource("8_jfl5u")
-items = Array[ExtResource("1_dfotg")]([SubResource("Resource_jcrx1"), SubResource("Resource_fhxkh"), SubResource("Resource_qqdjj"), SubResource("Resource_x8opw"), SubResource("Resource_ntkbw"), SubResource("Resource_d4puy"), SubResource("Resource_xft3b"), SubResource("Resource_yuvyg"), SubResource("Resource_hb4p8"), SubResource("Resource_h1l72"), SubResource("Resource_scdd5"), SubResource("Resource_cjj5m"), SubResource("Resource_jfl5u")])
+items = Array[ExtResource("1_dfotg")]([SubResource("Resource_jcrx1"), SubResource("Resource_aft2q"), SubResource("Resource_fhxkh"), SubResource("Resource_qqdjj"), SubResource("Resource_x8opw"), SubResource("Resource_ntkbw"), SubResource("Resource_d4puy"), SubResource("Resource_xft3b"), SubResource("Resource_yuvyg"), SubResource("Resource_hb4p8"), SubResource("Resource_h1l72"), SubResource("Resource_scdd5"), SubResource("Resource_cjj5m"), SubResource("Resource_jfl5u"), SubResource("Resource_4ggls")])
 metadata/_custom_type_script = "uid://br8002vnhl5bn"

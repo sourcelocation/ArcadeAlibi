@@ -86,6 +86,13 @@ func _process(delta: float) -> void:
 	if player.global_position.y + 5.0 <= -layer_height * layer_to_gen:
 		gen_chests(layer_to_gen)
 		layer_to_gen += 1
+		
+	if Input.is_action_just_pressed("cheat"):
+		player.give_item(100,50)
+		player.give_item(101,50)
+		player.give_item(102,50)
+		player.give_item(103,50)
+		player.give_item(115,5000000)
 
 func _input(event):
 	if in_computer:
@@ -208,6 +215,7 @@ func _on_options_pressed() -> void:
 	pause_menu.visible = false
 
 func _on_quit_pressed() -> void:
+	save()
 	if not pause_menu.visible: return
 	get_tree().paused = false
 	get_tree().quit()

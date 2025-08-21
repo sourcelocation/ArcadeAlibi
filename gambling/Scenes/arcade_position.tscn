@@ -1,14 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0f1x068lpnl1"]
+[gd_scene load_steps=11 format=3 uid="uid://c0f1x068lpnl1"]
 
 [ext_resource type="Script" uid="uid://f0w6reycq67y" path="res://Scenes/arcade_position.gd" id="1_0uqiu"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjcg3"]
-albedo_color = Color(0, 1, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_x8opw"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_0uqiu"]
 size = Vector2(1, 1)
-subdivide_width = 10
-subdivide_depth = 10
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0uqiu"]
 
@@ -34,12 +29,13 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="ViewportTexture" id="ViewportTexture_0uqiu"]
 viewport_path = NodePath("SubViewport")
 
-[node name="ArcadePosition" type="MeshInstance3D"]
-material_override = SubResource("StandardMaterial3D_vjcg3")
-mesh = SubResource("PlaneMesh_x8opw")
+[node name="ArcadePosition" type="Node3D"]
 script = ExtResource("1_0uqiu")
 messages_happy = Array[String](["Time to make a living!", "I LOVE GAMBLING", "I'm so addicted to gambling", "Such an easy game", "What can go wrong?", "Just one more game", "I'm that 1% who doesn't quit"])
 messages_angry = Array[String](["Man what the hell!", "This has to be rigged", "I lost my fortnite cd acount..", "Just one more game...", "Last game an I'll quit"])
+
+[node name="Vis" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_0uqiu")
 
 [node name="Area3D" type="Area3D" parent="."]
 

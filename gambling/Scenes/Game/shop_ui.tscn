@@ -50,7 +50,7 @@ theme_override_colors/font_hovered_color = Color(0, 0.69, 0, 1)
 theme_override_colors/font_selected_color = Color(0, 1, 0, 1)
 theme_override_colors/drop_mark_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 34
-current_tab = 2
+current_tab = 1
 
 [node name="Crafting" type="Control" parent="TabContainer"]
 visible = false
@@ -90,7 +90,6 @@ offset_bottom = 24.0
 text = "Items Required"
 
 [node name="Upgrades" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -104,7 +103,7 @@ offset_bottom = 95.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 31
 text = "SHOVEL THAT SHINES LIKE GOLD
-($6,969)"
+($1999)"
 
 [node name="bunker" type="Button" parent="TabContainer/Upgrades"]
 unique_name_in_owner = true
@@ -131,6 +130,7 @@ text = "BUY A WHOLE FRICKING BUILDING
 ($1,000,000)"
 
 [node name="Deposit" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -176,7 +176,7 @@ offset_bottom = 350.0
 theme_override_font_sizes/font_size = 17
 text = "*you may or may not get caught by the feds"
 
-[node name="Button2" type="Button" parent="TabContainer/Deposit"]
+[node name="depositbutton" type="Button" parent="TabContainer/Deposit"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -207,3 +207,4 @@ mouse_filter = 2
 [connection signal="pressed" from="TabContainer/Upgrades/shovel" to="." method="_on_shovel_pressed"]
 [connection signal="pressed" from="TabContainer/Upgrades/bunker" to="." method="_on_bunker_pressed"]
 [connection signal="pressed" from="TabContainer/Upgrades/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="TabContainer/Deposit/depositbutton" to="." method="_on_depositbutton_pressed"]

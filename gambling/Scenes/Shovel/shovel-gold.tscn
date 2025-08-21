@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7pvqtv7l6cv"]
+
+[ext_resource type="Script" uid="uid://biorepn730u6e" path="res://Scenes/Shovel/item.gd" id="1_emth1"]
+[ext_resource type="PackedScene" uid="uid://wsxt2h8q4vxp" path="res://Scenes/Shovel/shovel.blend" id="2_tb8je"]
+[ext_resource type="PackedScene" uid="uid://dpn0163nj5h7u" path="res://Scenes/particles.tscn" id="3_r0wjv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emth1"]
+albedo_color = Color(1, 0.866667, 0, 1)
+metallic = 0.94
+roughness = 0.13
+
+[sub_resource type="BoxMesh" id="BoxMesh_iyuiw"]
+
+[node name="GoldShovel" type="Node3D"]
+script = ExtResource("1_emth1")
+
+[node name="shovel" parent="." instance=ExtResource("2_tb8je")]
+transform = Transform3D(0.296066, -0.119365, 0.94768, 0.381613, -0.894754, -0.231919, 0.875623, 0.43031, -0.219355, 0.969946, 1.2421, -1.0501)
+
+[node name="Object002" parent="shovel" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_emth1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.40318, 0, 0, 0, 3.40318, 0, 0, 0, 3.40318, -2.00846, 1.18829, -0.748207)
+visible = false
+mesh = SubResource("BoxMesh_iyuiw")
+
+[node name="Particles" parent="." instance=ExtResource("3_r0wjv")]
+
+[editable path="shovel"]

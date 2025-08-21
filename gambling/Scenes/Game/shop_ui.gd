@@ -52,17 +52,18 @@ func _craft(item: ItemRes):
 	for c in items_container_craft.get_children(): c.update_button()
 
 func _on_shovel_pressed() -> void:
-	if Game.gm.player.money >= 6969:
-		Game.gm.player.money -= 6969
-		Save.save(true,"shovel-bought")
+	if Game.gm.player.money >= 1999:
+		Game.gm.player.money -= 1999
+		Save.save("shovel-bought",true)
 		shovel.disabled = true
 		shovel.text = "PURCHASED"
+		Game.gm.player.give_item(2,1)
 
 
 func _on_bunker_pressed() -> void:
 	if Game.gm.player.money >= 20000:
 		Game.gm.player.money -= 20000
-		Save.save(true,"bunker-bought")
+		Save.save("bunker-bought",true)
 		bunker.disabled = true
 		bunker.text = "PURCHASED"
 
@@ -70,6 +71,12 @@ func _on_bunker_pressed() -> void:
 func _on_back_pressed() -> void:
 	if Game.gm.player.money >= 1000000:
 		Game.gm.player.money -= 1000000
-		Save.save(true,"back-bought")
+		Save.save("back-bought",true)
 		back.disabled = true
 		back.text = "PURCHASED"
+
+
+func _on_depositbutton_pressed() -> void:
+	Game.gm.player.money += Game.gm.player.inventory[115]
+	Game.gm.player.inventory[115] = 0
+	Game.gm.player.update_items_ui()

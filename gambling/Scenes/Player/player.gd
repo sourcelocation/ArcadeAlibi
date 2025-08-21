@@ -51,6 +51,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var mouse_event = event.relative * mouse_sens
 		camera_look(mouse_event)
+		
+
 
 func camera_look(movement : Vector2):
 	if not can_move:
@@ -100,7 +102,7 @@ func process_inventory_select():
 		equip_item_slot(2)
 
 func process_dig():
-	if Input.is_action_pressed("dig") and selected_tool == 1:  # e.g., hold a button to dig
+	if Input.is_action_pressed("dig") and (selected_tool == 1 or selected_tool == 2):  # e.g., hold a button to dig
 		var params = PhysicsRayQueryParameters3D.new()
 		params.from = main_camera.global_position
 		params.to = params.from - main_camera.global_transform.basis.z * 1.75
@@ -110,7 +112,7 @@ func process_dig():
 			# Process the digging logic here
 			var _tool = Game.gm.terrain.get_voxel_tool()
 			_tool.mode = VoxelTool.MODE_REMOVE
-			_tool.do_sphere(pos,0.8)
+			_tool.do_sphere(pos,0.8 if selected_tool == 1 else 1.5)
 			hand.get_child(0).use(pos)
 		# Move player into the dug space if needed
 
@@ -249,7 +251,16 @@ func equip_item(_item):
 		var item = _item.scene.instantiate()
 		hand.add_child(item)
 		selected_tool = _item.id
-
+		
+	if _item and _item.id >= 200 and _item.id < 300:
+		for c in get_tree().get_nodes_in_group("arcade"): c.toggle(true)
+		for c in get_tree().get_nodes_in_group("casino"): c.toggle(false)
+	elif _item and _item.id >= 300 and _item.id < 400:
+		for c in get_tree().get_nodes_in_group("casino"): c.toggle(true)
+		for c in get_tree().get_nodes_in_group("arcade"): c.toggle(false)
+	else:
+		for c in get_tree().get_nodes_in_group("casino"): c.toggle(false)
+		for c in get_tree().get_nodes_in_group("arcade"): c.toggle(false)
 func get_tools_in_inventory():
 	var tools = []
 	var keys = inventory.keys()
