@@ -45,6 +45,7 @@ func toggle_shop(visible: bool):
 	Game.gm.player.on_shop_toggle(visible)
 
 func setup_store():
+	for c in grid.get_children(): c.queue_free()
 	for data in store_data:
 		var temp = store_item.instantiate()
 		temp.buy_item.connect(on_buy_item)

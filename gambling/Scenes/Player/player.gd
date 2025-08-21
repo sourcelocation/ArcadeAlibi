@@ -203,6 +203,7 @@ func on_shop_toggle(on):
 		enter_shop = false
 		leave_shop = true
 		can_move = true
+	Game.gm.shop_ui._update()
 
 func update_items_ui():
 	var container = $Control/ItemsContainer
@@ -219,6 +220,7 @@ func update_items_ui():
 	var keys = inventory.keys()
 	keys.sort()
 	for item in keys:
+		if inventory[item] == 0: continue
 		var n = preload("res://Scenes/item_ui.tscn").instantiate()
 		n.set_data(get_item_by_id(item), inventory[item] - 1)
 		grid_container.add_child(n)

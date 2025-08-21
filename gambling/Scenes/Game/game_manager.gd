@@ -14,6 +14,8 @@ var player: Player
 @onready var nothingness: MeshInstance3D = $Nothingness
 @onready var money_label: Label = $UI/MoneyLabel
 @onready var shop_viewport: SubViewport = $UI/ShopViewport
+@onready var shop_ui: Control = $UI/ShopViewport/ShopUI
+
 @export var chest : PackedScene
 @export var chests_per_layer: Array[int] = [300,50]
 

@@ -21,6 +21,7 @@ func _ready():
 	_update()
 	
 func _update():
+	for c in items_container_craft.get_children(): c.queue_free()
 	for item in items:
 		if len(item.recipe.keys()) == 0: continue
 		var a = scene.instantiate()

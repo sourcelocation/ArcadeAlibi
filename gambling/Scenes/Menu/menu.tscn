@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bc8jlduayrucf"]
+[gd_scene load_steps=20 format=3 uid="uid://bc8jlduayrucf"]
 
 [ext_resource type="Script" uid="uid://boxl5is561to5" path="res://Scenes/Menu/menu.gd" id="1_3qr6s"]
 [ext_resource type="Texture2D" uid="uid://cynnkrd6qo3ki" path="res://Resources/UI/logo.png" id="1_3ymnh"]
@@ -10,16 +10,14 @@
 [ext_resource type="AudioStream" uid="uid://byinpe85husgm" path="res://Scenes/Menu/nope1.mp3" id="7_uwxxs"]
 [ext_resource type="AudioStream" uid="uid://b7tio8cre0alg" path="res://Scenes/Menu/nope2.mp3" id="8_qwfkq"]
 [ext_resource type="AudioStream" uid="uid://cqy8vab1o5seh" path="res://Scenes/Menu/nope3.mp3" id="10_m6csd"]
-[ext_resource type="AudioStream" uid="uid://dsyvporq5e5mc" path="res://Scenes/Menu/nope4.mp3" id="11_qok0p"]
 [ext_resource type="AudioStream" uid="uid://dhr4kxjf5n8ur" path="res://Resources/Music/Resources_Sound_soundtrack-final.ogg" id="12_qok0p"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hgg7c"]
 playback_mode = 2
-streams_count = 4
+streams_count = 3
 stream_0/stream = ExtResource("7_uwxxs")
 stream_1/stream = ExtResource("8_qwfkq")
 stream_2/stream = ExtResource("10_m6csd")
-stream_3/stream = ExtResource("11_qok0p")
 
 [sub_resource type="Animation" id="Animation_qok0p"]
 length = 0.001

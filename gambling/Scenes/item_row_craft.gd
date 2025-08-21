@@ -9,7 +9,9 @@ func set_data(_item: ItemRes):
 	item = _item
 	texture_rect.texture = item.icon
 	label.text = item.title
-	for k in item.recipe.keys():
+	var keys = item.recipe.keys()
+	keys.sort()
+	for k in keys:
 		var a = preload("res://Scenes/item_craft.tscn").instantiate()
 		$Deps.add_child(a)
 		a.set_data(get_item_by_id(k),item.recipe[k]-1)
