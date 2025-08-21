@@ -15,7 +15,7 @@ var player: Player
 @onready var money_label: Label = $UI/MoneyLabel
 @onready var shop_viewport: SubViewport = $UI/ShopViewport
 @export var chest : PackedScene
-@export var chests_per_layer: Array[int] = [80,50]
+@export var chests_per_layer: Array[int] = [300,50]
 
 var computer_visible = false
 var in_computer = false

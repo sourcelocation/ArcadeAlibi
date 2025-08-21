@@ -48,6 +48,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.411272, 0)
 shape = SubResource("BoxShape3D_0uqiu")
 
 [node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,8 +143,8 @@ transform = Transform3D(0.0521576, 0, 0, 0, -6.82403e-10, 0.0521576, 0, -0.01561
 mesh = SubResource("CylinderMesh_0uqiu")
 surface_material_override/0 = SubResource("StandardMaterial3D_x6rcn")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2134, 2.08225, 0)
+[node name="Sprite3D" type="Sprite3D" parent="NPC"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.0163366, 1.2206, 0.0582401)
 billboard = 2
 texture_filter = 0
 texture = SubResource("ViewportTexture_0uqiu")

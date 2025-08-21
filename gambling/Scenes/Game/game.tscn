@@ -1460,9 +1460,6 @@ casino = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3777, 1.19556, -26.0229)
 casino = true
 
-[node name="ArcadeMachine" parent="." instance=ExtResource("75_yuvyg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.22172, 0, -2.11712)
-
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Shop/Area3D" to="." method="_on_area_3d_body_exited"]
