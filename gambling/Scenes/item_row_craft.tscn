@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://coaexclis7ytx"]
+
+[ext_resource type="Script" uid="uid://biky6upnbo5p" path="res://Scenes/item_row_craft.gd" id="1_q302e"]
+[ext_resource type="Texture2D" uid="uid://d8d3vnxqxtbj" path="res://Resources/UI/ingot-copper.png" id="3_cn7ka"]
+[ext_resource type="Texture2D" uid="uid://3egvadsmcxih" path="res://Resources/UI/build.png" id="3_xjy1k"]
+
+[node name="ItemRow" type="Panel"]
+custom_minimum_size = Vector2(0, 50)
+size_flags_horizontal = 3
+script = ExtResource("1_q302e")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 4.0
+offset_right = -9.0
+offset_bottom = -3.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="HBoxContainer2/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Copper Wire"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45.5, 0)
+layout_mode = 2
+texture = ExtResource("3_cn7ka")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CraftButton" type="Button" parent="HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40.29, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+icon = ExtResource("3_xjy1k")
+expand_icon = true
+
+[node name="Deps" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 173.0
+offset_top = 4.0
+offset_right = 239.0
+offset_bottom = 46.0

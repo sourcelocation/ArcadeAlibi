@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpn0163nj5h7u"]
+
+[ext_resource type="Script" uid="uid://bsjyu4uvdp4hs" path="res://Scenes/particles.gd" id="1_lrx72"]
+[ext_resource type="Material" uid="uid://bm8rgwakdi171" path="res://Scenes/Game/stone.tres" id="2_7pyg6"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iyuiw"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.5
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+angular_velocity_min = -637.71
+angular_velocity_max = 720.0
+scale_min = 0.5
+scale_max = 2.0
+collision_mode = 2
+collision_use_scale = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_iyuiw"]
+material = ExtResource("2_7pyg6")
+size = Vector3(0.07, 0.09, 0.04)
+
+[node name="Particles" type="Node3D"]
+script = ExtResource("1_lrx72")
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_iyuiw")
+draw_pass_1 = SubResource("PrismMesh_iyuiw")

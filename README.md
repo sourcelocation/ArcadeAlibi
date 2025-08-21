@@ -21,3 +21,4 @@ CRT Monitor by Jarlan Perez [CC-BY] (https://creativecommons.org/licenses/by/3.0
 Ladder by Keith Davis [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/6JRbnTNfhSS)
 Lamp by burunduk [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/OQ2HurCvOz)
 Shovel by Poly by Google [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/fCeaY97tP4r)
+Arcade Machine by J-Toastie [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/GLDkMhiynM)

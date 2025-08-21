@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdprtjmvjx54k"]
+
+[ext_resource type="Script" uid="uid://b6n25q84untkg" path="res://Scenes/item_ui.gd" id="1_qqd0c"]
+[ext_resource type="Texture2D" uid="uid://cneqx7ignovt5" path="res://Resources/UI/shovel.png" id="2_ggn2s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnvht"]
+bg_color = Color(0.238, 0.35, 0.252933, 0.623529)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qqd0c"]
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Item" type="Panel"]
+custom_minimum_size = Vector2(48, 48)
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
+script = ExtResource("1_qqd0c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ggn2s")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = -19.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
+theme_override_font_sizes/font_size = 20
+text = "1"
+label_settings = SubResource("LabelSettings_qqd0c")
+horizontal_alignment = 2

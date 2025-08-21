@@ -111,6 +111,7 @@ func process_dig():
 			var _tool = Game.gm.terrain.get_voxel_tool()
 			_tool.mode = VoxelTool.MODE_REMOVE
 			_tool.do_sphere(pos,0.8)
+			hand.get_child(0).use(pos)
 		# Move player into the dug space if needed
 
 func _physics_process(delta: float) -> void:
@@ -242,9 +243,10 @@ func get_item_by_id(id):
 
 func equip_item(_item):
 	for c in hand.get_children(): if c != boombox: c.queue_free()
-	var item = _item.scene.instantiate()
-	hand.add_child(item)
-	selected_tool = _item.id
+	if _item != null:
+		var item = _item.scene.instantiate()
+		hand.add_child(item)
+		selected_tool = _item.id
 
 func get_tools_in_inventory():
 	var tools = []
@@ -253,6 +255,7 @@ func get_tools_in_inventory():
 	for id in keys:
 		var tool = get_item_by_id(id)
 		if tool.is_tool:
+			if inventory[id] <= 0: continue
 			tools.append(tool)
 	return tools
 

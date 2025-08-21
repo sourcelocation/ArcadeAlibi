@@ -112,3 +112,7 @@ offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 0
 columns = 10
+
+[node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45244, 0)
+radius = 0.433139

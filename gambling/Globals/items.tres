@@ -1,0 +1,182 @@
+[gd_resource type="Resource" script_class="ItemsRes" load_steps=31 format=3 uid="uid://bgj1o3u7uub4r"]
+
+[ext_resource type="Script" uid="uid://jbo30sw083oh" path="res://Globals/itemres.gd" id="1_dfotg"]
+[ext_resource type="Texture2D" uid="uid://cneqx7ignovt5" path="res://Resources/UI/shovel.png" id="2_60mav"]
+[ext_resource type="PackedScene" uid="uid://bkp4hdw8k1yts" path="res://Scenes/Shovel/shovel.tscn" id="3_fcbn3"]
+[ext_resource type="Texture2D" uid="uid://yr5jyhgekyxp" path="res://Resources/UI/bark.png" id="4_31ei7"]
+[ext_resource type="Texture2D" uid="uid://bvfe3wwuwi51m" path="res://Resources/UI/ingot-iron.png" id="5_uds7k"]
+[ext_resource type="Texture2D" uid="uid://cfdt0es1n8sab" path="res://Resources/UI/ingot-silicon.png" id="6_fp1o2"]
+[ext_resource type="Texture2D" uid="uid://d8d3vnxqxtbj" path="res://Resources/UI/ingot-copper.png" id="7_ujocd"]
+[ext_resource type="Texture2D" uid="uid://canbf8xpjtkbf" path="res://Resources/UI/chip.png" id="8_60mav"]
+[ext_resource type="Script" uid="uid://br8002vnhl5bn" path="res://Globals/itemsres.gd" id="8_jfl5u"]
+[ext_resource type="Texture2D" uid="uid://cjrgpbje2su1i" path="res://Resources/UI/wires.png" id="9_fcbn3"]
+[ext_resource type="Texture2D" uid="uid://erxnaoim8tt8" path="res://Resources/UI/screen.png" id="10_31ei7"]
+[ext_resource type="Texture2D" uid="uid://b6t8mk4xy3lfj" path="res://Resources/UI/777.png" id="11_fp1o2"]
+[ext_resource type="Texture2D" uid="uid://c1crtrn7cl37n" path="res://Resources/UI/rigged.png" id="12_ujocd"]
+[ext_resource type="Texture2D" uid="uid://bsxtwdht4tkyj" path="res://Scenes/Items/pacman.png" id="13_ujocd"]
+[ext_resource type="PackedScene" uid="uid://df3ewwjwib0kh" path="res://Scenes/Arcade/arcade.tscn" id="14_4ggls"]
+[ext_resource type="Texture2D" uid="uid://bbm818xth5n6p" path="res://Resources/UI/holo.png" id="14_jfl5u"]
+[ext_resource type="Texture2D" uid="uid://qsagqauctsny" path="res://Scenes/Minigames/pawnW.png" id="15_fxjhs"]
+
+[sub_resource type="Resource" id="Resource_jcrx1"]
+script = ExtResource("1_dfotg")
+id = 1
+title = "Rusty Shovel"
+description = "Nothing special, but a good ol' shovel to either dig dirt, or kick asses"
+icon = ExtResource("2_60mav")
+is_tool = true
+scene = ExtResource("3_fcbn3")
+recipe = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_fhxkh"]
+script = ExtResource("1_dfotg")
+id = 100
+title = "Wood"
+description = "Placeholder description"
+icon = ExtResource("4_31ei7")
+is_tool = false
+recipe = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_qqdjj"]
+script = ExtResource("1_dfotg")
+id = 101
+title = "Iron Ore"
+description = "Placeholder description"
+icon = ExtResource("5_uds7k")
+is_tool = false
+recipe = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_x8opw"]
+script = ExtResource("1_dfotg")
+id = 102
+title = "Silicon Ore"
+description = "Placeholder description"
+icon = ExtResource("6_fp1o2")
+is_tool = false
+recipe = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_ntkbw"]
+script = ExtResource("1_dfotg")
+id = 103
+title = "Copper Ore"
+description = "Placeholder description"
+icon = ExtResource("7_ujocd")
+is_tool = false
+recipe = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_d4puy"]
+script = ExtResource("1_dfotg")
+id = 110
+title = "Microchip"
+description = "Placeholder description"
+icon = ExtResource("8_60mav")
+is_tool = false
+recipe = Dictionary[int, int]({
+102: 2,
+111: 1
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_xft3b"]
+script = ExtResource("1_dfotg")
+id = 111
+title = "Copper Wire"
+description = "Placeholder description"
+icon = ExtResource("9_fcbn3")
+is_tool = false
+recipe = Dictionary[int, int]({
+103: 2
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_yuvyg"]
+script = ExtResource("1_dfotg")
+id = 120
+title = "Display Screen"
+description = "Placeholder description"
+icon = ExtResource("10_31ei7")
+is_tool = false
+recipe = Dictionary[int, int]({
+110: 1,
+111: 1
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_hb4p8"]
+script = ExtResource("1_dfotg")
+id = 121
+title = "Gambling Module"
+description = "Placeholder description"
+icon = ExtResource("11_fp1o2")
+is_tool = false
+recipe = Dictionary[int, int]({
+102: 3,
+110: 1,
+111: 1
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_h1l72"]
+script = ExtResource("1_dfotg")
+id = 122
+title = "Rigged Module"
+description = "Placeholder description"
+icon = ExtResource("12_ujocd")
+is_tool = false
+recipe = Dictionary[int, int]({
+110: 3,
+121: 2
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_scdd5"]
+script = ExtResource("1_dfotg")
+id = 200
+title = "PackMate"
+description = "Placeholder description"
+icon = ExtResource("13_ujocd")
+is_tool = true
+scene = ExtResource("14_4ggls")
+recipe = Dictionary[int, int]({
+100: 12,
+121: 1
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_cjj5m"]
+script = ExtResource("1_dfotg")
+id = 300
+title = "CS Case Machine"
+description = "Placeholder description"
+icon = ExtResource("14_jfl5u")
+is_tool = true
+scene = ExtResource("14_4ggls")
+recipe = Dictionary[int, int]({
+100: 12,
+122: 1
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[sub_resource type="Resource" id="Resource_jfl5u"]
+script = ExtResource("1_dfotg")
+id = 301
+title = "Rigged Chess 2.0"
+description = "Placeholder description"
+icon = ExtResource("15_fxjhs")
+is_tool = true
+scene = ExtResource("14_4ggls")
+recipe = Dictionary[int, int]({
+100: 90,
+122: 10
+})
+metadata/_custom_type_script = "uid://jbo30sw083oh"
+
+[resource]
+script = ExtResource("8_jfl5u")
+items = Array[ExtResource("1_dfotg")]([SubResource("Resource_jcrx1"), SubResource("Resource_fhxkh"), SubResource("Resource_qqdjj"), SubResource("Resource_x8opw"), SubResource("Resource_ntkbw"), SubResource("Resource_d4puy"), SubResource("Resource_xft3b"), SubResource("Resource_yuvyg"), SubResource("Resource_hb4p8"), SubResource("Resource_h1l72"), SubResource("Resource_scdd5"), SubResource("Resource_cjj5m"), SubResource("Resource_jfl5u")])
+metadata/_custom_type_script = "uid://br8002vnhl5bn"

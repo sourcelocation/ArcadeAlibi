@@ -1,11 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1pqxelmruke8"]
+[gd_scene load_steps=4 format=3 uid="uid://b1pqxelmruke8"]
 
-[ext_resource type="Texture2D" uid="uid://d8d3vnxqxtbj" path="res://Resources/UI/ingot-copper.png" id="1_t7e24"]
-[ext_resource type="Script" uid="uid://b6n25q84untkg" path="res://Scenes/item_ui.gd" id="2_jnvht"]
-[ext_resource type="Texture2D" uid="uid://cneqx7ignovt5" path="res://Resources/UI/shovel.png" id="3_hgc2c"]
+[ext_resource type="Script" uid="uid://c10hwi1g0wi0u" path="res://Scenes/Game/shop_ui.gd" id="1_fulp2"]
+[ext_resource type="Shader" uid="uid://bnmy80f665vsw" path="res://Scenes/Game/crt.gdshader" id="2_fulp2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnvht"]
-bg_color = Color(0.238, 0.35, 0.252933, 0.623529)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jnvht"]
+shader = ExtResource("2_fulp2")
+shader_parameter/resolution = Vector2(600, 450)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.079
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.02
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.3
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
 
 [node name="ShopUI" type="Control"]
 texture_filter = 1
@@ -17,6 +30,7 @@ offset_right = -2160.0
 offset_bottom = -1090.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fulp2")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 modulate = Color(0, 1, 0, 1)
@@ -25,6 +39,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = -5.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_unselected_color = Color(0, 0.57, 0, 1)
@@ -32,9 +50,10 @@ theme_override_colors/font_hovered_color = Color(0, 0.69, 0, 1)
 theme_override_colors/font_selected_color = Color(0, 1, 0, 1)
 theme_override_colors/drop_mark_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 34
-current_tab = 0
+current_tab = 2
 
 [node name="Crafting" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -47,453 +66,10 @@ offset_top = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Crafting/ScrollContainer"]
+[node name="ItemsContainerCraft" type="VBoxContainer" parent="TabContainer/Crafting/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="ItemRow" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 58.7)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = 4.0
-offset_right = -9.0
-offset_bottom = -3.7
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Item" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2"]
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
-script = ExtResource("2_jnvht")
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2/Item"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_hgc2c")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2/Item"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = -16.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
-theme_override_font_sizes/font_size = 13
-text = "x1"
-horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2/HBoxContainer3"]
-custom_minimum_size = Vector2(45.5, 0)
-layout_mode = 2
-texture = ExtResource("1_t7e24")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2/HBoxContainer3"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 21
-text = "Copper Wire"
-
-[node name="Button" type="Button" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow/HBoxContainer2"]
-custom_minimum_size = Vector2(57.91, 0)
-layout_mode = 2
-text = "CRAFT"
-
-[node name="ItemRow2" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 58.7)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = 4.0
-offset_right = -9.0
-offset_bottom = -3.7
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Item" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2"]
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
-script = ExtResource("2_jnvht")
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2/Item"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_hgc2c")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2/Item"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = -16.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
-theme_override_font_sizes/font_size = 13
-text = "x1"
-horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2/HBoxContainer3"]
-custom_minimum_size = Vector2(45.5, 0)
-layout_mode = 2
-texture = ExtResource("1_t7e24")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2/HBoxContainer3"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 21
-text = "Copper Wire"
-
-[node name="Button" type="Button" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow2/HBoxContainer2"]
-custom_minimum_size = Vector2(57.91, 0)
-layout_mode = 2
-text = "CRAFT"
-
-[node name="ItemRow3" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 58.7)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = 4.0
-offset_right = -9.0
-offset_bottom = -3.7
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Item" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2"]
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
-script = ExtResource("2_jnvht")
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2/Item"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_hgc2c")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2/Item"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = -16.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
-theme_override_font_sizes/font_size = 13
-text = "x1"
-horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2/HBoxContainer3"]
-custom_minimum_size = Vector2(45.5, 0)
-layout_mode = 2
-texture = ExtResource("1_t7e24")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2/HBoxContainer3"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 21
-text = "Copper Wire"
-
-[node name="Button" type="Button" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow3/HBoxContainer2"]
-custom_minimum_size = Vector2(57.91, 0)
-layout_mode = 2
-text = "CRAFT"
-
-[node name="ItemRow4" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 58.7)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = 4.0
-offset_right = -9.0
-offset_bottom = -3.7
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Item" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2"]
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
-script = ExtResource("2_jnvht")
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2/Item"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_hgc2c")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2/Item"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = -16.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
-theme_override_font_sizes/font_size = 13
-text = "x1"
-horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2/HBoxContainer3"]
-custom_minimum_size = Vector2(45.5, 0)
-layout_mode = 2
-texture = ExtResource("1_t7e24")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2/HBoxContainer3"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 21
-text = "Copper Wire"
-
-[node name="Button" type="Button" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow4/HBoxContainer2"]
-custom_minimum_size = Vector2(57.91, 0)
-layout_mode = 2
-text = "CRAFT"
-
-[node name="ItemRow5" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 58.7)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = 4.0
-offset_right = -9.0
-offset_bottom = -3.7
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Item" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2"]
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
-script = ExtResource("2_jnvht")
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2/Item"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_hgc2c")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2/Item"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = -16.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
-theme_override_font_sizes/font_size = 13
-text = "x1"
-horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2/HBoxContainer3"]
-custom_minimum_size = Vector2(45.5, 0)
-layout_mode = 2
-texture = ExtResource("1_t7e24")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2/HBoxContainer3"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 21
-text = "Copper Wire"
-
-[node name="Button" type="Button" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow5/HBoxContainer2"]
-custom_minimum_size = Vector2(57.91, 0)
-layout_mode = 2
-text = "CRAFT"
-
-[node name="ItemRow6" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 58.7)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = 4.0
-offset_right = -9.0
-offset_bottom = -3.7
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Item" type="Panel" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2"]
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jnvht")
-script = ExtResource("2_jnvht")
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2/Item"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_hgc2c")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2/Item"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = -16.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.22, 1, 0.298, 1)
-theme_override_font_sizes/font_size = 13
-text = "x1"
-horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="TextureRect" type="TextureRect" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2/HBoxContainer3"]
-custom_minimum_size = Vector2(45.5, 0)
-layout_mode = 2
-texture = ExtResource("1_t7e24")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2/HBoxContainer3"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 21
-text = "Copper Wire"
-
-[node name="Button" type="Button" parent="TabContainer/Crafting/ScrollContainer/VBoxContainer/ItemRow6/HBoxContainer2"]
-custom_minimum_size = Vector2(57.91, 0)
-layout_mode = 2
-text = "CRAFT"
 
 [node name="Label" type="Label" parent="TabContainer/Crafting"]
 modulate = Color(1, 1, 1, 0.482353)
@@ -502,23 +78,132 @@ offset_left = 19.0
 offset_top = 3.0
 offset_right = 100.0
 offset_bottom = 22.0
-text = "Items Required"
+text = "Result"
 
 [node name="Label2" type="Label" parent="TabContainer/Crafting"]
 modulate = Color(1, 1, 1, 0.482353)
 layout_mode = 0
-offset_left = 198.0
-offset_top = 1.0
-offset_right = 272.0
-offset_bottom = 20.0
-text = "Result"
+offset_left = 175.0
+offset_top = 5.0
+offset_right = 256.0
+offset_bottom = 24.0
+text = "Items Required"
 
 [node name="Upgrades" type="Control" parent="TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
+[node name="shovel" type="Button" parent="TabContainer/Upgrades"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.0
+offset_top = 15.0
+offset_right = 375.0
+offset_bottom = 95.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 31
+text = "SHOVEL THAT SHINES LIKE GOLD
+($6,969)"
+
+[node name="bunker" type="Button" parent="TabContainer/Upgrades"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.0
+offset_top = 105.0
+offset_right = 367.0
+offset_bottom = 185.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 31
+text = "GET YOURSELF PUTIN'S BUNKER
+($20,000)"
+
+[node name="back" type="Button" parent="TabContainer/Upgrades"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.0
+offset_top = 196.0
+offset_right = 375.0
+offset_bottom = 276.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 31
+text = "BUY A WHOLE FRICKING BUILDING
+($1,000,000)"
+
 [node name="Deposit" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
+
+[node name="Button" type="Button" parent="TabContainer/Deposit"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+focus_mode = 0
+
+[node name="Label" type="Label" parent="TabContainer/Deposit"]
+layout_mode = 1
+offset_left = 17.0
+offset_top = 12.0
+offset_right = 219.0
+offset_bottom = 91.0
+theme_override_font_sizes/font_size = 24
+text = "Your Balance:"
+
+[node name="Label2" type="Label" parent="TabContainer/Deposit"]
+layout_mode = 1
+offset_left = 17.0
+offset_top = 37.0
+offset_right = 219.0
+offset_bottom = 116.0
+theme_override_font_sizes/font_size = 24
+text = "$0"
+
+[node name="Label3" type="Label" parent="TabContainer/Deposit"]
+layout_mode = 1
+offset_left = 18.0
+offset_top = 96.0
+offset_right = 243.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 24
+text = "(aka you're hella broke lmao)"
+
+[node name="Label4" type="Label" parent="TabContainer/Deposit"]
+layout_mode = 1
+offset_left = 137.0
+offset_top = 271.0
+offset_right = 384.0
+offset_bottom = 350.0
+theme_override_font_sizes/font_size = 17
+text = "*you may or may not get caught by the feds"
+
+[node name="Button2" type="Button" parent="TabContainer/Deposit"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -94.0
+offset_right = -17.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+text = "DEPOSIT CASH*"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_jnvht")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="TabContainer/Upgrades/shovel" to="." method="_on_shovel_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/bunker" to="." method="_on_bunker_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/back" to="." method="_on_back_pressed"]

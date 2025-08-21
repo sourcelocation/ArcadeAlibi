@@ -2,7 +2,7 @@ extends Node3D
 class_name GameManager
 
 var player: Player
-@export var items: Array[ItemRes]
+@onready var items = preload("res://Globals/items.tres").items
 @onready var shop_sprite_3d: Sprite3D = $Shop/ShopSprite3D
 
 @onready var pause_menu: TextureRect = $PauseMenu
@@ -88,7 +88,7 @@ func _process(delta: float) -> void:
 func _input(event):
 	if in_computer:
 		var new_position
-		if event is InputEventMouse:
+		if event is InputEventMouse or event is InputEventPanGesture:
 			var from = player.main_camera.project_ray_origin(event.position)
 			var to = from + player.main_camera.project_ray_normal(event.position) * 1000
 			var space_state = get_world_3d().direct_space_state

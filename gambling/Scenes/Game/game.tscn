@@ -1,27 +1,20 @@
-[gd_scene load_steps=145 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=125 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
 [ext_resource type="Script" uid="uid://bjpd0mcinrug4" path="res://Scenes/Game/game_manager.gd" id="1_l1i01"]
 [ext_resource type="Resource" uid="uid://cslvcweyejh3c" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_movement_component.tres" id="2_aa0lp"]
-[ext_resource type="Script" uid="uid://jbo30sw083oh" path="res://Globals/itemres.gd" id="2_jcrx1"]
 [ext_resource type="Shader" uid="uid://b3oarc00afksk" path="res://Scenes/Grass/grass.gdshader" id="3_fc0e3"]
 [ext_resource type="ArrayMesh" uid="uid://bexedbmtem3p2" path="res://Scenes/Grass/grass.res" id="3_feb5d"]
 [ext_resource type="Resource" uid="uid://iru8ynu04i00" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_camera_rotation_component.tres" id="3_iu0sx"]
-[ext_resource type="Texture2D" uid="uid://cneqx7ignovt5" path="res://Resources/UI/shovel.png" id="3_u2cvy"]
 [ext_resource type="Resource" uid="uid://rp3mpjmisoyh" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/default_object_movement_component.tres" id="4_4v2jo"]
-[ext_resource type="PackedScene" uid="uid://bkp4hdw8k1yts" path="res://Scenes/Shovel/shovel.tscn" id="4_wwos8"]
 [ext_resource type="PackedScene" uid="uid://bsws8exta226s" path="res://Scenes/Grass/grass.blend" id="5_7jktm"]
 [ext_resource type="Resource" uid="uid://c8ulad7utgrg7" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processing_stage.tres" id="5_l1i01"]
-[ext_resource type="Texture2D" uid="uid://yr5jyhgekyxp" path="res://Resources/UI/bark.png" id="5_xft3b"]
 [ext_resource type="Script" uid="uid://b4n1i7gnlrx1n" path="res://addons/SphynxMotionBlurToolkit/PreBlurProcessing/pre_blur_processor.gd" id="6_r62pu"]
 [ext_resource type="PackedScene" uid="uid://d1nlf7wsrex0f" path="res://Scenes/Fence/fence.tscn" id="6_ryrav"]
-[ext_resource type="Texture2D" uid="uid://bvfe3wwuwi51m" path="res://Resources/UI/ingot-iron.png" id="6_yuvyg"]
-[ext_resource type="Texture2D" uid="uid://cfdt0es1n8sab" path="res://Resources/UI/ingot-silicon.png" id="7_hb4p8"]
 [ext_resource type="Texture2D" uid="uid://b10nxxcvm85lb" path="res://Resources/UI/money-ui.png" id="7_j5wjh"]
 [ext_resource type="Resource" uid="uid://bk5yd5plopwi2" path="res://addons/SphynxMotionBlurToolkit/JumpFlood/simple_jf_blur_stage.tres" id="7_klri6"]
 [ext_resource type="Resource" uid="uid://bj3exhmsfcx4w" path="res://addons/SphynxMotionBlurToolkit/JumpFlood/jf_simple_stage.tres" id="8_eu6ph"]
-[ext_resource type="Texture2D" uid="uid://d8d3vnxqxtbj" path="res://Resources/UI/ingot-copper.png" id="8_h1l72"]
 [ext_resource type="FontFile" uid="uid://btpif3n3r64m" path="res://Resources/Fonts/Handjet-VariableFont_ELGR,ELSH,wght.ttf" id="8_vef74"]
 [ext_resource type="Resource" uid="uid://co5k7plgmxepi" path="res://addons/SphynxMotionBlurToolkit/JumpFlood/jump_flood_neighbor_max_stage.tres" id="9_edr7y"]
 [ext_resource type="PackedScene" uid="uid://baykif37w8jxv" path="res://Scenes/Fence/Gate.glb" id="9_vef74"]
@@ -72,144 +65,8 @@
 [ext_resource type="Script" uid="uid://ct63gjc5hguag" path="res://Scenes/Game/underground_audio.gd" id="58_71giq"]
 [ext_resource type="PackedScene" uid="uid://cwfgig73oyoe6" path="res://Scenes/Game/Chest.tscn" id="59_3mdsk"]
 [ext_resource type="PackedScene" uid="uid://b5d7dpv1ch8m2" path="res://Scenes/Tree/tree.tscn" id="60_a4qm0"]
-[ext_resource type="PackedScene" uid="uid://y8hvpgacmflg" path="res://Scenes/Menu/underline_button.tscn" id="69_53spd"]
-[ext_resource type="PackedScene" uid="uid://c1tvg8y24mufa" path="res://Scenes/Minigames/chess.tscn" id="75_xft3b"]
-[ext_resource type="PackedScene" uid="uid://csfq1w21bal5e" path="res://Scenes/Arcade Machines/ArcadeMachine.tscn" id="75_yuvyg"]
-
-[sub_resource type="Resource" id="Resource_jcrx1"]
-script = ExtResource("2_jcrx1")
-id = 1
-title = "Rusty Shovel"
-description = "Nothing special, but a good ol' shovel to either dig dirt, or kick asses"
-icon = ExtResource("3_u2cvy")
-is_tool = true
-scene = ExtResource("4_wwos8")
-recipe = Dictionary[int, int]({})
-metadata/_custom_type_script = "uid://jbo30sw083oh"
-
-[sub_resource type="Resource" id="Resource_fhxkh"]
-script = ExtResource("2_jcrx1")
-id = 100
-title = "Wood"
-description = "Placeholder description"
-icon = ExtResource("5_xft3b")
-is_tool = false
-recipe = Dictionary[int, int]({})
-metadata/_custom_type_script = "uid://jbo30sw083oh"
-
-[sub_resource type="Resource" id="Resource_qqdjj"]
-script = ExtResource("2_jcrx1")
-id = 101
-title = "Iron Ore"
-description = "Placeholder description"
-icon = ExtResource("6_yuvyg")
-is_tool = false
-recipe = Dictionary[int, int]({})
-metadata/_custom_type_script = "uid://jbo30sw083oh"
-
-[sub_resource type="Resource" id="Resource_x8opw"]
-script = ExtResource("2_jcrx1")
-id = 102
-title = "Silicon Ore"
-description = "Placeholder description"
-icon = ExtResource("7_hb4p8")
-is_tool = false
-recipe = Dictionary[int, int]({})
-metadata/_custom_type_script = "uid://jbo30sw083oh"
-
-[sub_resource type="Resource" id="Resource_ntkbw"]
-script = ExtResource("2_jcrx1")
-id = 103
-title = "Copper Ore"
-description = "Placeholder description"
-icon = ExtResource("8_h1l72")
-is_tool = false
-recipe = Dictionary[int, int]({})
-metadata/_custom_type_script = "uid://jbo30sw083oh"
-
-[sub_resource type="Resource" id="Resource_d4puy"]
-script = ExtResource("2_jcrx1")
-id = 110
-title = "Microchip"
-description = "Placeholder description"
-is_tool = false
-recipe = Dictionary[int, int]({
-102: 2,
-111: 1
-})
-metadata/_custom_type_script = "uid://jbo30sw083oh"
-
-[sub_resource type="Resource" id="Resource_xft3b"]
-script = ExtResource("2_jcrx1")
-id = 111
-title = "Copper Wire"
-description = "Placeholder description"
-is_tool = false
-recipe = Dictionary[int, int]({
-103: 2
-})
-metadata/_custom_type_script = "uid://jbo30sw083oh"
-
-[sub_resource type="Resource" id="Resource_yuvyg"]
-script = ExtResource("2_jcrx1")
-id = 120
-title = "Display Screen"
-description = "Placeholder description"
-is_tool = false
-recipe = Dictionary[int, int]({
-110: 1,
-111: 1
-})
-metadata/_custom_type_script = "uid://jbo30sw083oh"
-
-[sub_resource type="Resource" id="Resource_hb4p8"]
-script = ExtResource("2_jcrx1")
-id = 121
-title = "Gambling Module"
-description = "Placeholder description"
-is_tool = false
-recipe = Dictionary[int, int]({
-102: 3,
-110: 1,
-111: 1
-})
-metadata/_custom_type_script = "uid://jbo30sw083oh"
-
-[sub_resource type="Resource" id="Resource_h1l72"]
-script = ExtResource("2_jcrx1")
-id = 122
-title = "Rigged Module"
-description = "Placeholder description"
-is_tool = false
-recipe = Dictionary[int, int]({
-110: 3,
-121: 2
-})
-metadata/_custom_type_script = "uid://jbo30sw083oh"
-
-[sub_resource type="Resource" id="Resource_scdd5"]
-script = ExtResource("2_jcrx1")
-id = 200
-title = "Pacman"
-description = "Placeholder description"
-is_tool = false
-recipe = Dictionary[int, int]({
-100: 12,
-121: 1
-})
-metadata/_custom_type_script = "uid://jbo30sw083oh"
-
-[sub_resource type="Resource" id="Resource_cjj5m"]
-script = ExtResource("2_jcrx1")
-id = 300
-title = "Counter-Snipe Case Machine"
-description = "Placeholder description"
-is_tool = false
-recipe = Dictionary[int, int]({
-100: 12,
-122: 1
-})
-metadata/_custom_type_script = "uid://jbo30sw083oh"
+[ext_resource type="PackedScene" uid="uid://c0f1x068lpnl1" path="res://Scenes/arcade_position.tscn" id="69_4qu01"]
+[ext_resource type="PackedScene" path="res://Scenes/Menu/underline_button.tscn" id="69_53spd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.157253, 0.387188, 0.952321, 1)
@@ -720,7 +577,7 @@ size = Vector3(3, 2, 2.5)
 viewport_path = NodePath("UI/ShopViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d85t2"]
-size = Vector3(3.87402, 3.49805, 1)
+size = Vector3(4.00427, 3.5271, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bkdpl"]
 albedo_texture = ExtResource("45_rht7h")
@@ -754,12 +611,8 @@ size = Vector3(9.27106, 6.26965, 13.1858)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3mdsk"]
 size = Vector3(81.4961, 147.438, 640.181)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xft3b"]
-viewport_path = NodePath("GameViewport")
-
 [node name="Game" type="Node3D"]
 script = ExtResource("1_l1i01")
-items = Array[ExtResource("2_jcrx1")]([SubResource("Resource_jcrx1"), SubResource("Resource_fhxkh"), SubResource("Resource_qqdjj"), SubResource("Resource_x8opw"), SubResource("Resource_ntkbw"), SubResource("Resource_d4puy"), SubResource("Resource_xft3b"), SubResource("Resource_yuvyg"), SubResource("Resource_hb4p8"), SubResource("Resource_h1l72"), SubResource("Resource_scdd5"), SubResource("Resource_cjj5m")])
 chest = ExtResource("59_3mdsk")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -841,8 +694,6 @@ libraries = {
 }
 
 [node name="ShopViewport" type="SubViewport" parent="UI"]
-anisotropic_filtering_level = 0
-canvas_item_default_texture_filter = 0
 size = Vector2i(400, 350)
 
 [node name="ShopUI" parent="UI/ShopViewport" instance=ExtResource("32_d85t2")]
@@ -1320,13 +1171,13 @@ shape = SubResource("BoxShape3D_qjf7v")
 aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
 
 [node name="ShopSprite3D" type="Sprite3D" parent="Shop"]
-transform = Transform3D(0.119837, 0, 8.88178e-16, 0, 0.119837, 0, -8.88178e-16, 0, 0.119837, -0.0175781, 0.217935, 0.339582)
+transform = Transform3D(0.118881, 0, 8.88178e-16, 0, 0.118881, 0, -8.88178e-16, 0, 0.118881, -0.0175786, 0.217935, 0.339582)
 texture = SubResource("ViewportTexture_d85t2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Shop/ShopSprite3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Shop/ShopSprite3D/StaticBody3D"]
-transform = Transform3D(1, 0, 4.12115e-12, 0, 1, 0, -4.12115e-12, 0, 1, 0, 0, -0.464546)
+transform = Transform3D(1, 0, 2.60769e-12, 0, 1, 0, -2.60769e-12, 0, 1, 0.00750732, 0, -0.464546)
 shape = SubResource("BoxShape3D_d85t2")
 
 [node name="grassmask" parent="." instance=ExtResource("45_7icik")]
@@ -1566,12 +1417,48 @@ anisotropic_filtering_level = 0
 canvas_item_default_texture_filter = 0
 size = Vector2i(400, 350)
 
-[node name="Chess" parent="GameViewport" instance=ExtResource("75_xft3b")]
+[node name="ArcadePosition" parent="." instance=ExtResource("69_4qu01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.390244, 1.19556, -27.086)
+casino = true
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.281623, 0, 0, 0, 0.281623, 0, 0, 0, 0.281623, 0, 1.03192, -10.8169)
-shaded = true
-texture = SubResource("ViewportTexture_xft3b")
+[node name="ArcadePos" parent="." instance=ExtResource("69_4qu01")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.51745, 0.0118172, -8.9653)
+
+[node name="ArcadePos2" parent="." instance=ExtResource("69_4qu01")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.29153, 0.0118172, -8.9653)
+
+[node name="ArcadePos3" parent="." instance=ExtResource("69_4qu01")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.333832, 0.0118172, -8.9653)
+
+[node name="ArcadePos4" parent="." instance=ExtResource("69_4qu01")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.683854, 0.0118172, -8.9653)
+
+[node name="ArcadePos5" parent="." instance=ExtResource("69_4qu01")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.84711, 0.0118172, -8.9653)
+
+[node name="ArcadePosition7" parent="." instance=ExtResource("69_4qu01")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.390244, 1.19556, -24.8777)
+casino = true
+
+[node name="ArcadePosition2" parent="." instance=ExtResource("69_4qu01")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.837417, 1.19556, -27.086)
+casino = true
+
+[node name="ArcadePosition3" parent="." instance=ExtResource("69_4qu01")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.03436, 1.19556, -27.086)
+casino = true
+
+[node name="ArcadePosition4" parent="." instance=ExtResource("69_4qu01")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.29885, 1.19556, -27.086)
+casino = true
+
+[node name="ArcadePosition5" parent="." instance=ExtResource("69_4qu01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3777, 1.19556, -24.9287)
+casino = true
+
+[node name="ArcadePosition6" parent="." instance=ExtResource("69_4qu01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3777, 1.19556, -26.0229)
+casino = true
 
 [node name="ArcadeMachine" parent="." instance=ExtResource("75_yuvyg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.22172, 0, -2.11712)

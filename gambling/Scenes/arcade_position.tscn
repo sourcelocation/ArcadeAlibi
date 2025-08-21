@@ -1,0 +1,182 @@
+[gd_scene load_steps=12 format=3 uid="uid://c0f1x068lpnl1"]
+
+[ext_resource type="Script" uid="uid://f0w6reycq67y" path="res://Scenes/arcade_position.gd" id="1_0uqiu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjcg3"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x8opw"]
+size = Vector2(1, 1)
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0uqiu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0uqiu"]
+bg_color = Color(0, 1, 0, 0.207843)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x6rcn"]
+size = Vector3(0.732422, 2.16614, 0.810547)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0uqiu"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0uqiu"]
+material = SubResource("StandardMaterial3D_0uqiu")
+radius = 0.4
+height = 1.8
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0uqiu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6rcn"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0uqiu"]
+viewport_path = NodePath("SubViewport")
+
+[node name="ArcadePosition" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_vjcg3")
+mesh = SubResource("PlaneMesh_x8opw")
+script = ExtResource("1_0uqiu")
+messages_happy = Array[String](["Time to make a living!", "I LOVE GAMBLING", "I'm so addicted to gambling", "Such an easy game", "What can go wrong?", "Just one more game", "I'm that 1% who doesn't quit"])
+messages_angry = Array[String](["Man what the hell!", "This has to be rigged", "I lost my fortnite cd acount..", "Just one more game...", "Last game an I'll quit"])
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.411272, 0)
+shape = SubResource("BoxShape3D_0uqiu")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -313.0
+offset_top = -64.0
+offset_right = 313.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0uqiu")
+
+[node name="Label" type="Label" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -92.0
+offset_right = 310.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 111
+text = "$0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = 56.0
+offset_right = 310.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 71
+text = "[E] Collect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.938346, 0)
+shape = SubResource("BoxShape3D_x6rcn")
+
+[node name="NPCTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="NPCTimerPlay" type="Timer" parent="."]
+wait_time = 6.0
+
+[node name="NPC" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 1.15516, 0.861646, 0.0163366)
+mesh = SubResource("CapsuleMesh_0uqiu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NPC"]
+transform = Transform3D(0.0874105, 0, 0, 0, -1.0813e-08, 0.0874105, 0, -0.247372, -3.82083e-09, 0.184035, 0.615244, -0.400871)
+mesh = SubResource("CylinderMesh_0uqiu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NPC"]
+transform = Transform3D(0.0521576, 0, 0, 0, -6.82403e-10, 0.0521576, 0, -0.0156116, -2.27988e-09, 0.182773, 0.615244, -0.650928)
+mesh = SubResource("CylinderMesh_0uqiu")
+surface_material_override/0 = SubResource("StandardMaterial3D_x6rcn")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NPC"]
+transform = Transform3D(0.0874105, 0, 0, 0, -1.0813e-08, 0.0874105, 0, -0.247372, -3.82083e-09, -0.173172, 0.615244, -0.400871)
+mesh = SubResource("CylinderMesh_0uqiu")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="NPC"]
+transform = Transform3D(0.0521576, 0, 0, 0, -6.82403e-10, 0.0521576, 0, -0.0156116, -2.27988e-09, -0.174434, 0.615244, -0.650928)
+mesh = SubResource("CylinderMesh_0uqiu")
+surface_material_override/0 = SubResource("StandardMaterial3D_x6rcn")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2134, 2.08225, 0)
+billboard = 2
+texture_filter = 0
+texture = SubResource("ViewportTexture_0uqiu")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(125, 102)
+
+[node name="Control" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="SubViewport/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Man I love gambling!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="NPCTimer" to="." method="_on_npc_timer_timeout"]
+[connection signal="timeout" from="NPCTimerPlay" to="." method="_on_npc_timer_play_timeout"]
