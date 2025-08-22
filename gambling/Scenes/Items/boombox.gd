@@ -4,6 +4,7 @@ extends Node3D
 @export var dialogs: Array[AudioStream]
 
 func _ready():
+	print(dialogs)
 	$AudioStreamPlayer3D.stream = dialogs[dialog_play]
 	$AudioStreamPlayer3D.play()
 

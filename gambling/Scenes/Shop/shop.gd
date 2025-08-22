@@ -40,6 +40,9 @@ func _process(_delta):
 		toggle_shop(false)
 
 func toggle_shop(visible: bool):
+	if "first_shop_opened" not in Save.config:
+		Game.gm.player.add_boombox(5)
+	Save.save("first_shop_opened", true)
 	#$UI.visible = visible
 	Game.gm.in_computer = visible
 	Game.gm.player.on_shop_toggle(visible)

@@ -31,6 +31,8 @@ var paused = false
 var time_underground = 0.0
 @onready var chest_opened_once = "chest_opened_once" in Save.config
 
+@export var final_cutscene : PackedScene
+
 func _ready() -> void:
 	Game.gm = self
 	nothingness.visible = false
@@ -60,7 +62,7 @@ func _ready() -> void:
 			$Cutscene1/AnimationPlayer.play("play")
 		else:
 			$Cutscene1.queue_free()
-		
+
 @onready var dir_light_anim: AnimationPlayer = $DirectionalLight3D/AnimationPlayer
 @onready var dir_light: DirectionalLight3D = $DirectionalLight3D
 
@@ -93,6 +95,18 @@ func _process(delta: float) -> void:
 		player.give_item(102,50)
 		player.give_item(103,50)
 		player.give_item(115,5000000)
+
+	if Input.is_action_just_pressed("Test"):
+		var cutscene2 = final_cutscene.instantiate()
+		add_child(cutscene2)
+		cutscene2.play_cutscene()
+		#if "cutscene2" not in Save.config:
+		#$Cutscene2/Camera3D.make_current()
+		#$Cutscene2/Camera3D.current = true
+		#toggle_cutscene(true)
+		#$Cutscene2/AnimationPlayer.play("play")
+		#else:
+			#$Cutscene2.queue_free()
 
 func _input(event):
 	if in_computer:

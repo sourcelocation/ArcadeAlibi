@@ -1,0 +1,168 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3yvei4jr7t4b"]
+
+[ext_resource type="Script" uid="uid://bbigr18llb23k" path="res://Scenes/Game/final_cutscene.gd" id="1_7o6gy"]
+[ext_resource type="FontFile" uid="uid://btpif3n3r64m" path="res://Resources/Fonts/Handjet-VariableFont_ELGR,ELSH,wght.ttf" id="2_6f5eb"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_1jb6d"]
+density = 0.1955
+
+[sub_resource type="Animation" id="Animation_53spd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.156, -0.55, 0.448)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.20944, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d85t2"]
+resource_name = "play"
+length = 120.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 5, 5.0001, 7, 9, 11),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-2.156, -0.55, 0.448), Vector3(-2.156, -0.3, -0.172), Vector3(-2.156, -0.3, -0.172), Vector3(-0.35, -0.3, -0.172), Vector3(-0.2, -0.3, 1.225), Vector3(-0.1, -0.3, 3.805)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3, 5, 7, 9, 11),
+"transitions": PackedFloat32Array(1, 0.517632, 1.6245, 0.392293, 1.56917),
+"update": 0,
+"values": [Vector3(-0.20944, 3.14159, 0), Vector3(0, 3.14159, 0), Vector3(0, 4.71239, 0), Vector3(0, 3.14159, 0), Vector3(-0.392699, 3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/ColorRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.46667, 3, 11, 11.5333, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 0.666667, 1.63333, 2.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_53spd"]
+_data = {
+&"RESET": SubResource("Animation_53spd"),
+&"play": SubResource("Animation_d85t2")
+}
+
+[node name="Cutscene2" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1113, -5.22108)
+visible = false
+script = ExtResource("1_7o6gy")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+size = Vector3(18.88, 10, 8.9)
+material = SubResource("FogMaterial_1jb6d")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.999999, -5.27095e-07, 2.47978e-06, 0, 0.978148, 0.207912, -2.53518e-06, 0.207912, -0.978147, -2.156, -0.55, 0.448)
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_53spd")
+}
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.983607)
+
+[node name="Label" type="Label" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_6f5eb")
+theme_override_font_sizes/font_size = 111
+text = "You Finally
+Made Enough Money For The Treatment"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control"]
+modulate = Color(1, 1, 1, 0.137255)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -781.0
+offset_top = -121.0
+offset_right = -41.0
+offset_bottom = -29.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_6f5eb")
+theme_override_font_sizes/font_size = 81
+text = "Press X to skip"
+horizontal_alignment = 2
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
