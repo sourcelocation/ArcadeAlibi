@@ -48,10 +48,10 @@ func _craft(item: ItemRes):
 			Game.gm.player.inventory[item.id] = 1
 			print(item.id)
 			if item.id == 200 and "first_arcade_machine" not in Save.config:
-				Game.gm.player.add_boombox(6)
+				Game.gm.player.add_boombox(7)
 				Save.save("first_arcade_machine", true)
 			if item.id == 300 and "first_casino_machine" not in Save.config:
-				Game.gm.player.add_boombox(6)
+				Game.gm.player.add_boombox(9)
 				Save.save("first_casino_machine", true)
 
 	Game.gm.player.update_items_ui()

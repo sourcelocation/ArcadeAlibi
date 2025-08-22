@@ -1,16 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://cclnqeq7kns20"]
+[gd_scene load_steps=19 format=3 uid="uid://cclnqeq7kns20"]
 
 [ext_resource type="Script" uid="uid://diq4grbpq5k01" path="res://Scenes/Items/boombox.gd" id="1_qpsky"]
+[ext_resource type="AudioStream" uid="uid://bns55ujvm7b2i" path="res://Resources/Audio/2.mp3" id="2_nf7ns"]
 [ext_resource type="AudioStream" uid="uid://h5rbpbhbm473" path="res://Resources/Audio/vo-1.mp3" id="2_rae5c"]
 [ext_resource type="PackedScene" uid="uid://dk36ti0ow03kj" path="res://Resources/Models/Boombox.glb" id="3_qcmpk"]
-[ext_resource type="AudioStream" uid="uid://ba2c31utj44e2" path="res://Resources/Audio/vo-2.mp3" id="3_rae5c"]
 [ext_resource type="AudioStream" uid="uid://c4jgiipf1pw7w" path="res://Resources/Audio/vo-3.mp3" id="4_rkfpi"]
-[ext_resource type="AudioStream" uid="uid://2h5my1fjqlc0" path="res://Resources/Audio/vo-4.mp3" id="5_akp5q"]
-[ext_resource type="AudioStream" uid="uid://bk31dwju8qr2y" path="res://Resources/Audio/vo-5.mp3" id="6_nf7ns"]
-
-[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_nf7ns"]
-
-[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_rxelb"]
+[ext_resource type="AudioStream" uid="uid://bmpmib5he1s5" path="res://Resources/Audio/3.mp3" id="5_o1dno"]
+[ext_resource type="AudioStream" uid="uid://c1lju6q23ctll" path="res://Resources/Audio/5.mp3" id="6_nf7ns"]
+[ext_resource type="AudioStream" uid="uid://rnapgnup7rbm" path="res://Resources/Audio/6.mp3" id="7_o1dno"]
+[ext_resource type="AudioStream" uid="uid://s08720iej6nk" path="res://Resources/Audio/7.mp3" id="8_txodk"]
+[ext_resource type="AudioStream" uid="uid://cvb2rvvla8a1w" path="res://Resources/Audio/8.mp3" id="9_l13ah"]
+[ext_resource type="AudioStream" uid="uid://c5s4yunarsr83" path="res://Resources/Audio/8-5.mp3" id="10_pebrp"]
+[ext_resource type="AudioStream" uid="uid://bsj1xjxhxfnb3" path="res://Resources/Audio/9.mp3" id="11_hv2ot"]
+[ext_resource type="AudioStream" uid="uid://blw4bk178u1ym" path="res://Resources/Audio/10.mp3" id="12_jmypq"]
+[ext_resource type="AudioStream" uid="uid://dtllri81ee5cv" path="res://Resources/Audio/11.mp3" id="13_l42xi"]
 
 [sub_resource type="Animation" id="Animation_rae5c"]
 length = 0.001
@@ -90,7 +93,7 @@ _data = {
 
 [node name="Boombox" type="Node3D"]
 script = ExtResource("1_qpsky")
-dialogs = Array[AudioStream]([ExtResource("2_rae5c"), ExtResource("3_rae5c"), ExtResource("4_rkfpi"), ExtResource("5_akp5q"), ExtResource("6_nf7ns"), SubResource("AudioStreamMP3_nf7ns"), SubResource("AudioStreamMP3_rxelb")])
+dialogs = Array[AudioStream]([ExtResource("2_rae5c"), ExtResource("2_nf7ns"), ExtResource("4_rkfpi"), ExtResource("5_o1dno"), ExtResource("6_nf7ns"), ExtResource("7_o1dno"), ExtResource("8_txodk"), ExtResource("9_l13ah"), ExtResource("10_pebrp"), ExtResource("11_hv2ot"), ExtResource("12_jmypq"), ExtResource("13_l42xi")])
 
 [node name="Boombox" parent="." instance=ExtResource("3_qcmpk")]
 transform = Transform3D(-0.0044612, 0.000874096, 0.183251, 0.16152, 0.086607, 0.00351903, -0.0865636, 0.161556, -0.00287796, -0.456, 1.271, -0.558)
