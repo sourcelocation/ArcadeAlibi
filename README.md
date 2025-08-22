@@ -22,3 +22,4 @@ Ladder by Keith Davis [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via
 Lamp by burunduk [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/OQ2HurCvOz)
 Shovel by Poly by Google [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/fCeaY97tP4r)
 Arcade Machine by J-Toastie [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/GLDkMhiynM)
+Mom's Death Bed by printable_models (https://free3d.com/3d-model/full-size-bed-with-white-sheets-black-v1--434476.html)

@@ -32,6 +32,7 @@ var time_underground = 0.0
 @onready var chest_opened_once = "chest_opened_once" in Save.config
 
 @export var final_cutscene : PackedScene
+var doc_lerp = false
 
 func _ready() -> void:
 	Game.gm = self
@@ -107,6 +108,11 @@ func _process(delta: float) -> void:
 		#$Cutscene2/AnimationPlayer.play("play")
 		#else:
 			#$Cutscene2.queue_free()
+
+	if doc_lerp and $Hospital/MeshInstance3D11.rotation != Vector3(0, 3.588, 0.157):
+		$Hospital/MeshInstance3D11.rotation = lerp($Hospital/MeshInstance3D11.rotation, Vector3(0, 3.588, 0.157), 0.005)
+	else:
+		doc_lerp = false
 
 func _input(event):
 	if in_computer:
@@ -240,3 +246,6 @@ func _on_pause_menu_toggle_pause() -> void:
 		_toggle_pause(_is_paused())
 	else:
 		_toggle_pause(!_is_paused())
+
+func turn_doc():
+	doc_lerp = true

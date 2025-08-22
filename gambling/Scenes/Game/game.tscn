@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=155 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -68,6 +68,12 @@
 [ext_resource type="PackedScene" uid="uid://b5d7dpv1ch8m2" path="res://Scenes/Tree/tree.tscn" id="60_a4qm0"]
 [ext_resource type="PackedScene" uid="uid://c0f1x068lpnl1" path="res://Scenes/arcade_position.tscn" id="69_4qu01"]
 [ext_resource type="PackedScene" uid="uid://y8hvpgacmflg" path="res://Scenes/Menu/underline_button.tscn" id="69_53spd"]
+[ext_resource type="Texture2D" uid="uid://bqb4g6ppecluk" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_Color.jpg" id="69_ntkbw"]
+[ext_resource type="ArrayMesh" uid="uid://ue4qkw3ce0qm" path="res://Resources/Other/Full_Size_Bed_with_White_Sheets_Black_V1.obj" id="69_qqdjj"]
+[ext_resource type="Texture2D" uid="uid://6slke8wd5ior" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_AmbientOcclusion.jpg" id="70_d4puy"]
+[ext_resource type="Texture2D" uid="uid://byww6k65wfjs0" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_NormalGL.jpg" id="71_xft3b"]
+[ext_resource type="Texture2D" uid="uid://s3oiuf24g1oi" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_Roughness.jpg" id="72_yuvyg"]
+[ext_resource type="Shader" uid="uid://ue3b1pt06h8p" path="res://Scenes/Game/drip.gdshader" id="74_d4puy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.157253, 0.387188, 0.952321, 1)
@@ -611,6 +617,90 @@ size = Vector3(9.27106, 6.26965, 13.1858)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3mdsk"]
 size = Vector3(81.4961, 147.438, 640.181)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hb4p8"]
+albedo_texture = ExtResource("69_ntkbw")
+roughness_texture = ExtResource("72_yuvyg")
+normal_enabled = true
+normal_texture = ExtResource("71_xft3b")
+ao_enabled = true
+ao_texture = ExtResource("70_d4puy")
+uv1_scale = Vector3(0.6, 0.6, 0.6)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_d85t2"]
+material = SubResource("StandardMaterial3D_hb4p8")
+size = Vector3(10, 5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53spd"]
+albedo_color = Color(4.69275e-07, 0, 0.318403, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d85t2"]
+material = SubResource("StandardMaterial3D_53spd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuvyg"]
+albedo_color = Color(1, 0.356863, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_53spd"]
+material = SubResource("StandardMaterial3D_yuvyg")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_53spd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cjj5m"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4qu01"]
+material = SubResource("StandardMaterial3D_cjj5m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1l72"]
+albedo_color = Color(0, 0, 0.654902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scdd5"]
+albedo_color = Color(0.32549, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xft3b"]
+albedo_color = Color(0.752941, 0.752941, 0.752941, 1)
+metallic = 0.65
+roughness = 0.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_ntkbw"]
+material = SubResource("StandardMaterial3D_xft3b")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ntkbw"]
+material = SubResource("StandardMaterial3D_xft3b")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d4puy"]
+albedo_color = Color(0.0470588, 1, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d4puy"]
+material = SubResource("StandardMaterial3D_d4puy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xft3b"]
+shader = ExtResource("74_d4puy")
+shader_parameter/wave_speed = 2.0
+shader_parameter/wave_frequency = 10.0
+shader_parameter/wave_amplitude = 0.02
+shader_parameter/water_color = Color(0.2, 0.5, 0.8, 1)
+shader_parameter/water_alpha = 0.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_d4puy"]
+material = SubResource("ShaderMaterial_xft3b")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xft3b"]
+material = SubResource("StandardMaterial3D_xft3b")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d4puy"]
+material = SubResource("StandardMaterial3D_yuvyg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhxkh"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qspya"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qu01"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tgfhl"]
+material = SubResource("StandardMaterial3D_4qu01")
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_l1i01")
@@ -1457,6 +1547,141 @@ casino = true
 [node name="ArcadePosition5" parent="." instance=ExtResource("69_4qu01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3777, 1.19556, -24.9287)
 casino = true
+
+[node name="Hospital" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8759, 0, 28.288)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hospital"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.05, 0, 2.5, 0)
+mesh = SubResource("BoxMesh_d85t2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hospital"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.05, 0, 2.5, 5.1)
+mesh = SubResource("BoxMesh_d85t2")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Hospital"]
+transform = Transform3D(1, 0, 0, 0, 0.05, 0, 0, 0, 1, 0, 3.61097, 2.5)
+mesh = SubResource("BoxMesh_d85t2")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Hospital"]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 1, -4.95, 2.5, 2.55)
+mesh = SubResource("BoxMesh_d85t2")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hospital"]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 1, 4.95, 2.5, 2.55)
+mesh = SubResource("BoxMesh_d85t2")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hospital"]
+transform = Transform3D(4.75, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 0, 2.5)
+mesh = SubResource("PlaneMesh_d85t2")
+
+[node name="FullSizeBedWithWhiteSheetsBlackV1" type="MeshInstance3D" parent="Hospital"]
+transform = Transform3D(-4.37114e-10, -0.01, -4.37114e-10, 0, -4.37114e-10, 0.01, -0.01, 4.37114e-10, 1.91069e-17, -3.7, 0.4, 2.5)
+mesh = ExtResource("69_qqdjj")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Hospital"]
+transform = Transform3D(0.258307, -0.541551, 0, 0.541551, 0.258307, 0, 0, 0, 0.6, -3.93338, 0.328978, 2.4482)
+mesh = SubResource("CapsuleMesh_53spd")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hospital/MeshInstance3D7"]
+transform = Transform3D(-3.72529e-09, -0.2, 0, 0.1, -7.45058e-09, 0, 0, 0, 0.1, 0.624, 0.477, -0.15)
+mesh = SubResource("CylinderMesh_53spd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hospital/MeshInstance3D7/MeshInstance3D2"]
+transform = Transform3D(0.75, 1.49012e-08, 0, -1.49012e-08, 0.2, 0, 0, 0, 0.75, -0.0378113, -0.85408, 0)
+mesh = SubResource("CylinderMesh_4qu01")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hospital/MeshInstance3D7"]
+transform = Transform3D(-3.72529e-09, -0.2, 0, 0.1, -7.45058e-09, 0, 0, 0, 0.1, 0.624, 0.477, 0.15)
+mesh = SubResource("CylinderMesh_53spd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hospital/MeshInstance3D7/MeshInstance3D3"]
+transform = Transform3D(0.75, 1.49012e-08, 0, -1.49012e-08, 0.2, 0, 0, 0, 0.75, -0.0378113, -0.85408, 0)
+mesh = SubResource("CylinderMesh_4qu01")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Hospital"]
+transform = Transform3D(-0.145153, 0, -0.582177, 0, 0.6, 0, 0.582177, 0, -0.145153, -3.44321, 0.529433, 1.07671)
+mesh = SubResource("CapsuleMesh_53spd")
+surface_material_override/0 = SubResource("StandardMaterial3D_h1l72")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hospital/MeshInstance3D9"]
+transform = Transform3D(-3.72529e-09, -0.2, 0, 0.1, -7.45058e-09, 0, 0, 0, 0.1, 0.624, 0.477, -0.15)
+mesh = SubResource("CylinderMesh_53spd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hospital/MeshInstance3D9/MeshInstance3D2"]
+transform = Transform3D(0.75, 1.49012e-08, 0, -1.49012e-08, 0.2, 0, 0, 0, 0.75, -0.0378113, -0.85408, 0)
+mesh = SubResource("CylinderMesh_4qu01")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hospital/MeshInstance3D9"]
+transform = Transform3D(-3.72529e-09, -0.2, 0, 0.1, -7.45058e-09, 0, 0, 0, 0.1, 0.624, 0.477, 0.15)
+mesh = SubResource("CylinderMesh_53spd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hospital/MeshInstance3D9/MeshInstance3D3"]
+transform = Transform3D(0.75, 1.49012e-08, 0, -1.49012e-08, 0.2, 0, 0, 0, 0.75, -0.0378113, -0.85408, 0)
+mesh = SubResource("CylinderMesh_4qu01")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Hospital"]
+transform = Transform3D(-0.291998, 0, -0.273381, 0, 0.4, 0, 0.273381, 0, -0.291998, -2.48992, 0.269839, 1.31702)
+mesh = SubResource("CapsuleMesh_53spd")
+surface_material_override/0 = SubResource("StandardMaterial3D_scdd5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hospital/MeshInstance3D10"]
+transform = Transform3D(-3.72529e-09, -0.2, 0, 0.1, -7.45058e-09, 0, 0, 0, 0.1, 0.624, 0.477, -0.15)
+mesh = SubResource("CylinderMesh_53spd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hospital/MeshInstance3D10/MeshInstance3D2"]
+transform = Transform3D(0.75, 1.49012e-08, 0, -1.49012e-08, 0.2, 0, 0, 0, 0.75, -0.0378113, -0.85408, 0)
+mesh = SubResource("CylinderMesh_4qu01")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hospital/MeshInstance3D10"]
+transform = Transform3D(-3.72529e-09, -0.2, 0, 0.1, -7.45058e-09, 0, 0, 0, 0.1, 0.624, 0.477, 0.15)
+mesh = SubResource("CylinderMesh_53spd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hospital/MeshInstance3D10/MeshInstance3D3"]
+transform = Transform3D(0.75, 1.49012e-08, 0, -1.49012e-08, 0.2, 0, 0, 0, 0.75, -0.0378113, -0.85408, 0)
+mesh = SubResource("CylinderMesh_4qu01")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Hospital"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -4.02252, 0, 1.49579)
+mesh = SubResource("BoxMesh_ntkbw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hospital/MeshInstance3D8"]
+transform = Transform3D(0.3, 0, 0, 0, 2.5, 0, 0, 0, 0.3, 0, 2.80576, 0)
+mesh = SubResource("CylinderMesh_ntkbw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hospital/MeshInstance3D8"]
+transform = Transform3D(0.2, 0, 0, 0, 1.29949, 0.158245, 0, -1.68135, 0.122305, 0, 2.9993, 2.39169)
+mesh = SubResource("CylinderMesh_d4puy")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hospital/MeshInstance3D8"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 4.55271, 0.825485)
+mesh = SubResource("BoxMesh_d4puy")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Hospital/MeshInstance3D8"]
+transform = Transform3D(0.3, 0, 0, 0, -3.23464e-08, -0.3, 0, 0.74, -1.31134e-08, 0, 4.96476, 0.748169)
+mesh = SubResource("CylinderMesh_xft3b")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Hospital"]
+transform = Transform3D(-0.6, 0, 5.24536e-08, 0, 0.6, 0, -5.24536e-08, 0, -0.6, -2.04903, 0.490914, 2.65379)
+mesh = SubResource("CapsuleMesh_d4puy")
+surface_material_override/0 = SubResource("StandardMaterial3D_fhxkh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hospital/MeshInstance3D11"]
+transform = Transform3D(-3.72529e-09, -0.2, 0, 0.1, -7.45058e-09, 0, 0, 0, 0.1, 0.624, 0.477, -0.15)
+mesh = SubResource("CylinderMesh_qspya")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hospital/MeshInstance3D11/MeshInstance3D2"]
+transform = Transform3D(0.75, 1.49012e-08, 0, -1.49012e-08, 0.2, 0, 0, 0, 0.75, -0.0378113, -0.85408, 0)
+mesh = SubResource("CylinderMesh_tgfhl")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hospital/MeshInstance3D11"]
+transform = Transform3D(-3.72529e-09, -0.2, 0, 0.1, -7.45058e-09, 0, 0, 0, 0.1, 0.624, 0.477, 0.15)
+mesh = SubResource("CylinderMesh_qspya")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hospital/MeshInstance3D11/MeshInstance3D3"]
+transform = Transform3D(0.75, 1.49012e-08, 0, -1.49012e-08, 0.2, 0, 0, 0, 0.75, -0.0378113, -0.85408, 0)
+mesh = SubResource("CylinderMesh_tgfhl")
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]

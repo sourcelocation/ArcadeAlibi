@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bhk7kat17mrte"
+path="res://.godot/imported/what is ligma.mp3-ac3659fa3cd23cdf7df5dce4a6305b81.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/what is ligma.mp3"
+dest_files=["res://.godot/imported/what is ligma.mp3-ac3659fa3cd23cdf7df5dce4a6305b81.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
