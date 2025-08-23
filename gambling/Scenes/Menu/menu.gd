@@ -9,12 +9,6 @@ extends Control
 	#preload("res://Scenes/Menu/nope4.mp3")
 #]
 
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Reload"):
-		if Game.gm: Game.gm.save()
-		get_tree().reload_current_scene()
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-
 func _on_play_pressed() -> void:
 	add_child(game)
 	$UI.visible = false

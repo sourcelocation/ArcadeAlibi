@@ -98,8 +98,6 @@ func _process(delta: float) -> void:
 		player.give_item(103,50)
 		player.give_item(115,5000000)
 
-	if Input.is_action_just_pressed("Test"):
-		final()
 		#if "cutscene2" not in Save.config:
 		#$Cutscene2/Camera3D.make_current()
 		#$Cutscene2/Camera3D.current = true
