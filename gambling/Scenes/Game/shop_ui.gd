@@ -92,8 +92,8 @@ func _on_depositbutton_pressed() -> void:
 	$TabContainer/Deposit/AudioStreamPlayer.play()
 	Game.gm.shop.toggle_shop(false)
 	
-	#if not Save.config.get("cops",false) and Save.config.get("first_casino_machine",false):
-	animation_player_cops.play("a")
-	await get_tree().create_timer(6.0).timeout
-	Save.save("cops",true)
-	Game.gm.player.add_boombox(10)
+	if not Save.config.get("cops",false) and Save.config.get("first_casino_machine",false):
+		animation_player_cops.play("a")
+		await get_tree().create_timer(6.0).timeout
+		Save.save("cops",true)
+		Game.gm.player.add_boombox(10)
