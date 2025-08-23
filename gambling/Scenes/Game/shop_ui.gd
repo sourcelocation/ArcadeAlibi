@@ -6,6 +6,7 @@ extends Control
 @onready var shovel: Button = %shovel
 @onready var cure: Button = %cure
 @onready var back: Button = %back
+@onready var moneydeposit: Label = $TabContainer/Deposit/moneydeposit
 
 func _ready():
 	shovel.disabled = "shovel-bought" in Save.config
@@ -19,6 +20,9 @@ func _ready():
 		back.text = "PURCHASED"
 	await get_tree().create_timer(0.05).timeout
 	_update()
+	
+func _process(delta: float) -> void:
+	moneydeposit.text = "$" + str(Game.gm.player.money)
 	
 func _update():
 	for c in items_container_craft.get_children(): c.queue_free()
@@ -82,6 +86,7 @@ func _on_back_pressed() -> void:
 		Save.save("back-bought",true)
 		back.disabled = true
 		back.text = "PURCHASED"
+		Game.gm.get_node("Sign").visible = true
 
 @onready var animation_player_cops: AnimationPlayer = $"../../../cops/AnimationPlayer"
 

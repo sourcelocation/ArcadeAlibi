@@ -1,4 +1,4 @@
-[gd_scene load_steps=159 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=160 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -75,6 +75,7 @@
 [ext_resource type="Texture2D" uid="uid://s3oiuf24g1oi" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_Roughness.jpg" id="72_yuvyg"]
 [ext_resource type="Shader" uid="uid://ue3b1pt06h8p" path="res://Scenes/Game/drip.gdshader" id="74_d4puy"]
 [ext_resource type="PackedScene" uid="uid://b7efp476lxvj" path="res://Scenes/Truck/Police car.glb" id="75_xft3b"]
+[ext_resource type="Texture2D" uid="uid://dsj4t6ttvl6t7" path="res://Resources/UI/SIGN.png" id="76_yuvyg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.157253, 0.387188, 0.952321, 1)
@@ -1791,6 +1792,11 @@ transform = Transform3D(20, 0, 1.13687e-13, 0, 20, 0, -1.13687e-13, 0, 20, 12.62
 light_color = Color(1, 0, 0, 1)
 light_energy = 5.669
 omni_range = 17.9854
+
+[node name="Sign" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.4713, -27.6413)
+pixel_size = 0.0751
+texture = ExtResource("76_yuvyg")
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]

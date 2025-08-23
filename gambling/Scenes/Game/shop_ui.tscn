@@ -51,7 +51,7 @@ theme_override_colors/font_hovered_color = Color(0, 0.69, 0, 1)
 theme_override_colors/font_selected_color = Color(0, 1, 0, 1)
 theme_override_colors/drop_mark_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 34
-current_tab = 1
+current_tab = 2
 
 [node name="Crafting" type="Control" parent="TabContainer"]
 visible = false
@@ -91,6 +91,7 @@ offset_bottom = 24.0
 text = "Items Required"
 
 [node name="Upgrades" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -132,7 +133,6 @@ text = "PAY FOR YOUR MOM'S TREARMENT
 ($500,000)"
 
 [node name="Deposit" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -151,12 +151,12 @@ offset_bottom = 91.0
 theme_override_font_sizes/font_size = 24
 text = "Your Balance:"
 
-[node name="Label2" type="Label" parent="TabContainer/Deposit"]
+[node name="moneydeposit" type="Label" parent="TabContainer/Deposit"]
 layout_mode = 1
 offset_left = 17.0
 offset_top = 37.0
 offset_right = 219.0
-offset_bottom = 116.0
+offset_bottom = 81.0
 theme_override_font_sizes/font_size = 24
 text = "$0"
 

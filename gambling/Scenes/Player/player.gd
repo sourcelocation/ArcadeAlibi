@@ -43,6 +43,7 @@ var mouse_sensitivity = 1.0
 
 var inventory: Dictionary
 var selected_tool
+var time_since_step = 0.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -96,7 +97,11 @@ func _process(delta: float) -> void:
 	spot_light_3d.light_energy = 1 if position.y < -4.6 else 0
 	
 	main_camera.fov = lerpf(main_camera.fov, 40 if Game.gm.in_computer else 90, 0.1)
-		
+	time_since_step += delta
+	
+	if time_since_step > (0.4 if sprint_spd == 1.0 else 0.25) and is_on_floor() and velocity.length() > 2:
+		$Steps.play()
+		time_since_step = 0.0
 func process_inventory_select():
 	if Input.is_action_just_pressed("select_1"):
 		equip_item_slot(0)

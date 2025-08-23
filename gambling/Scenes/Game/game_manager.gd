@@ -52,6 +52,7 @@ func _ready() -> void:
 	player = preload("res://Scenes/Player/player.tscn").instantiate()
 	if "save-data" in Save.config:
 		_load_data()
+	$Sign.visible = "back-bought" in Save.config
 	player.position = Vector3(0,1,-6)
 	add_child(player)
 	
