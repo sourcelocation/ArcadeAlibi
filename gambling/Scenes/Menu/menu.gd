@@ -28,5 +28,5 @@ func _on_options_pressed() -> void:
 	$AudioStreamPlayer.play()
 
 func _on_quit_pressed() -> void:
-	Game.gm.save()
+	#Game.gm.save()
 	get_tree().quit()

@@ -67,7 +67,7 @@
 [ext_resource type="PackedScene" uid="uid://cwfgig73oyoe6" path="res://Scenes/Game/Chest.tscn" id="59_3mdsk"]
 [ext_resource type="PackedScene" uid="uid://b5d7dpv1ch8m2" path="res://Scenes/Tree/tree.tscn" id="60_a4qm0"]
 [ext_resource type="PackedScene" uid="uid://c0f1x068lpnl1" path="res://Scenes/arcade_position.tscn" id="69_4qu01"]
-[ext_resource type="PackedScene" path="res://Scenes/Menu/underline_button.tscn" id="69_53spd"]
+[ext_resource type="PackedScene" uid="uid://y8hvpgacmflg" path="res://Scenes/Menu/underline_button.tscn" id="69_53spd"]
 [ext_resource type="Texture2D" uid="uid://bqb4g6ppecluk" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_Color.jpg" id="69_ntkbw"]
 [ext_resource type="ArrayMesh" uid="uid://ue4qkw3ce0qm" path="res://Resources/Other/Full_Size_Bed_with_White_Sheets_Black_V1.obj" id="69_qqdjj"]
 [ext_resource type="Texture2D" uid="uid://6slke8wd5ior" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_AmbientOcclusion.jpg" id="70_d4puy"]
@@ -191,19 +191,9 @@ _data = {
 &"on": SubResource("Animation_l5fxq")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caws5"]
-albedo_texture = ExtResource("45_rht7h")
-roughness_texture = ExtResource("48_2r0uj")
-normal_enabled = true
-normal_texture = ExtResource("47_caws5")
-heightmap_scale = 3.0
-heightmap_texture = ExtResource("46_bkdpl")
-uv1_scale = Vector3(0.17, 0.17, 0.17)
-uv1_triplanar = true
-
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_3mdsk"]
 graph_data = {
-"connections": [[18, 0, 4, 0], [15, 0, 18, 0], [19, 0, 18, 1], [14, 0, 15, 0], [14, 0, 19, 1]],
+"connections": [[19, 0, 18, 1], [18, 0, 4, 0], [15, 0, 18, 0], [14, 0, 15, 0], [14, 0, 19, 1]],
 "nodes": {
 "14": {
 "gui_position": Vector2(180, 120),
@@ -234,15 +224,14 @@ graph_data = {
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_a4qm0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_858on"]
-albedo_color = Color(0.615422, 0.615422, 0.615422, 1)
-albedo_texture = ExtResource("21_858on")
-metallic_specular = 0.0
-roughness_texture = ExtResource("24_u2cvy")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caws5"]
+albedo_texture = ExtResource("45_rht7h")
+roughness_texture = ExtResource("48_2r0uj")
 normal_enabled = true
-normal_texture = ExtResource("23_jcrx1")
-heightmap_texture = ExtResource("22_l5fxq")
-uv1_scale = Vector3(0.46, 0.46, 0.46)
+normal_texture = ExtResource("47_caws5")
+heightmap_scale = 3.0
+heightmap_texture = ExtResource("46_bkdpl")
+uv1_scale = Vector3(0.17, 0.17, 0.17)
 uv1_triplanar = true
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_858on"]
@@ -290,6 +279,17 @@ graph_data = {
 },
 "version": 2
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_858on"]
+albedo_color = Color(0.615422, 0.615422, 0.615422, 1)
+albedo_texture = ExtResource("21_858on")
+metallic_specular = 0.0
+roughness_texture = ExtResource("24_u2cvy")
+normal_enabled = true
+normal_texture = ExtResource("23_jcrx1")
+heightmap_texture = ExtResource("22_l5fxq")
+uv1_scale = Vector3(0.46, 0.46, 0.46)
+uv1_triplanar = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fc0e3"]
 noise_type = 3
@@ -787,14 +787,14 @@ libraries = {
 }
 
 [node name="Layer1" type="VoxelTerrain" parent="."]
-material_override = SubResource("StandardMaterial3D_caws5")
 generator = SubResource("VoxelGeneratorGraph_3mdsk")
 mesher = SubResource("VoxelMesherTransvoxel_a4qm0")
+material_override = SubResource("StandardMaterial3D_caws5")
 
 [node name="Layer2" type="VoxelTerrain" parent="."]
-material_override = SubResource("StandardMaterial3D_858on")
 generator = SubResource("VoxelGeneratorGraph_a4qm0")
 mesher = SubResource("VoxelMesherTransvoxel_a4qm0")
+material_override = SubResource("StandardMaterial3D_858on")
 
 [node name="Grass" type="MultiMeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.04564, 0, -0.52338)
