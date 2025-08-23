@@ -39,6 +39,7 @@ var money = 100
 var in_arcade = false
 
 var mouse_sens = 0.003
+var mouse_sensitivity = 1.0
 
 var inventory: Dictionary
 var selected_tool
@@ -52,7 +53,7 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		var mouse_event = event.relative * mouse_sens
+		var mouse_event = event.relative * mouse_sens * mouse_sensitivity
 		camera_look(mouse_event)
 		
 
@@ -77,7 +78,7 @@ func _process(delta: float) -> void:
 	if !can_move or on_ladder:
 		wishdir = Vector3.ZERO
 
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if !enter_shop and !Game.gm.paused else Input.MOUSE_MODE_VISIBLE)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if !enter_shop and !Game.gm.paused and !currplaytest else Input.MOUSE_MODE_VISIBLE)
 	var speed = base_speed if is_on_floor() else air_speed
 	speed *= sprint_spd
 	var accel = base_accel if is_on_floor() else air_accel
@@ -303,6 +304,7 @@ func add_playtest(scene: PackedScene, _playtested):
 	)
 	playtest.add_child(currplaytest)
 	playtest.visible = true
+	Game.gm.toggle_cutscene(true)
 	
 @onready var fail_panel: Control = $Control/FailPanel
 
@@ -310,6 +312,7 @@ func rem_playtest():
 	playtest.visible = false
 	currplaytest.queue_free()
 	fail_panel.visible = true
+	Game.gm.toggle_cutscene(false)
 	
 	await get_tree().create_timer(5.0).timeout
 	fail_panel.visible = false

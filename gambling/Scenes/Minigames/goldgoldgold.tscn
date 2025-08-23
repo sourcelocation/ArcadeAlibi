@@ -1,311 +1,44 @@
-[gd_scene load_steps=18 format=3 uid="uid://75qf3keu4824"]
+[gd_scene load_steps=3 format=3 uid="uid://75qf3keu4824"]
 
-[ext_resource type="Script" uid="uid://cxn78nyu771kc" path="res://Scenes/Minigames/chess.gd" id="1_5qm6i"]
-[ext_resource type="Texture2D" uid="uid://cfjqnd4uvgf4n" path="res://Scenes/Minigames/chessboard.png" id="2_o8cs5"]
-[ext_resource type="Texture2D" uid="uid://qsagqauctsny" path="res://Scenes/Minigames/pawnW.png" id="3_7i33n"]
-[ext_resource type="Texture2D" uid="uid://cqofr5hl4qdp5" path="res://Scenes/Minigames/queenB2.png" id="4_r4pmc"]
-[ext_resource type="Texture2D" uid="uid://2x4ke5s0ycqq" path="res://Scenes/Minigames/pawnB2.png" id="5_h8h4d"]
-[ext_resource type="AudioStream" uid="uid://cj3187m67650j" path="res://Scenes/Minigames/ChessPiecePlace.wav" id="6_j2aem"]
-[ext_resource type="AudioStream" uid="uid://cpioelvkrivyc" path="res://Scenes/Minigames/wait-wait-wait-wait.mp3" id="7_rcvdb"]
-[ext_resource type="Texture2D" uid="uid://ciaqus4kq5jk" path="res://Scenes/Minigames/YOUR MOVE!.png" id="8_lhosi"]
-[ext_resource type="Texture2D" uid="uid://dmt65y2uxmp23" path="res://Scenes/Minigames/GREAT MOVE(!).png" id="9_0m8mi"]
-[ext_resource type="Texture2D" uid="uid://csoq64fvvq5qv" path="res://Scenes/Minigames/ABSOLUTELY HORRIBLE.png" id="10_vutcw"]
+[ext_resource type="VideoStream" uid="uid://4y8aphfhpqmt" path="res://Resources/Other/titanholo.ogv" id="1_b6r5t"]
+[ext_resource type="Script" uid="uid://drisxchcrheds" path="res://Scenes/Minigames/goldgoldgold.gd" id="1_shss3"]
 
-[sub_resource type="Gradient" id="Gradient_t0jhr"]
-offsets = PackedFloat32Array(0.779373, 0.798956)
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_shss3")
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6xydi"]
-gradient = SubResource("Gradient_t0jhr")
-fill = 2
-fill_from = Vector2(0.497863, 0.5)
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 296.0
+offset_bottom = -296.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_b6r5t")
+autoplay = true
+expand = true
 
-[sub_resource type="Animation" id="Animation_257y2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("YourTurn:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GreatMove:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PawnW2:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(522, 497)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PawnB2:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(105, -507)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("PawnW:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(303, 497)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("GreatMove2:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("QueenB2:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-100, -717)]
-}
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.338
+offset_right = 6.71991
+offset_bottom = 550.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_6xydi"]
-resource_name = "Run"
-length = 25.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("YourTurn:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.97, 2.1, 10.1329, 10.5032, 11.6332),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, true, false, false, true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GreatMove:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(8.14667, 8.19507, 9.46667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PawnW2:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(7.6884, 8.0884),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(522, 497), Vector2(522, 90)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("PawnB2:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(9.802, 10.262),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(105, -507), Vector2(105, -110)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("PawnW:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(15.0424, 15.3268),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(303, 497), Vector2(318, 299)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("GreatMove2:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(15.3333, 15.5992, 17.0667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("QueenB2:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(17.6144, 17.9044),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-100, -717), Vector2(727, 94.9999)]
-}
-tracks/7/type = "audio"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("AudioStreamPlayer")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("6_j2aem")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("6_j2aem")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("6_j2aem")
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("7_rcvdb")
-}],
-"times": PackedFloat32Array(8.16667, 10.2333, 15.3667, 15.6333)
-}
-tracks/7/use_blend = true
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_257y2"]
-_data = {
-&"RESET": SubResource("Animation_257y2"),
-&"Run": SubResource("Animation_6xydi")
-}
-
-[sub_resource type="Gradient" id="Gradient_6xydi"]
-offsets = PackedFloat32Array(0.00130548, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_257y2"]
-gradient = SubResource("Gradient_6xydi")
-
-[node name="Chess" type="Node2D"]
-modulate = Color(0, 1, 0, 1)
-position = Vector2(200, 175)
-scale = Vector2(0.19, 0.19)
-script = ExtResource("1_5qm6i")
-
-[node name="Board" type="Sprite2D" parent="."]
-texture = ExtResource("2_o8cs5")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-
-[node name="PawnW" type="Sprite2D" parent="."]
-position = Vector2(303, 497)
-scale = Vector2(3.96154, 3.96154)
-texture = ExtResource("3_7i33n")
-
-[node name="PawnW2" type="Sprite2D" parent="."]
-position = Vector2(522, 497)
-scale = Vector2(3.96154, 3.96154)
-texture = ExtResource("3_7i33n")
-
-[node name="QueenB2" type="Sprite2D" parent="."]
-position = Vector2(-100, -717)
-scale = Vector2(4.26923, 4.11538)
-texture = ExtResource("4_r4pmc")
-
-[node name="PawnB2" type="Sprite2D" parent="."]
-position = Vector2(105, -507)
-scale = Vector2(4.38462, 4.38462)
-texture = ExtResource("5_h8h4d")
-
-[node name="Selection" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-102, 93)
-scale = Vector2(3.59375, 3.59375)
-texture = SubResource("GradientTexture2D_6xydi")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_257y2")
-}
-autoplay = "Run"
-
-[node name="YourTurn" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -2)
-scale = Vector2(4.30469, 296)
-texture = SubResource("GradientTexture1D_257y2")
-
-[node name="Sprite2D3" type="Sprite2D" parent="YourTurn"]
-scale = Vector2(0.189043, 0.00249391)
-texture = ExtResource("8_lhosi")
-
-[node name="GreatMove" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -2)
-scale = Vector2(7.03125, 296)
-texture = SubResource("GradientTexture1D_257y2")
-
-[node name="Sprite2D3" type="Sprite2D" parent="GreatMove"]
-scale = Vector2(0.11811, 0.00249391)
-texture = ExtResource("9_0m8mi")
-
-[node name="GreatMove2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -2)
-scale = Vector2(7.03125, 1322)
-texture = SubResource("GradientTexture1D_257y2")
-
-[node name="Sprite2D3" type="Sprite2D" parent="GreatMove2"]
-scale = Vector2(0.11811, 0.000744499)
-texture = ExtResource("10_vutcw")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 78.0
+offset_right = 786.0
+offset_bottom = 270.0
+theme_override_font_sizes/font_size = 171
+text = "YOU GOT THIS!!!"

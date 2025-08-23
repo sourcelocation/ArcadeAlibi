@@ -4,6 +4,7 @@ extends Control
 @onready var window_value: Label = $ColorRect/VBoxContainer/Window/Value
 @onready var volume_value: Label = $ColorRect/VBoxContainer/Volume/Value
 @onready var vsync_value: Label = $"ColorRect/VBoxContainer/V-Sync/Value"
+@onready var resolution_value: Label = $ColorRect/VBoxContainer/Volume2/Value
 
 func _on_sens_slider_value_changed(value: float) -> void:
 	sens_value.text = str(value)
@@ -34,3 +35,9 @@ func _on_vsync_item_selected(index: int) -> void:
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 		2: # Adaptive
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ADAPTIVE)
+
+
+func _on_resolution_slider_value_changed(value: float) -> void:
+	resolution_value.text = str(int(value)) + "%"
+	var _scale = Save.config.resolution_scale / 100.0
+	RenderingServer.viewport_set_scaling_3d_scale(get_viewport().get_viewport_rid(), _scale)

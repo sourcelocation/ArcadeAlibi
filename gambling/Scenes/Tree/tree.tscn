@@ -1,13 +1,77 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5d7dpv1ch8m2"]
+[gd_scene load_steps=10 format=3 uid="uid://b5d7dpv1ch8m2"]
 
 [ext_resource type="Script" uid="uid://cjsheiswn6hh0" path="res://Scenes/Tree/tree.gd" id="1_pb44w"]
 [ext_resource type="PackedScene" uid="uid://cl7nsrtog11sn" path="res://Scenes/Fence/Tree1.tscn" id="1_rx2sp"]
+[ext_resource type="Material" uid="uid://b823wnxx5yvhr" path="res://Resources/Textures/Ground085_1K-JPG/ground.tres" id="3_pb44w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rx2sp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rx2sp"]
+material = ExtResource("3_pb44w")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pb44w"]
+
+[sub_resource type="Animation" id="Animation_rx2sp"]
+resource_name = "a"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.51, 1, 1.53, 2.02, 2.62, 3.11, 3.52, 3.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.09994, 0), Vector3(0, 1.51896, 0), Vector3(0, 1.09994, 0), Vector3(0, 1.51896, 0), Vector3(0, 1.09994, 0), Vector3(0, 1.51896, 0), Vector3(0, 1.09994, 0), Vector3(0, 1.51896, 0), Vector3(0, 1.09994, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pb44w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.09994, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pb44w"]
+_data = {
+&"RESET": SubResource("Animation_pb44w"),
+&"a": SubResource("Animation_rx2sp")
+}
 
 [node name="Tree" type="Area3D"]
 script = ExtResource("1_pb44w")
@@ -21,13 +85,23 @@ shape = SubResource("BoxShape3D_rx2sp")
 transform = Transform3D(0.2, 0, 0, 0, 1.5, 0, 0, 0, 0.2, 0, 1.5, 0)
 
 [node name="dead_tree" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.4, 0, 0, 0, 0.5, 0, 0.4, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.4, 0, 0, 0, 0.5, 0, -0.211029, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_rx2sp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="dead_tree"]
 transform = Transform3D(0.520434, 0, 0, 0, 1.35705, 0, 0, 0, 1, 0, 0.0688422, 0)
 shape = SubResource("BoxShape3D_pb44w")
+
+[node name="Label3D" type="Label3D" parent="dead_tree"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09994, 0)
+text = "im growing, come back later"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dead_tree/Label3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_pb44w")
+}
+autoplay = "a"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

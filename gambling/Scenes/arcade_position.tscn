@@ -71,7 +71,7 @@ size = Vector3(1, 1.94, 1)
 bg_color = Color(0, 1, 0, 0.207843)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x6rcn"]
-size = Vector3(0.732422, 2.16614, 0.810547)
+size = Vector3(0.187744, 2.16614, 0.19043)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0uqiu"]
 albedo_color = Color(1, 0, 0, 1)
@@ -114,6 +114,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="UI"]
 layout_mode = 1

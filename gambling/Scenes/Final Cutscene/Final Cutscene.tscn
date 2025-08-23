@@ -123,7 +123,6 @@ _data = {
 
 [node name="Cutscene2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1113, -5.22108)
-visible = false
 script = ExtResource("1_7o6gy")
 
 [node name="FogVolume" type="FogVolume" parent="."]
@@ -176,25 +175,6 @@ theme_override_font_sizes/font_size = 111
 text = "You Finally
 Made Enough Money For The Treatment"
 horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="Control"]
-modulate = Color(1, 1, 1, 0.137255)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -781.0
-offset_top = -121.0
-offset_right = -41.0
-offset_bottom = -29.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_6f5eb")
-theme_override_font_sizes/font_size = 81
-text = "Press X to skip"
-horizontal_alignment = 2
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_6f5eb")

@@ -67,7 +67,7 @@
 [ext_resource type="PackedScene" uid="uid://cwfgig73oyoe6" path="res://Scenes/Game/Chest.tscn" id="59_3mdsk"]
 [ext_resource type="PackedScene" uid="uid://b5d7dpv1ch8m2" path="res://Scenes/Tree/tree.tscn" id="60_a4qm0"]
 [ext_resource type="PackedScene" uid="uid://c0f1x068lpnl1" path="res://Scenes/arcade_position.tscn" id="69_4qu01"]
-[ext_resource type="PackedScene" uid="uid://y8hvpgacmflg" path="res://Scenes/Menu/underline_button.tscn" id="69_53spd"]
+[ext_resource type="PackedScene" path="res://Scenes/Menu/underline_button.tscn" id="69_53spd"]
 [ext_resource type="Texture2D" uid="uid://bqb4g6ppecluk" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_Color.jpg" id="69_ntkbw"]
 [ext_resource type="ArrayMesh" uid="uid://ue4qkw3ce0qm" path="res://Resources/Other/Full_Size_Bed_with_White_Sheets_Black_V1.obj" id="69_qqdjj"]
 [ext_resource type="Texture2D" uid="uid://6slke8wd5ior" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_AmbientOcclusion.jpg" id="70_d4puy"]
@@ -190,9 +190,19 @@ _data = {
 &"on": SubResource("Animation_l5fxq")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caws5"]
+albedo_texture = ExtResource("45_rht7h")
+roughness_texture = ExtResource("48_2r0uj")
+normal_enabled = true
+normal_texture = ExtResource("47_caws5")
+heightmap_scale = 3.0
+heightmap_texture = ExtResource("46_bkdpl")
+uv1_scale = Vector3(0.17, 0.17, 0.17)
+uv1_triplanar = true
+
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_3mdsk"]
 graph_data = {
-"connections": [[19, 0, 18, 1], [18, 0, 4, 0], [15, 0, 18, 0], [14, 0, 15, 0], [14, 0, 19, 1]],
+"connections": [[18, 0, 4, 0], [15, 0, 18, 0], [19, 0, 18, 1], [14, 0, 15, 0], [14, 0, 19, 1]],
 "nodes": {
 "14": {
 "gui_position": Vector2(180, 120),
@@ -223,14 +233,15 @@ graph_data = {
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_a4qm0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caws5"]
-albedo_texture = ExtResource("45_rht7h")
-roughness_texture = ExtResource("48_2r0uj")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_858on"]
+albedo_color = Color(0.615422, 0.615422, 0.615422, 1)
+albedo_texture = ExtResource("21_858on")
+metallic_specular = 0.0
+roughness_texture = ExtResource("24_u2cvy")
 normal_enabled = true
-normal_texture = ExtResource("47_caws5")
-heightmap_scale = 3.0
-heightmap_texture = ExtResource("46_bkdpl")
-uv1_scale = Vector3(0.17, 0.17, 0.17)
+normal_texture = ExtResource("23_jcrx1")
+heightmap_texture = ExtResource("22_l5fxq")
+uv1_scale = Vector3(0.46, 0.46, 0.46)
 uv1_triplanar = true
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_858on"]
@@ -278,17 +289,6 @@ graph_data = {
 },
 "version": 2
 }
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_858on"]
-albedo_color = Color(0.615422, 0.615422, 0.615422, 1)
-albedo_texture = ExtResource("21_858on")
-metallic_specular = 0.0
-roughness_texture = ExtResource("24_u2cvy")
-normal_enabled = true
-normal_texture = ExtResource("23_jcrx1")
-heightmap_texture = ExtResource("22_l5fxq")
-uv1_scale = Vector3(0.46, 0.46, 0.46)
-uv1_triplanar = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fc0e3"]
 noise_type = 3
@@ -632,11 +632,8 @@ uv1_triplanar = true
 material = SubResource("StandardMaterial3D_hb4p8")
 size = Vector3(10, 5, 5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53spd"]
-albedo_color = Color(4.69275e-07, 0, 0.318403, 1)
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_d85t2"]
-material = SubResource("StandardMaterial3D_53spd")
+material = ExtResource("45_h5vdi")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuvyg"]
 albedo_color = Color(1, 0.356863, 1, 1)
@@ -702,6 +699,10 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_tgfhl"]
 material = SubResource("StandardMaterial3D_4qu01")
 
+[sub_resource type="FogMaterial" id="FogMaterial_d4puy"]
+albedo = Color(0, 0.251984, 0.214362, 1)
+edge_fade = 1e-05
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_l1i01")
 chest = ExtResource("59_3mdsk")
@@ -724,14 +725,14 @@ libraries = {
 }
 
 [node name="Layer1" type="VoxelTerrain" parent="."]
+material_override = SubResource("StandardMaterial3D_caws5")
 generator = SubResource("VoxelGeneratorGraph_3mdsk")
 mesher = SubResource("VoxelMesherTransvoxel_a4qm0")
-material_override = SubResource("StandardMaterial3D_caws5")
 
 [node name="Layer2" type="VoxelTerrain" parent="."]
+material_override = SubResource("StandardMaterial3D_858on")
 generator = SubResource("VoxelGeneratorGraph_a4qm0")
 mesher = SubResource("VoxelMesherTransvoxel_a4qm0")
-material_override = SubResource("StandardMaterial3D_858on")
 
 [node name="Grass" type="MultiMeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.04564, 0, -0.52338)
@@ -1682,9 +1683,35 @@ mesh = SubResource("CylinderMesh_qspya")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Hospital/MeshInstance3D11/MeshInstance3D3"]
 transform = Transform3D(0.75, 1.49012e-08, 0, -1.49012e-08, 0.2, 0, 0, 0, 0.75, -0.0378113, -0.85408, 0)
 mesh = SubResource("CylinderMesh_tgfhl")
+
 [node name="autosave" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="ReflectionProbe3" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4814, 1.79552, 30.5445)
+size = Vector3(13.3474, 6.04672, 8.32422)
+box_projection = true
+interior = true
+enable_shadows = true
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7653, 0, 30.6215)
+size = Vector3(9.54974, 9.03735, 8.41406)
+material = SubResource("FogMaterial_d4puy")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.965926, 0.25, -0.0669873, 1.49012e-08, 0.258819, 0.965926, 0.258819, 0.933013, -0.25, -17.6762, 3.59823, 29.2853)
+light_energy = 8.869
+shadow_enabled = true
+spot_range = 21.3444
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(0.707107, -0.683013, 0.183013, 1.10445e-08, 0.258819, 0.965926, -0.707107, -0.683013, 0.183013, -17.6762, 3.59823, 32.1794)
+light_color = Color(1, 0.6985, 0.33, 1)
+light_energy = 8.869
+shadow_enabled = true
+spot_range = 21.3444
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]

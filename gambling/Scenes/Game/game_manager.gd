@@ -98,9 +98,7 @@ func _process(delta: float) -> void:
 		player.give_item(115,5000000)
 
 	if Input.is_action_just_pressed("Test"):
-		var cutscene2 = final_cutscene.instantiate()
-		add_child(cutscene2)
-		cutscene2.play_cutscene()
+		final()
 		#if "cutscene2" not in Save.config:
 		#$Cutscene2/Camera3D.make_current()
 		#$Cutscene2/Camera3D.current = true
@@ -113,6 +111,11 @@ func _process(delta: float) -> void:
 		$Hospital/MeshInstance3D11.rotation = lerp($Hospital/MeshInstance3D11.rotation, Vector3(0, 3.588, 0.157), 0.005)
 	else:
 		doc_lerp = false
+		
+func final():
+	var cutscene2 = final_cutscene.instantiate()
+	add_child(cutscene2)
+	cutscene2.play_cutscene()
 
 func _input(event):
 	if in_computer:

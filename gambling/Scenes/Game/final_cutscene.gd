@@ -1,9 +1,9 @@
 extends Node3D
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_X:
-			finish_cutscene()
+	if event is InputEventKey: pass
+		#if event.pressed and event.keycode == KEY_X:
+			#finish_cutscene()
 
 func play_cutscene():
 	if !$AnimationPlayer.is_playing():

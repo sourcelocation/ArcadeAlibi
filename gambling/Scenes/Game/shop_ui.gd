@@ -11,7 +11,7 @@ func _ready():
 	shovel.disabled = "shovel-bought" in Save.config
 	if "shovel-bought" in Save.config:
 		shovel.text = "PURCHASED"
-	cure.disabled = "cure-bought" in Save.config
+	#cure.disabled = "cure-bought" in Save.config
 	if "cure-bought" in Save.config:
 		cure.text = "PURCHASED"
 	back.disabled = "back-bought" in Save.config
@@ -73,6 +73,7 @@ func _on_cure_pressed() -> void:
 		Save.save("cure-bought",true)
 		cure.disabled = true
 		cure.text = "PURCHASED"
+		Game.gm.final()
 
 
 func _on_back_pressed() -> void:
