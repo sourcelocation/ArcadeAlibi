@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=159 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -74,6 +74,7 @@
 [ext_resource type="Texture2D" uid="uid://byww6k65wfjs0" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_NormalGL.jpg" id="71_xft3b"]
 [ext_resource type="Texture2D" uid="uid://s3oiuf24g1oi" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_Roughness.jpg" id="72_yuvyg"]
 [ext_resource type="Shader" uid="uid://ue3b1pt06h8p" path="res://Scenes/Game/drip.gdshader" id="74_d4puy"]
+[ext_resource type="PackedScene" uid="uid://b7efp476lxvj" path="res://Scenes/Truck/Police car.glb" id="75_xft3b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.157253, 0.387188, 0.952321, 1)
@@ -703,6 +704,67 @@ material = SubResource("StandardMaterial3D_4qu01")
 albedo = Color(0, 0.251984, 0.214362, 1)
 edge_fade = 1e-05
 
+[sub_resource type="Animation" id="Animation_xft3b"]
+resource_name = "a"
+length = 13.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Police car:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Police car:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8, 11.23),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-30.3205, 0, 2.93607), Vector3(28.6133, 0, 2.93607), Vector3(28.6133, 0, 18.8429)]
+}
+
+[sub_resource type="Animation" id="Animation_yuvyg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Police car:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Police car:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(28.6133, 0, 2.93607)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hb4p8"]
+_data = {
+&"RESET": SubResource("Animation_yuvyg"),
+&"a": SubResource("Animation_xft3b")
+}
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_l1i01")
 chest = ExtResource("59_3mdsk")
@@ -1146,12 +1208,6 @@ transform = Transform3D(0.982797, 0, 0.184689, 0, 1, 0, -0.184689, 0, 0.982797, 
 [node name="Tree18" parent="Trees" instance=ExtResource("10_mfdv2")]
 transform = Transform3D(0.982797, 0, 0.184689, 0, 1, 0, -0.184689, 0, 0.982797, -7.35036, 0.206516, 8.2776)
 
-[node name="Tree27" parent="Trees" instance=ExtResource("11_iotsf")]
-transform = Transform3D(0.564348, 0, 0.825537, 0, 1, 0, -0.825537, 0, 0.564348, 5.25168, 0.206515, -27.1294)
-
-[node name="Tree28" parent="Trees" instance=ExtResource("11_iotsf")]
-transform = Transform3D(-0.626145, 0.135214, 0.767893, 0.0854483, 0.990816, -0.104792, -0.775011, 0, -0.631948, -7.32664, 0.206515, -21.3591)
-
 [node name="Tree7" parent="Trees" instance=ExtResource("10_mfdv2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.64123, 0.206518, -14.4563)
 
@@ -1170,6 +1226,12 @@ transform = Transform3D(0.564348, 0, 0.825537, 0, 1, 0, -0.825537, 0, 0.564348, 
 
 [node name="Tree33" parent="Trees" instance=ExtResource("60_a4qm0")]
 transform = Transform3D(-0.221531, 0, 0.975153, 0, 1, 0, -0.975153, 0, -0.221531, 5.57922, 0.206517, -9.98161)
+
+[node name="Tree35" parent="Trees" instance=ExtResource("60_a4qm0")]
+transform = Transform3D(-0.221531, 0, 0.975153, 0, 1, 0, -0.975153, 0, -0.221531, 5.57922, 0.206517, -26.6506)
+
+[node name="Tree36" parent="Trees" instance=ExtResource("60_a4qm0")]
+transform = Transform3D(-0.221531, 0, 0.975153, 0, 1, 0, -0.975153, 0, -0.221531, -7.40571, 0.206517, -23.2524)
 
 [node name="Tree34" parent="Trees" instance=ExtResource("60_a4qm0")]
 transform = Transform3D(0.564348, 0, 0.825537, 0, 1, 0, -0.825537, 0, 0.564348, -4.13963, 0.206517, -6.71001)
@@ -1712,6 +1774,23 @@ light_color = Color(1, 0.6985, 0.33, 1)
 light_energy = 8.869
 shadow_enabled = true
 spot_range = 21.3444
+
+[node name="cops" type="Node3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="cops"]
+libraries = {
+&"": SubResource("AnimationLibrary_hb4p8")
+}
+
+[node name="Police car" parent="cops" instance=ExtResource("75_xft3b")]
+transform = Transform3D(-2.18557e-09, 0, 0.05, 0, 0.05, 0, -0.05, 0, -2.18557e-09, 28.6133, 0, 2.93607)
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="cops/Police car"]
+transform = Transform3D(20, 0, 1.13687e-13, 0, 20, 0, -1.13687e-13, 0, 20, 12.6213, 29.8577, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 5.669
+omni_range = 17.9854
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]
