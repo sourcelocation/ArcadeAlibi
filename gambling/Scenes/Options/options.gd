@@ -1,9 +1,7 @@
 extends Control
 
 @onready var sens_value: Label = $ColorRect/VBoxContainer/Sens/Value
-@onready var window_value: Label = $ColorRect/VBoxContainer/Window/Value
 @onready var volume_value: Label = $ColorRect/VBoxContainer/Volume/Value
-@onready var vsync_value: Label = $"ColorRect/VBoxContainer/V-Sync/Value"
 @onready var resolution_value: Label = $ColorRect/VBoxContainer/Volume2/Value
 
 func _on_sens_slider_value_changed(value: float) -> void:
@@ -11,7 +9,6 @@ func _on_sens_slider_value_changed(value: float) -> void:
 	Game.gm.player.mouse_sensitivity = value
 
 func _on_window_item_selected(index: int) -> void:
-	window_value.text = $ColorRect/VBoxContainer/Window/OptionButton.get_item_text(index)
 	# Handle window mode change here if needed
 	match index:
 		0: # Windowed
@@ -26,7 +23,6 @@ func _on_volume_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value / 100.0))
 
 func _on_vsync_item_selected(index: int) -> void:
-	vsync_value.text = $"ColorRect/VBoxContainer/V-Sync/OptionButton".get_item_text(index)
 	# Handle V-Sync change here if needed
 	match index:
 		0: # Disabled

@@ -61,7 +61,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_oxfvm")
 theme_override_font_sizes/font_size = 90
-text = "1"
+text = "1.0"
 
 [node name="HSlider" type="HSlider" parent="ColorRect/VBoxContainer/Sens"]
 custom_minimum_size = Vector2(500, 0)
@@ -87,16 +87,13 @@ text = "Window"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Value" type="Label" parent="ColorRect/VBoxContainer/Window"]
+[node name="OptionButton" type="OptionButton" parent="ColorRect/VBoxContainer/Window"]
+custom_minimum_size = Vector2(650, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_oxfvm")
 theme_override_font_sizes/font_size = 90
-text = "Window"
-
-[node name="OptionButton" type="OptionButton" parent="ColorRect/VBoxContainer/Window"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
+text_overrun_behavior = 1
+selected = 0
 item_count = 3
 popup/item_0/text = "Fullscreen"
 popup/item_0/id = 0
@@ -176,16 +173,13 @@ text = "V-Sync"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Value" type="Label" parent="ColorRect/VBoxContainer/V-Sync"]
+[node name="OptionButton" type="OptionButton" parent="ColorRect/VBoxContainer/V-Sync"]
+custom_minimum_size = Vector2(650, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_oxfvm")
 theme_override_font_sizes/font_size = 90
-text = "Enabled"
-
-[node name="OptionButton" type="OptionButton" parent="ColorRect/VBoxContainer/V-Sync"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
+text_overrun_behavior = 1
+selected = 0
 item_count = 3
 popup/item_0/text = "Enabled"
 popup/item_0/id = 0
