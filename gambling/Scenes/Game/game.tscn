@@ -1517,16 +1517,16 @@ casino = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.51745, 0.0118172, -8.9653)
 
 [node name="ArcadePos2" parent="." instance=ExtResource("69_4qu01")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.29153, 0.0118172, -8.9653)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.26054, 0.0118172, -8.9653)
 
 [node name="ArcadePos3" parent="." instance=ExtResource("69_4qu01")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.333832, 0.0118172, -8.9653)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.0268209, 0.0118172, -8.9653)
 
 [node name="ArcadePos4" parent="." instance=ExtResource("69_4qu01")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.683854, 0.0118172, -8.9653)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.29784, 0.0118172, -8.9653)
 
 [node name="ArcadePos5" parent="." instance=ExtResource("69_4qu01")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.84711, 0.0118172, -8.9653)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.46109, 0.0118172, -8.9653)
 
 [node name="ArcadePosition7" parent="." instance=ExtResource("69_4qu01")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.390244, 1.19556, -24.8777)
@@ -1682,6 +1682,9 @@ mesh = SubResource("CylinderMesh_qspya")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Hospital/MeshInstance3D11/MeshInstance3D3"]
 transform = Transform3D(0.75, 1.49012e-08, 0, -1.49012e-08, 0.2, 0, 0, 0, 0.75, -0.0378113, -0.85408, 0)
 mesh = SubResource("CylinderMesh_tgfhl")
+[node name="autosave" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Shop/Area3D" to="." method="_on_area_3d_body_entered"]
@@ -1696,6 +1699,7 @@ mesh = SubResource("CylinderMesh_tgfhl")
 [connection signal="body_entered" from="ShovelArea" to="." method="_on_shovel_entered"]
 [connection signal="body_entered" from="AudioStreamPlayer3D/Area3D" to="AudioStreamPlayer3D" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="AudioStreamPlayer3D/Area3D" to="AudioStreamPlayer3D" method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="autosave" to="." method="_on_autosave_timeout"]
 
 [editable path="Farm house"]
 [editable path="grass"]

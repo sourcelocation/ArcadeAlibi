@@ -8,3 +8,4 @@ class_name ItemRes
 @export var is_tool: bool = false
 @export var scene: PackedScene
 @export var recipe: Dictionary[int,int]
+@export var playtest_scene: PackedScene

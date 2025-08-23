@@ -11,7 +11,7 @@ roughness = 0.13
 
 [sub_resource type="BoxMesh" id="BoxMesh_iyuiw"]
 
-[node name="GoldShovel" type="Node3D"]
+[node name="Shovel" type="Node3D"]
 script = ExtResource("1_emth1")
 
 [node name="shovel" parent="." instance=ExtResource("2_tb8je")]

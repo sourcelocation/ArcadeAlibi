@@ -1,9 +1,11 @@
 extends ColorRect
 
+signal done
+
 var res : Vector2
 var o_res = Vector2(2560, 1440)
 var scale_factor
-var pxl_size = 64 * 3
+var pxl_size = 64 * 1
 
 var pman_fps = 15.0
 var pman_pos : Vector2
@@ -74,6 +76,9 @@ func _ready() -> void:
 		for j in range(map[0].size()):
 			if map[i][j] == 3:
 				total_orbs += 1
+				
+	await get_tree().create_timer(10.0).timeout
+	done.emit()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("ui_right"):
@@ -118,7 +123,8 @@ func update_pman():
 	var map_y = map_coords.y
 	for ghost in ghosts:
 		if map_x == ghost.map_x and map_y == ghost.map_y:
-			get_tree().reload_current_scene()
+			#get_tree().reload_current_scene()
+			pass
 	if map[map_y][map_x] == 3:
 		map[map_y][map_x] = 0
 		orbs += 100

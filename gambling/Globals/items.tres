@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemsRes" load_steps=36 format=3 uid="uid://bgj1o3u7uub4r"]
+[gd_resource type="Resource" script_class="ItemsRes" load_steps=39 format=3 uid="uid://bgj1o3u7uub4r"]
 
 [ext_resource type="Script" uid="uid://jbo30sw083oh" path="res://Globals/itemres.gd" id="1_dfotg"]
 [ext_resource type="Texture2D" uid="uid://cneqx7ignovt5" path="res://Resources/UI/shovel.png" id="2_60mav"]
@@ -19,7 +19,10 @@
 [ext_resource type="PackedScene" uid="uid://df3ewwjwib0kh" path="res://Scenes/Arcade/arcade.tscn" id="14_4ggls"]
 [ext_resource type="Texture2D" uid="uid://bbm818xth5n6p" path="res://Resources/UI/holo.png" id="14_jfl5u"]
 [ext_resource type="Texture2D" uid="uid://qsagqauctsny" path="res://Scenes/Minigames/pawnW.png" id="15_fxjhs"]
+[ext_resource type="PackedScene" uid="uid://cme4ltagx5vc7" path="res://Scenes/Arcade Machines/ArcadeGames/Pacman/Pacman.tscn" id="16_tc45e"]
 [ext_resource type="Texture2D" uid="uid://bnghtdeynw2wd" path="res://Resources/UI/dollar.png" id="17_aft2q"]
+[ext_resource type="PackedScene" uid="uid://75qf3keu4824" path="res://Scenes/Minigames/goldgoldgold.tscn" id="18_t2j0x"]
+[ext_resource type="PackedScene" uid="uid://cbw3ot7pwk5sr" path="res://Scenes/Minigames/chess_ui.tscn" id="21_tc45e"]
 
 [sub_resource type="Resource" id="Resource_jcrx1"]
 script = ExtResource("1_dfotg")
@@ -161,6 +164,7 @@ recipe = Dictionary[int, int]({
 120: 1,
 121: 1
 })
+playtest_scene = ExtResource("16_tc45e")
 metadata/_custom_type_script = "uid://jbo30sw083oh"
 
 [sub_resource type="Resource" id="Resource_cjj5m"]
@@ -176,6 +180,7 @@ recipe = Dictionary[int, int]({
 120: 1,
 122: 1
 })
+playtest_scene = ExtResource("18_t2j0x")
 metadata/_custom_type_script = "uid://jbo30sw083oh"
 
 [sub_resource type="Resource" id="Resource_jfl5u"]
@@ -191,6 +196,7 @@ recipe = Dictionary[int, int]({
 120: 1,
 122: 5
 })
+playtest_scene = ExtResource("21_tc45e")
 metadata/_custom_type_script = "uid://jbo30sw083oh"
 
 [sub_resource type="Resource" id="Resource_4ggls"]

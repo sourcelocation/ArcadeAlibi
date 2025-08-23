@@ -1,8 +1,10 @@
 extends Node3D
 
+@export var messages_arcade: Array[String]
 @export var messages_happy: Array[String]
 @export var messages_angry: Array[String]
 @onready var msg: Label = $SubViewport/Control/msg
+@onready var money: Label = %money
 @export var casino = false
 var occupied_id
 var earnings = 0
@@ -44,21 +46,31 @@ func _process(delta: float) -> void:
 							spawn()
 							for c in get_tree().get_nodes_in_group("casino"): c.toggle(false)
 							for c in get_tree().get_nodes_in_group("arcade"): c.toggle(false)
-				else:
-					_begin_playtest()
+							return
+			if needs_playtest:
+				if Input.is_action_just_pressed("Select"):
+						_begin_playtest()
 				
 			Game.gm.player.give_item(115,earnings)
+			if Game.gm.player.money > 1000 and not Save.config.get("boombox-poor",false):
+				Save.save("boombox-poor",true)
+				Game.gm.player.add_boombox(8)
+			if Game.gm.player.money > 10000 and not Save.config.get("boombox-yap",false):
+				Save.save("boombox-yap",true)
+				Game.gm.player.add_boombox(11)
 			earnings = 0
 	
-	$UI/Panel.visible = $Area3D.overlaps_body(Game.gm.player) and occupied_id
-	$UI.visible = $Area3D.overlaps_body(Game.gm.player) and needs_playtest and occupied_id
-
+	$UI/Panel.visible = $Area3D.overlaps_body(Game.gm.player) and (occupied_id != null) and not needs_playtest
+	$UI/Playtest.visible = $Area3D.overlaps_body(Game.gm.player) and needs_playtest and occupied_id
+	money.text = "$" + str(earnings)
 func _playtested():
 	needs_playtest = false
 	$NPCTimer.start()
 	
 func _begin_playtest():
-	_playtested()
+	#_playtested()
+	Game.gm.player.add_playtest(get_item_by_id(occupied_id).playtest_scene,_playtested)
+	
 
 func spawn():
 	needs_playtest = true
@@ -66,6 +78,7 @@ func spawn():
 	var a = get_item_by_id(occupied_id).scene.instantiate()
 	a.position = Vector3()
 	a.rotation = Vector3()
+	a.set_data(get_item_by_id(occupied_id))
 	add_child(a)
 
 func get_item_by_id(id):
@@ -100,7 +113,7 @@ func _on_npc_timer_play_timeout() -> void:
 	text()
 	
 func text():
-	msg.text = messages_angry.pick_random() if i > 2 else messages_happy.pick_random()
+	msg.text = (messages_angry.pick_random() if i > 2 else messages_happy.pick_random()) if casino else messages_arcade.pick_random()
 	
 func toggle(on):
 	$Vis.visible = on

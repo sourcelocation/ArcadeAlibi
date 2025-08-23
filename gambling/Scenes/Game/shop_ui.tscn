@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1pqxelmruke8"]
+[gd_scene load_steps=5 format=3 uid="uid://b1pqxelmruke8"]
 
 [ext_resource type="Script" uid="uid://c10hwi1g0wi0u" path="res://Scenes/Game/shop_ui.gd" id="1_fulp2"]
 [ext_resource type="Shader" uid="uid://bnmy80f665vsw" path="res://Scenes/Game/crt.gdshader" id="2_fulp2"]
+[ext_resource type="AudioStream" uid="uid://dp8548s47xbj1" path="res://Resources/Audio/money.mp3" id="2_jnvht"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jnvht"]
 shader = ExtResource("2_fulp2")
@@ -97,37 +98,38 @@ metadata/_tab_index = 1
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 18.0
-offset_top = 15.0
+offset_top = 10.0
 offset_right = 375.0
-offset_bottom = 95.0
+offset_bottom = 97.0
 focus_mode = 0
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 24
 text = "SHOVEL THAT SHINES LIKE GOLD
-($1999)"
-
-[node name="bunker" type="Button" parent="TabContainer/Upgrades"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 18.0
-offset_top = 105.0
-offset_right = 367.0
-offset_bottom = 185.0
-focus_mode = 0
-theme_override_font_sizes/font_size = 31
-text = "GET YOURSELF PUTIN'S BUNKER
-($20,000)"
+($1,999)"
 
 [node name="back" type="Button" parent="TabContainer/Upgrades"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 18.0
-offset_top = 196.0
+offset_top = 108.0
 offset_right = 375.0
-offset_bottom = 276.0
+offset_bottom = 196.0
 focus_mode = 0
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 24
 text = "BUY A WHOLE FRICKING BUILDING
-($1,000,000)"
+($100,000)"
+
+[node name="cure" type="Button" parent="TabContainer/Upgrades"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.0
+offset_top = 206.0
+offset_right = 375.0
+offset_bottom = 281.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "PAY FOR YOUR MOM'S TREARMENT
+(she believes in u)
+($500,000)"
 
 [node name="Deposit" type="Control" parent="TabContainer"]
 visible = false
@@ -192,19 +194,20 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 30
 text = "DEPOSIT CASH*"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TabContainer/Deposit"]
+stream = ExtResource("2_jnvht")
+
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_jnvht")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -8.0
-offset_right = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
 [connection signal="pressed" from="TabContainer/Upgrades/shovel" to="." method="_on_shovel_pressed"]
-[connection signal="pressed" from="TabContainer/Upgrades/bunker" to="." method="_on_bunker_pressed"]
 [connection signal="pressed" from="TabContainer/Upgrades/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/cure" to="." method="_on_cure_pressed"]
 [connection signal="pressed" from="TabContainer/Deposit/depositbutton" to="." method="_on_depositbutton_pressed"]

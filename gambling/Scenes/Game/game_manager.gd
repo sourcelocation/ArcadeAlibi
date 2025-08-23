@@ -249,3 +249,6 @@ func _on_pause_menu_toggle_pause() -> void:
 
 func turn_doc():
 	doc_lerp = true
+
+func _on_autosave_timeout() -> void:
+	save()

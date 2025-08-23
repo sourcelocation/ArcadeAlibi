@@ -1,6 +1,10 @@
 extends Node2D
 
+signal done
 var selection_made = false
+
+func _ready() -> void:
+	Game.gm.toggle_cutscene(true)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
@@ -13,5 +17,8 @@ func _input(event: InputEvent) -> void:
 		else:
 			selection_made = false
 
-		#selection_made = 
-			
+func done1():
+	done.emit()
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	done.emit()

@@ -1,9 +1,69 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0f1x068lpnl1"]
+[gd_scene load_steps=13 format=3 uid="uid://c0f1x068lpnl1"]
 
 [ext_resource type="Script" uid="uid://f0w6reycq67y" path="res://Scenes/arcade_position.gd" id="1_0uqiu"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_0uqiu"]
-size = Vector2(1, 1)
+[sub_resource type="Shader" id="Shader_0uqiu"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx, unshaded;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb * (sin(TIME * 6.0) * 0.4 + 1.0);
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x6rcn"]
+render_priority = 0
+shader = SubResource("Shader_0uqiu")
+shader_parameter/albedo = Color(0, 1, 0.25, 0.129412)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0uqiu"]
+size = Vector3(1, 1.94, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0uqiu"]
 
@@ -31,11 +91,14 @@ viewport_path = NodePath("SubViewport")
 
 [node name="ArcadePosition" type="Node3D"]
 script = ExtResource("1_0uqiu")
-messages_happy = Array[String](["Time to make a living!", "I LOVE GAMBLING", "I'm so addicted to gambling", "Such an easy game", "What can go wrong?", "Just one more game", "I'm that 1% who doesn't quit"])
-messages_angry = Array[String](["Man what the hell!", "This has to be rigged", "I lost my fortnite cd acount..", "Just one more game...", "Last game an I'll quit"])
+messages_arcade = Array[String](["Mid game to be fair", "This game is so fair and fun!", "Coooool.... yeah.... I'm enjoying it....", "Kinda boring, but playable", "70s was a better time not gonna lie", "My NDS has better games than this", "I died, blame the game", "I'm gonna get #1 soon!", "I'm so close to getting #1", "GTA 6 is better than this crap."])
+messages_happy = Array[String](["Time to make a living!", "I LOVE GAMBLING", "I'm so addicted to gambling", "Such an easy game", "What can go wrong?", "Just one more game", "I'm that 1% who doesn't quit", "YES LETS GO", "I hope this winning streak continues!", "Let's go!", "Yessir, Jackpot", "hell yeah"])
+messages_angry = Array[String](["Man what the hell!", "This has to be rigged", "I lost my fortnite cd account..", "Just one more game...", "Last game an I'll quit", "Bruh this is A SCAM", "Gotta keep gambling", "Gamble, gamble and one more time... gamble", "Never quit when gambling", "no way..........", "lost everything, gotta get a loan", "I hope this loan can help me hit big", "I LOVE \"LEGAL\" CASINOS", "I WILL NOT QUIT", "BROTHER THIS MAKES 0 SENSE"])
 
 [node name="Vis" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_0uqiu")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.866448, 0)
+material_override = SubResource("ShaderMaterial_x6rcn")
+mesh = SubResource("BoxMesh_0uqiu")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -53,7 +116,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="UI"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -68,7 +130,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_0uqiu")
 
-[node name="Label" type="Label" parent="UI/Panel"]
+[node name="money" type="Label" parent="UI/Panel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -152,6 +215,7 @@ wait_time = 6.0
 
 [node name="NPC" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 1.15516, 0.861646, 0.0163366)
+visible = false
 mesh = SubResource("CapsuleMesh_0uqiu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NPC"]

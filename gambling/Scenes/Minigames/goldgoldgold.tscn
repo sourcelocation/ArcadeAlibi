@@ -1,15 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1tvg8y24mufa"]
+[gd_scene load_steps=18 format=3 uid="uid://75qf3keu4824"]
 
-[ext_resource type="Texture2D" uid="uid://cfjqnd4uvgf4n" path="res://Scenes/Minigames/chessboard.png" id="1_3rdse"]
-[ext_resource type="Script" uid="uid://cxn78nyu771kc" path="res://Scenes/Minigames/chess.gd" id="1_6xydi"]
-[ext_resource type="Texture2D" uid="uid://qsagqauctsny" path="res://Scenes/Minigames/pawnW.png" id="2_t0jhr"]
-[ext_resource type="Texture2D" uid="uid://cqofr5hl4qdp5" path="res://Scenes/Minigames/queenB2.png" id="3_6xydi"]
-[ext_resource type="Texture2D" uid="uid://2x4ke5s0ycqq" path="res://Scenes/Minigames/pawnB2.png" id="4_257y2"]
-[ext_resource type="Texture2D" uid="uid://ciaqus4kq5jk" path="res://Scenes/Minigames/YOUR MOVE!.png" id="6_257y2"]
-[ext_resource type="AudioStream" uid="uid://cj3187m67650j" path="res://Scenes/Minigames/ChessPiecePlace.wav" id="6_ef564"]
-[ext_resource type="Texture2D" uid="uid://dmt65y2uxmp23" path="res://Scenes/Minigames/GREAT MOVE(!).png" id="7_8fi4a"]
-[ext_resource type="AudioStream" uid="uid://cpioelvkrivyc" path="res://Scenes/Minigames/wait-wait-wait-wait.mp3" id="7_ef564"]
-[ext_resource type="Texture2D" uid="uid://csoq64fvvq5qv" path="res://Scenes/Minigames/ABSOLUTELY HORRIBLE.png" id="8_lmt85"]
+[ext_resource type="Script" uid="uid://cxn78nyu771kc" path="res://Scenes/Minigames/chess.gd" id="1_5qm6i"]
+[ext_resource type="Texture2D" uid="uid://cfjqnd4uvgf4n" path="res://Scenes/Minigames/chessboard.png" id="2_o8cs5"]
+[ext_resource type="Texture2D" uid="uid://qsagqauctsny" path="res://Scenes/Minigames/pawnW.png" id="3_7i33n"]
+[ext_resource type="Texture2D" uid="uid://cqofr5hl4qdp5" path="res://Scenes/Minigames/queenB2.png" id="4_r4pmc"]
+[ext_resource type="Texture2D" uid="uid://2x4ke5s0ycqq" path="res://Scenes/Minigames/pawnB2.png" id="5_h8h4d"]
+[ext_resource type="AudioStream" uid="uid://cj3187m67650j" path="res://Scenes/Minigames/ChessPiecePlace.wav" id="6_j2aem"]
+[ext_resource type="AudioStream" uid="uid://cpioelvkrivyc" path="res://Scenes/Minigames/wait-wait-wait-wait.mp3" id="7_rcvdb"]
+[ext_resource type="Texture2D" uid="uid://ciaqus4kq5jk" path="res://Scenes/Minigames/YOUR MOVE!.png" id="8_lhosi"]
+[ext_resource type="Texture2D" uid="uid://dmt65y2uxmp23" path="res://Scenes/Minigames/GREAT MOVE(!).png" id="9_0m8mi"]
+[ext_resource type="Texture2D" uid="uid://csoq64fvvq5qv" path="res://Scenes/Minigames/ABSOLUTELY HORRIBLE.png" id="10_vutcw"]
 
 [sub_resource type="Gradient" id="Gradient_t0jhr"]
 offsets = PackedFloat32Array(0.779373, 0.798956)
@@ -204,37 +204,23 @@ tracks/7/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("6_ef564")
+"stream": ExtResource("6_j2aem")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("6_ef564")
+"stream": ExtResource("6_j2aem")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("6_ef564")
+"stream": ExtResource("6_j2aem")
 }, {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("7_ef564")
+"stream": ExtResource("7_rcvdb")
 }],
 "times": PackedFloat32Array(8.16667, 10.2333, 15.3667, 15.6333)
 }
 tracks/7/use_blend = true
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath(".")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(25),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"done1"
-}]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_257y2"]
 _data = {
@@ -251,34 +237,34 @@ gradient = SubResource("Gradient_6xydi")
 
 [node name="Chess" type="Node2D"]
 modulate = Color(0, 1, 0, 1)
-position = Vector2(1277, 702)
-scale = Vector2(0.73, 0.73)
-script = ExtResource("1_6xydi")
+position = Vector2(200, 175)
+scale = Vector2(0.19, 0.19)
+script = ExtResource("1_5qm6i")
 
 [node name="Board" type="Sprite2D" parent="."]
-texture = ExtResource("1_3rdse")
+texture = ExtResource("2_o8cs5")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 
 [node name="PawnW" type="Sprite2D" parent="."]
 position = Vector2(303, 497)
 scale = Vector2(3.96154, 3.96154)
-texture = ExtResource("2_t0jhr")
+texture = ExtResource("3_7i33n")
 
 [node name="PawnW2" type="Sprite2D" parent="."]
 position = Vector2(522, 497)
 scale = Vector2(3.96154, 3.96154)
-texture = ExtResource("2_t0jhr")
+texture = ExtResource("3_7i33n")
 
 [node name="QueenB2" type="Sprite2D" parent="."]
 position = Vector2(-100, -717)
 scale = Vector2(4.26923, 4.11538)
-texture = ExtResource("3_6xydi")
+texture = ExtResource("4_r4pmc")
 
 [node name="PawnB2" type="Sprite2D" parent="."]
 position = Vector2(105, -507)
 scale = Vector2(4.38462, 4.38462)
-texture = ExtResource("4_257y2")
+texture = ExtResource("5_h8h4d")
 
 [node name="Selection" type="Sprite2D" parent="."]
 visible = false
@@ -300,7 +286,7 @@ texture = SubResource("GradientTexture1D_257y2")
 
 [node name="Sprite2D3" type="Sprite2D" parent="YourTurn"]
 scale = Vector2(0.189043, 0.00249391)
-texture = ExtResource("6_257y2")
+texture = ExtResource("8_lhosi")
 
 [node name="GreatMove" type="Sprite2D" parent="."]
 visible = false
@@ -310,7 +296,7 @@ texture = SubResource("GradientTexture1D_257y2")
 
 [node name="Sprite2D3" type="Sprite2D" parent="GreatMove"]
 scale = Vector2(0.11811, 0.00249391)
-texture = ExtResource("7_8fi4a")
+texture = ExtResource("9_0m8mi")
 
 [node name="GreatMove2" type="Sprite2D" parent="."]
 visible = false
@@ -320,8 +306,6 @@ texture = SubResource("GradientTexture1D_257y2")
 
 [node name="Sprite2D3" type="Sprite2D" parent="GreatMove2"]
 scale = Vector2(0.11811, 0.000744499)
-texture = ExtResource("8_lmt85")
+texture = ExtResource("10_vutcw")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

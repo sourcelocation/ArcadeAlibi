@@ -8,6 +8,7 @@ class_name Player
 @onready var grid_container: GridContainer = %GridContainer
 @onready var inventory_panel: Panel = $Control/InventoryPanel
 @onready var spot_light_3d: SpotLight3D = $Camera3D/SpotLight3D
+@onready var playtest: Control = %Playtest
 
 const gravity = 9.8 * 1.5
 const computer_pos = Vector3(-2.156458, 1.465301, -4.937538)
@@ -46,6 +47,8 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	update_items_ui()
+	fail_panel.visible = false
+	playtest.visible = false
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -100,6 +103,10 @@ func process_inventory_select():
 		equip_item_slot(1)
 	elif Input.is_action_just_pressed("select_3"):
 		equip_item_slot(2)
+	elif Input.is_action_just_pressed("select_4"):
+		equip_item_slot(3)
+	elif Input.is_action_just_pressed("select_5"):
+		equip_item_slot(4)
 
 func process_dig():
 	if Input.is_action_pressed("dig") and (selected_tool == 1 or selected_tool == 2):  # e.g., hold a button to dig
@@ -113,7 +120,10 @@ func process_dig():
 			var _tool = Game.gm.terrain.get_voxel_tool()
 			_tool.mode = VoxelTool.MODE_REMOVE
 			_tool.do_sphere(pos,0.8 if selected_tool == 1 else 1.5)
-			hand.get_child(0).use(pos)
+			
+			for n in hand.get_children():
+				if n.has_method("use"):
+					n.use(pos)
 		# Move player into the dug space if needed
 
 func _physics_process(delta: float) -> void:
@@ -251,6 +261,9 @@ func equip_item(_item):
 		var item = _item.scene.instantiate()
 		hand.add_child(item)
 		selected_tool = _item.id
+		
+		if item is Arcade:
+			item.set_data(_item)
 	else:
 		selected_tool = null
 		
@@ -278,3 +291,26 @@ func equip_item_slot(i):
 	var tools = get_tools_in_inventory()
 	if i < tools.size():
 		equip_item(tools[i])
+
+var currplaytest
+
+func add_playtest(scene: PackedScene, _playtested):
+	if currplaytest: currplaytest.queue_free()
+	currplaytest = scene.instantiate()
+	currplaytest.done.connect(func():
+		rem_playtest()
+		_playtested.call()
+	)
+	playtest.add_child(currplaytest)
+	playtest.visible = true
+	
+@onready var fail_panel: Control = $Control/FailPanel
+
+func rem_playtest():
+	playtest.visible = false
+	currplaytest.queue_free()
+	fail_panel.visible = true
+	
+	await get_tree().create_timer(5.0).timeout
+	fail_panel.visible = false
+	

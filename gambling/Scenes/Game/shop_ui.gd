@@ -4,18 +4,18 @@ extends Control
 @onready var items_container_craft: VBoxContainer = %ItemsContainerCraft
 @onready var scene = preload("res://Scenes/item_row_craft.tscn")
 @onready var shovel: Button = %shovel
-@onready var bunker: Button = %bunker
+@onready var cure: Button = %cure
 @onready var back: Button = %back
 
 func _ready():
 	shovel.disabled = "shovel-bought" in Save.config
 	if "shovel-bought" in Save.config:
 		shovel.text = "PURCHASED"
-	bunker.disabled = "bunker-bought" in Save.config
-	if "shovel-bought" in Save.config:
-		bunker.text = "PURCHASED"
+	cure.disabled = "cure-bought" in Save.config
+	if "cure-bought" in Save.config:
+		cure.text = "PURCHASED"
 	back.disabled = "back-bought" in Save.config
-	if "shovel-bought" in Save.config:
+	if "back-bought" in Save.config:
 		back.text = "PURCHASED"
 	await get_tree().create_timer(0.05).timeout
 	_update()
@@ -67,17 +67,17 @@ func _on_shovel_pressed() -> void:
 		Game.gm.player.give_item(2,1)
 
 
-func _on_bunker_pressed() -> void:
-	if Game.gm.player.money >= 20000:
-		Game.gm.player.money -= 20000
-		Save.save("bunker-bought",true)
-		bunker.disabled = true
-		bunker.text = "PURCHASED"
+func _on_cure_pressed() -> void:
+	if Game.gm.player.money >= 500000:
+		Game.gm.player.money -= 500000
+		Save.save("cure-bought",true)
+		cure.disabled = true
+		cure.text = "PURCHASED"
 
 
 func _on_back_pressed() -> void:
-	if Game.gm.player.money >= 1000000:
-		Game.gm.player.money -= 1000000
+	if Game.gm.player.money >= 100_000:
+		Game.gm.player.money -= 100_000
 		Save.save("back-bought",true)
 		back.disabled = true
 		back.text = "PURCHASED"
@@ -87,3 +87,4 @@ func _on_depositbutton_pressed() -> void:
 	Game.gm.player.money += Game.gm.player.inventory[115]
 	Game.gm.player.inventory[115] = 0
 	Game.gm.player.update_items_ui()
+	$TabContainer/Deposit/AudioStreamPlayer.play()
