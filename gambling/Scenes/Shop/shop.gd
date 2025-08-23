@@ -49,6 +49,7 @@ func toggle_shop(visible: bool):
 	#$UI.visible = visible
 	Game.gm.in_computer = visible
 	Game.gm.player.on_shop_toggle(visible)
+	if visible: $StoreOpen.play()
 
 func setup_store():
 	for c in grid.get_children(): c.queue_free()

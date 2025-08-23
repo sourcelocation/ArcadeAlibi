@@ -135,6 +135,7 @@ func process_dig():
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Space") and (is_on_floor() or on_ladder):
 		velocity.y = jump_vel
+		$jump.play()
 
 	if is_on_floor():
 		can_ladder = true
@@ -306,10 +307,12 @@ func add_playtest(scene: PackedScene, _playtested):
 	currplaytest.done.connect(func():
 		rem_playtest()
 		_playtested.call()
+		$playtestend.play()
 	)
 	playtest.add_child(currplaytest)
 	playtest.visible = true
 	Game.gm.toggle_cutscene(true)
+	$playtest.play()
 	
 @onready var fail_panel: Control = $Control/FailPanel
 

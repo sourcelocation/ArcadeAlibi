@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=4 uid="uid://bveuk5kebrha4"]
+[gd_scene load_steps=162 format=4 uid="uid://bveuk5kebrha4"]
 
 [ext_resource type="PackedScene" uid="uid://b1w8ejb0njogw" path="res://Resources/Models/Farm house.glb" id="1_80nbo"]
 [ext_resource type="Material" uid="uid://jelxmdx5qqfd" path="res://Resources/Textures/Grass007_1K-JPG/grass.tres" id="1_e8heu"]
@@ -60,6 +60,7 @@
 [ext_resource type="PackedScene" uid="uid://k0dkh0wobqtu" path="res://Scenes/Truck/truck.blend" id="52_caws5"]
 [ext_resource type="PackedScene" uid="uid://cvotp42u5oj8x" path="res://Scenes/Truck/wheel.blend" id="53_2r0uj"]
 [ext_resource type="Script" uid="uid://diarigv0eabvj" path="res://Scenes/Cutscene/dialog_area.gd" id="54_entp3"]
+[ext_resource type="AudioStream" uid="uid://btnuno2iakhoc" path="res://Resources/Audio/SFX/storeopen.mp3" id="54_h1l72"]
 [ext_resource type="Material" uid="uid://ctsu5v1sal456" path="res://Resources/Textures/Bricks101_1K-JPG/bricks.tres" id="55_7mp2w"]
 [ext_resource type="PackedScene" uid="uid://wsxt2h8q4vxp" path="res://Scenes/Shovel/shovel.blend" id="56_ckc7s"]
 [ext_resource type="AudioStream" uid="uid://buf256nrro2y0" path="res://Resources/Music/underground.mp3" id="57_8trit"]
@@ -67,7 +68,7 @@
 [ext_resource type="PackedScene" uid="uid://cwfgig73oyoe6" path="res://Scenes/Game/Chest.tscn" id="59_3mdsk"]
 [ext_resource type="PackedScene" uid="uid://b5d7dpv1ch8m2" path="res://Scenes/Tree/tree.tscn" id="60_a4qm0"]
 [ext_resource type="PackedScene" uid="uid://c0f1x068lpnl1" path="res://Scenes/arcade_position.tscn" id="69_4qu01"]
-[ext_resource type="PackedScene" uid="uid://y8hvpgacmflg" path="res://Scenes/Menu/underline_button.tscn" id="69_53spd"]
+[ext_resource type="PackedScene" path="res://Scenes/Menu/underline_button.tscn" id="69_53spd"]
 [ext_resource type="Texture2D" uid="uid://bqb4g6ppecluk" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_Color.jpg" id="69_ntkbw"]
 [ext_resource type="ArrayMesh" uid="uid://ue4qkw3ce0qm" path="res://Resources/Other/Full_Size_Bed_with_White_Sheets_Black_V1.obj" id="69_qqdjj"]
 [ext_resource type="Texture2D" uid="uid://6slke8wd5ior" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_AmbientOcclusion.jpg" id="70_d4puy"]
@@ -75,6 +76,7 @@
 [ext_resource type="Texture2D" uid="uid://s3oiuf24g1oi" path="res://Resources/Textures/Bricks101_1K-JPG/Bricks101_1K-JPG_Roughness.jpg" id="72_yuvyg"]
 [ext_resource type="Shader" uid="uid://ue3b1pt06h8p" path="res://Scenes/Game/drip.gdshader" id="74_d4puy"]
 [ext_resource type="PackedScene" uid="uid://b7efp476lxvj" path="res://Scenes/Truck/Police car.glb" id="75_xft3b"]
+[ext_resource type="AudioStream" uid="uid://crb1ap78mnrvs" path="res://Resources/Audio/SFX/police.mp3" id="76_hb4p8"]
 [ext_resource type="Texture2D" uid="uid://dsj4t6ttvl6t7" path="res://Resources/UI/SIGN.png" id="76_yuvyg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
@@ -192,9 +194,19 @@ _data = {
 &"on": SubResource("Animation_l5fxq")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caws5"]
+albedo_texture = ExtResource("45_rht7h")
+roughness_texture = ExtResource("48_2r0uj")
+normal_enabled = true
+normal_texture = ExtResource("47_caws5")
+heightmap_scale = 3.0
+heightmap_texture = ExtResource("46_bkdpl")
+uv1_scale = Vector3(0.17, 0.17, 0.17)
+uv1_triplanar = true
+
 [sub_resource type="VoxelGeneratorGraph" id="VoxelGeneratorGraph_3mdsk"]
 graph_data = {
-"connections": [[19, 0, 18, 1], [18, 0, 4, 0], [15, 0, 18, 0], [14, 0, 15, 0], [14, 0, 19, 1]],
+"connections": [[18, 0, 4, 0], [15, 0, 18, 0], [19, 0, 18, 1], [14, 0, 15, 0], [14, 0, 19, 1]],
 "nodes": {
 "14": {
 "gui_position": Vector2(180, 120),
@@ -225,14 +237,15 @@ graph_data = {
 
 [sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_a4qm0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caws5"]
-albedo_texture = ExtResource("45_rht7h")
-roughness_texture = ExtResource("48_2r0uj")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_858on"]
+albedo_color = Color(0.615422, 0.615422, 0.615422, 1)
+albedo_texture = ExtResource("21_858on")
+metallic_specular = 0.0
+roughness_texture = ExtResource("24_u2cvy")
 normal_enabled = true
-normal_texture = ExtResource("47_caws5")
-heightmap_scale = 3.0
-heightmap_texture = ExtResource("46_bkdpl")
-uv1_scale = Vector3(0.17, 0.17, 0.17)
+normal_texture = ExtResource("23_jcrx1")
+heightmap_texture = ExtResource("22_l5fxq")
+uv1_scale = Vector3(0.46, 0.46, 0.46)
 uv1_triplanar = true
 
 [sub_resource type="ZN_FastNoiseLite" id="ZN_FastNoiseLite_858on"]
@@ -280,17 +293,6 @@ graph_data = {
 },
 "version": 2
 }
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_858on"]
-albedo_color = Color(0.615422, 0.615422, 0.615422, 1)
-albedo_texture = ExtResource("21_858on")
-metallic_specular = 0.0
-roughness_texture = ExtResource("24_u2cvy")
-normal_enabled = true
-normal_texture = ExtResource("23_jcrx1")
-heightmap_texture = ExtResource("22_l5fxq")
-uv1_scale = Vector3(0.46, 0.46, 0.46)
-uv1_triplanar = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fc0e3"]
 noise_type = 3
@@ -731,6 +733,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(28.6133, 0, 2.93607)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_xft3b"]
 resource_name = "a"
@@ -758,6 +772,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(-30.3205, 0, 2.93607), Vector3(28.6133, 0, 2.93607), Vector3(28.6133, 0, 18.8429)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.266667),
+"transitions": PackedFloat32Array(0.5),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hb4p8"]
@@ -788,14 +814,14 @@ libraries = {
 }
 
 [node name="Layer1" type="VoxelTerrain" parent="."]
+material_override = SubResource("StandardMaterial3D_caws5")
 generator = SubResource("VoxelGeneratorGraph_3mdsk")
 mesher = SubResource("VoxelMesherTransvoxel_a4qm0")
-material_override = SubResource("StandardMaterial3D_caws5")
 
 [node name="Layer2" type="VoxelTerrain" parent="."]
+material_override = SubResource("StandardMaterial3D_858on")
 generator = SubResource("VoxelGeneratorGraph_a4qm0")
 mesher = SubResource("VoxelMesherTransvoxel_a4qm0")
-material_override = SubResource("StandardMaterial3D_858on")
 
 [node name="Grass" type="MultiMeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.04564, 0, -0.52338)
@@ -1336,6 +1362,11 @@ texture = SubResource("ViewportTexture_d85t2")
 transform = Transform3D(1, 0, 2.60769e-12, 0, 1, 0, -2.60769e-12, 0, 1, 0.00750732, 0, -0.464546)
 shape = SubResource("BoxShape3D_d85t2")
 
+[node name="StoreOpen" type="AudioStreamPlayer3D" parent="Shop"]
+stream = ExtResource("54_h1l72")
+volume_db = -12.645
+max_polyphony = 4
+
 [node name="grassmask" parent="." instance=ExtResource("45_7icik")]
 transform = Transform3D(-3.20789e-07, 0, 7.3388, 0, 7.3388, 0, -7.3388, 0, -3.20789e-07, 0, 0, -8.28092)
 
@@ -1793,9 +1824,13 @@ light_color = Color(1, 0, 0, 1)
 light_energy = 5.669
 omni_range = 17.9854
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="cops"]
+stream = ExtResource("76_hb4p8")
+
 [node name="Sign" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.4713, -27.6413)
 pixel_size = 0.0751
+alpha_cut = 1
 texture = ExtResource("76_yuvyg")
 
 [connection signal="animation_finished" from="Cutscene1/AnimationPlayer" to="Cutscene1" method="_on_animation_player_animation_finished"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5d7dpv1ch8m2"]
+[gd_scene load_steps=13 format=3 uid="uid://b5d7dpv1ch8m2"]
 
 [ext_resource type="Script" uid="uid://cjsheiswn6hh0" path="res://Scenes/Tree/tree.gd" id="1_pb44w"]
 [ext_resource type="PackedScene" uid="uid://cl7nsrtog11sn" path="res://Scenes/Fence/Tree1.tscn" id="1_rx2sp"]
 [ext_resource type="Material" uid="uid://b823wnxx5yvhr" path="res://Resources/Textures/Ground085_1K-JPG/ground.tres" id="3_pb44w"]
+[ext_resource type="AudioStream" uid="uid://brv1qkwvu72g8" path="res://Resources/Audio/SFX/tree.mp3" id="4_vljho"]
+[ext_resource type="AudioStream" uid="uid://mlnah4yr0t4s" path="res://Resources/Audio/SFX/tree2.mp3" id="5_fjcsn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rx2sp"]
 
@@ -73,6 +75,14 @@ _data = {
 &"a": SubResource("Animation_rx2sp")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pb44w"]
+playback_mode = 1
+random_pitch = 1.36
+streams_count = 2
+stream_0/stream = ExtResource("4_vljho")
+stream_1/stream = ExtResource("5_fjcsn")
+stream_1/weight = 2.071
+
 [node name="Tree" type="Area3D"]
 script = ExtResource("1_pb44w")
 tree_type = ExtResource("1_rx2sp")
@@ -102,6 +112,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_pb44w")
 }
 autoplay = "a"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_pb44w")
+max_polyphony = 4
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

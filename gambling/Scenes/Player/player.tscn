@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ukoki2adbqs1"]
+[gd_scene load_steps=18 format=3 uid="uid://ukoki2adbqs1"]
 
 [ext_resource type="Script" uid="uid://bpqrnyncmfv5s" path="res://Scenes/Player/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://dtsxupfrdr7sn" path="res://Resources/UI/sil.png" id="2_a3d8c"]
@@ -12,6 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://b6v3tekospere" path="res://Resources/Audio/SFX/Run/run8.wav" id="10_aqm4k"]
 [ext_resource type="AudioStream" uid="uid://bogylfogt3gby" path="res://Resources/Audio/SFX/Run/run9.wav" id="11_rcvs5"]
 [ext_resource type="AudioStream" uid="uid://dkgr8a67iiwvo" path="res://Resources/Audio/SFX/Run/run10.wav" id="12_h8ma5"]
+[ext_resource type="AudioStream" uid="uid://dgfb3pjej0spa" path="res://Resources/Audio/SFX/jump-1.mp3" id="13_06tpx"]
+[ext_resource type="AudioStream" uid="uid://ddaxwfk40h2ca" path="res://Resources/Audio/SFX/poweron.mp3" id="14_7g0yx"]
+[ext_resource type="AudioStream" uid="uid://y080xk46k2x8" path="res://Resources/Audio/SFX/errror.mp3" id="15_dey5f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 radius = 0.34
@@ -197,3 +200,13 @@ radius = 0.433139
 [node name="Steps" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_eksi1")
 volume_db = -13.628
+
+[node name="jump" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("13_06tpx")
+volume_db = 2.918
+
+[node name="playtest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_7g0yx")
+
+[node name="playtestend" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_dey5f")

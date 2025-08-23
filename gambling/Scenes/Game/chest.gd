@@ -3,6 +3,7 @@ extends Area3D
 var layer = 0
 var in_view = false
 var in_zone = false
+var used = false
 
 func _physics_process(delta: float) -> void:
 	if  in_zone and in_view and Input.is_action_just_pressed("Select"):
@@ -23,9 +24,14 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 	in_view = false
 
 func open():
-	queue_free()
+	if used: return
+	used = true
+	$AudioStreamPlayer3D.play()
 	Game.gm.player.give_item(101,randi_range(1,5))
 	Game.gm.player.give_item(102,randi_range(2,4))
 	Game.gm.player.give_item(103,randi_range(5,20))
 	#Game.gm.player.money += randi_range(250 * (layer + 1), 500 * (layer + 1))
 	Game.gm.on_chest_opened()
+	visible = false
+	await get_tree().create_timer(1.0).timeout
+	queue_free()

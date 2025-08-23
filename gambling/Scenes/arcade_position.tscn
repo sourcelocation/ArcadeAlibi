@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0f1x068lpnl1"]
+[gd_scene load_steps=14 format=3 uid="uid://c0f1x068lpnl1"]
 
 [ext_resource type="Script" uid="uid://f0w6reycq67y" path="res://Scenes/arcade_position.gd" id="1_0uqiu"]
+[ext_resource type="AudioStream" uid="uid://b8hvhwi0h2hsa" path="res://Resources/Audio/SFX/place1.mp3" id="2_x6rcn"]
 
 [sub_resource type="Shader" id="Shader_0uqiu"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable.mono's StandardMaterial3D.
@@ -273,6 +274,10 @@ text = "Man I love gambling!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_x6rcn")
+volume_db = -5.69
 
 [connection signal="timeout" from="NPCTimer" to="." method="_on_npc_timer_timeout"]
 [connection signal="timeout" from="NPCTimerPlay" to="." method="_on_npc_timer_play_timeout"]

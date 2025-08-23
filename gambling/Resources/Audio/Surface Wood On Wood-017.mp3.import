@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://t7vcxl2nlt0v"
+path="res://.godot/imported/Surface Wood On Wood-017.mp3-28d67c7ca4ff599d0215f71a60eba003.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/Surface Wood On Wood-017.mp3"
+dest_files=["res://.godot/imported/Surface Wood On Wood-017.mp3-28d67c7ca4ff599d0215f71a60eba003.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

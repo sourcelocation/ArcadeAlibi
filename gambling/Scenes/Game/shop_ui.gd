@@ -21,6 +21,8 @@ func _ready():
 	await get_tree().create_timer(0.05).timeout
 	_update()
 	
+	$TabContainer/Crafting.visible = true
+	
 func _process(delta: float) -> void:
 	moneydeposit.text = "$" + str(Game.gm.player.money)
 	
@@ -35,6 +37,8 @@ func _update():
 
 func _craft(item: ItemRes):
 	var ok = true
+	$AudioStreamPlayer.play()
+	$AudioStreamPlayer2.play()
 	
 	for k in item.recipe.keys():
 		var a = item.recipe[k]
@@ -69,6 +73,7 @@ func _on_shovel_pressed() -> void:
 		shovel.disabled = true
 		shovel.text = "PURCHASED"
 		Game.gm.player.give_item(2,1)
+		$hit.play()
 
 
 func _on_cure_pressed() -> void:
@@ -78,6 +83,7 @@ func _on_cure_pressed() -> void:
 		cure.disabled = true
 		cure.text = "PURCHASED"
 		Game.gm.final()
+		$hit.play()
 
 
 func _on_back_pressed() -> void:
@@ -87,6 +93,7 @@ func _on_back_pressed() -> void:
 		back.disabled = true
 		back.text = "PURCHASED"
 		Game.gm.get_node("Sign").visible = true
+		$hit.play()
 
 @onready var animation_player_cops: AnimationPlayer = $"../../../cops/AnimationPlayer"
 
@@ -102,3 +109,7 @@ func _on_depositbutton_pressed() -> void:
 		await get_tree().create_timer(6.0).timeout
 		Save.save("cops",true)
 		Game.gm.player.add_boombox(10)
+
+
+func _on_tab_container_tab_clicked(tab: int) -> void:
+	$hit.play()

@@ -44,6 +44,7 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 
 func mine_tree():
 	health -= 25
+	$AudioStreamPlayer3D.play()
 	if health <= 0:
 		dead()
 		Game.gm.player.give_item(100,randi_range(6,10))

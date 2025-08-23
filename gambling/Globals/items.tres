@@ -94,8 +94,7 @@ description = "Placeholder description"
 icon = ExtResource("8_60mav")
 is_tool = false
 recipe = Dictionary[int, int]({
-102: 2,
-110: 1
+102: 2
 })
 metadata/_custom_type_script = "uid://jbo30sw083oh"
 
@@ -119,8 +118,7 @@ description = "Placeholder description"
 icon = ExtResource("10_31ei7")
 is_tool = false
 recipe = Dictionary[int, int]({
-110: 1,
-111: 1
+101: 5
 })
 metadata/_custom_type_script = "uid://jbo30sw083oh"
 
@@ -132,7 +130,6 @@ description = "Placeholder description"
 icon = ExtResource("11_fp1o2")
 is_tool = false
 recipe = Dictionary[int, int]({
-101: 3,
 110: 1,
 111: 1
 })
@@ -146,7 +143,6 @@ description = "Placeholder description"
 icon = ExtResource("12_ujocd")
 is_tool = false
 recipe = Dictionary[int, int]({
-110: 3,
 121: 2
 })
 metadata/_custom_type_script = "uid://jbo30sw083oh"

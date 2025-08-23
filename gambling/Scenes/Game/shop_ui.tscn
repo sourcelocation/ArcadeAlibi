@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1pqxelmruke8"]
+[gd_scene load_steps=10 format=3 uid="uid://b1pqxelmruke8"]
 
 [ext_resource type="Script" uid="uid://c10hwi1g0wi0u" path="res://Scenes/Game/shop_ui.gd" id="1_fulp2"]
 [ext_resource type="Shader" uid="uid://bnmy80f665vsw" path="res://Scenes/Game/crt.gdshader" id="2_fulp2"]
 [ext_resource type="AudioStream" uid="uid://dp8548s47xbj1" path="res://Resources/Audio/money.mp3" id="2_jnvht"]
+[ext_resource type="AudioStream" uid="uid://dtjo7v62skfmj" path="res://Resources/Audio/SFX/craft.mp3" id="4_en5ty"]
+[ext_resource type="AudioStream" uid="uid://dcps27oj2wjph" path="res://Resources/Audio/SFX/craft2.mp3" id="5_me8kc"]
+[ext_resource type="AudioStream" uid="uid://cojujjnphasxj" path="res://Resources/Audio/SFX/hit.mp3" id="6_me8kc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jnvht"]
 shader = ExtResource("2_fulp2")
@@ -20,6 +23,18 @@ shader_parameter/roll_line_amount = 0.3
 shader_parameter/roll_speed = 1.0
 shader_parameter/scan_line_strength = -8.0
 shader_parameter/pixel_strength = -2.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_en5ty"]
+playback_mode = 1
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("4_en5ty")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jnvht"]
+playback_mode = 1
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("5_me8kc")
 
 [node name="ShopUI" type="Control"]
 texture_filter = 1
@@ -51,7 +66,7 @@ theme_override_colors/font_hovered_color = Color(0, 0.69, 0, 1)
 theme_override_colors/font_selected_color = Color(0, 1, 0, 1)
 theme_override_colors/drop_mark_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 34
-current_tab = 2
+current_tab = 1
 
 [node name="Crafting" type="Control" parent="TabContainer"]
 visible = false
@@ -91,7 +106,6 @@ offset_bottom = 24.0
 text = "Items Required"
 
 [node name="Upgrades" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -116,7 +130,7 @@ offset_right = 375.0
 offset_bottom = 196.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 24
-text = "BUY A WHOLE FRICKING BUILDING
+text = "BUY A GIANT FRICKING ADVERTISMENT
 ($100,000)"
 
 [node name="cure" type="Button" parent="TabContainer/Upgrades"]
@@ -133,6 +147,7 @@ text = "PAY FOR YOUR MOM'S TREARMENT
 ($500,000)"
 
 [node name="Deposit" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -207,6 +222,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_en5ty")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_jnvht")
+volume_db = -15.173
+
+[node name="hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_me8kc")
+
+[connection signal="tab_clicked" from="TabContainer" to="." method="_on_tab_container_tab_clicked"]
 [connection signal="pressed" from="TabContainer/Upgrades/shovel" to="." method="_on_shovel_pressed"]
 [connection signal="pressed" from="TabContainer/Upgrades/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="TabContainer/Upgrades/cure" to="." method="_on_cure_pressed"]

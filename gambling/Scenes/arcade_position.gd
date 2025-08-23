@@ -44,6 +44,7 @@ func _process(delta: float) -> void:
 							occupied_id = t
 							Save.save("occupied_id-%s" % name,occupied_id)
 							spawn()
+							$AudioStreamPlayer.play()
 							for c in get_tree().get_nodes_in_group("casino"): c.toggle(false)
 							for c in get_tree().get_nodes_in_group("arcade"): c.toggle(false)
 							return
