@@ -117,6 +117,6 @@ func text():
 	msg.text = (messages_angry.pick_random() if i > 2 else messages_happy.pick_random()) if casino else messages_arcade.pick_random()
 	
 func toggle(on):
-	$Vis.visible = on
+	$Vis.visible = on and occupied_id == null
 	if name =="ArcadePos": 
 		print(name)
