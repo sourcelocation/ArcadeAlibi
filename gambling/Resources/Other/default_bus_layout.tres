@@ -6,7 +6,7 @@ band_db/32_hz = -60.0
 band_db/100_hz = -60.0
 band_db/320_hz = -60.0
 band_db/1000_hz = -10.0
-band_db/3200_hz = 16.6
+band_db/3200_hz = 8.9
 band_db/10000_hz = -60.0
 
 [resource]

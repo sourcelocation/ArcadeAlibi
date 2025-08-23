@@ -704,6 +704,33 @@ material = SubResource("StandardMaterial3D_4qu01")
 albedo = Color(0, 0.251984, 0.214362, 1)
 edge_fade = 1e-05
 
+[sub_resource type="Animation" id="Animation_yuvyg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Police car:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Police car:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(28.6133, 0, 2.93607)]
+}
+
 [sub_resource type="Animation" id="Animation_xft3b"]
 resource_name = "a"
 length = 13.0
@@ -730,33 +757,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(-30.3205, 0, 2.93607), Vector3(28.6133, 0, 2.93607), Vector3(28.6133, 0, 18.8429)]
-}
-
-[sub_resource type="Animation" id="Animation_yuvyg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Police car:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Police car:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(28.6133, 0, 2.93607)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hb4p8"]
